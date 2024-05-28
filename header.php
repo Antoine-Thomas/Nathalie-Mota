@@ -37,8 +37,8 @@
                 <ul>
                     <!-- Ajoutez vos liens personnalisés ici -->
                     <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">ACCUEIL</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/a-propos' ) ); ?>">A PROPOS</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">CONTACT</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">A PROPOS</a></li>
+                    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">CONTACT</a></li>
                 </ul>
             </nav>
         </div>
