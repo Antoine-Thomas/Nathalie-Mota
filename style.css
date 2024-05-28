@@ -1,0 +1,174 @@
+/*
+Theme Name: Nathalie Mota
+Theme URI: https://www.searching-murphy.com/nathalie-mota
+Description: Thème personnalisé pour le site de photographie de Nathalie Mota.
+Version: 1.0
+Author: 7om
+Author URI: https://www.searching-murphy.com/
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #FFFFFF; 
+    color: #23282d; 
+    font-family: 'Space Mono', monospace;     
+    margin: auto; 
+    width: 100vw;
+    /* max-width: 1440px; */
+}
+
+h1 {
+    padding-top: 50px;
+    text-align: center;
+}
+
+a {    
+    text-decoration: none;
+    color: #000000;
+}
+ 
+ul li {
+    display: inline-block;
+}
+
+.flexrow {
+    display: flex;
+    flex-direction: row;
+}
+
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+}
+
+#header,
+#footer {
+    display: flex;
+    background-color: #ffffff;
+    text-align: center;
+    align-items: center;  
+    justify-content: center;
+    margin: auto;
+    z-index: 100;
+}
+
+#header {
+    position: sticky;
+    top:0;
+    height: 80px;
+    width: 100vw;
+    -webkit-box-shadow: 0px 11px 12px -7px rgba(126, 126, 126, 0.226); 
+    box-shadow: 0px 11px 12px -7px rgba(126, 126, 126, 0.226);    
+}
+
+.banner {
+    background-image: url('images/PhotosNMota/Let\'s dance!.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 1200px; /* Ajustez la hauteur selon vos besoins */
+    width: 100%;
+}
+.banner-content .title-hero {    
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
+    width: 100%;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 96px;
+   
+    font-style: italic;
+    color: transparent;
+    /* text-shadow: 0 0 2px rgb(255, 255, 255), 0 0 2px rgb(255, 255, 255); */
+    /* text-stroke: 2px rgb(255, 255, 255); */
+    -webkit-text-stroke: 2px rgb(255, 255, 255);
+}
+
+.container-header {
+    position: relative; 
+    display: flex;
+    width: 100vw; 
+    height: 100%;
+    max-width: 1200px;   
+    justify-content: space-between;
+    align-items: center; 
+    z-index: 30;
+}
+
+.container-header img {
+    width: 220px;
+    height: auto;
+    margin: 40px;
+}
+
+#footer {
+    height: 40px;
+    justify-content: center;
+    border-top: 1px solid #000000;
+    display: flex;
+
+}
+
+
+#footer p {
+    margin-left: 60px;
+   
+ }
+ 
+
+
+#header a,
+#footer a,
+#mention_text_footer,
+#widget-area {
+    color: #000000; 
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    text-align: center; 
+    text-transform: uppercase;
+    padding: 50px 0;
+}
+
+#header a:hover,
+#header nav ul li.current-menu-item a,
+#footer a:hover {
+    font-weight: 700;
+}
+
+#header nav ul li {
+    padding: 0 20px; 
+}
+
+#navigation {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+}
+
+#navigation .menu-header-menu-container,
+#navigation #modal__burger {
+    margin-right: 40px;    
+}
+
+#navigation .menu-header-menu-container {
+    opacity: 1;
+    transition: all .3s ease-in-out;
+}
+
+
+#navigation .menu-header-menu-container a {
+    padding: 0;
+}
+
+
+
