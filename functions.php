@@ -9,8 +9,9 @@
 function nathalie_mota_enqueue_scripts() {
     // Enqueue main stylesheet
     wp_enqueue_style( 'nathalie-mota-style', get_stylesheet_uri() );
+
     // Enqueue custom script
-    wp_enqueue_script( 'nathalie-mota-script', get_template_directory_uri() . '/js/scripts.js', array('jquery'), '1.0', true );
+    wp_enqueue_script( 'nathalie-mota-script', get_template_directory_uri() . '/assets/script.js', array('jquery'), '1.0', true );
 }
 add_action( 'wp_enqueue_scripts', 'nathalie_mota_enqueue_scripts' );
 
@@ -49,4 +50,13 @@ function nathalie_mota_pagination() {
         'next_text' => '&raquo;',
     ) );
 }
-?>
+
+// Fonction pour appeler Ajax
+function nathalie_mota_ajax_function() {
+    // Code pour traiter la requête Ajax
+    // Vous pouvez ajouter votre code ici pour traiter les requêtes Ajax
+    // Par exemple, vous pouvez utiliser $_POST pour récupérer les données envoyées via Ajax
+    // Et ensuite, vous pouvez effectuer le traitement nécessaire en fonction de ces données
+}
+add_action('wp_ajax_nopriv_nathalie_mota_ajax', 'nathalie_mota_ajax_function');
+add_action('wp_ajax_nathalie_mota_ajax', 'nathalie_mota_ajax_function');

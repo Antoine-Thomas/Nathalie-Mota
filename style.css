@@ -21,8 +21,7 @@ body {
     color: #23282d; 
     font-family: 'Space Mono', monospace;     
     margin: auto; 
-    width: 100vw;
-    /* max-width: 1440px; */
+    max-width: 1440px;
 }
 
 h1 {
@@ -34,21 +33,12 @@ a {
     text-decoration: none;
     color: #000000;
 }
- 
+
 ul li {
     display: inline-block;
 }
 
-.flexrow {
-    display: flex;
-    flex-direction: row;
-}
-
-.flexcolumn {
-    display: flex;
-    flex-direction: column;
-}
-
+/* Styles globaux pour les éléments du menu et du header */
 #header,
 #footer {
     display: flex;
@@ -61,114 +51,349 @@ ul li {
 }
 
 #header {
-    position: sticky;
-    top:0;
+    justify-content: center;
     height: 80px;
-    width: 100vw;
+    width: 100%;
+    max-width: 1440px;
     -webkit-box-shadow: 0px 11px 12px -7px rgba(126, 126, 126, 0.226); 
-    box-shadow: 0px 11px 12px -7px rgba(126, 126, 126, 0.226);    
+    box-shadow: 0px 11px 12px -7px rgba(126, 126, 126, 0.226);
+}
+
+.container-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1440px;
+    padding: 0 80px;
+}
+.container-header img {
+    width: 220px;
+    height: auto;
+    display: flex;
+    justify-content: right;
+  
+}
+
+
+.main-menu {
+    margin-left: auto;
+    display: flex;
+}
+
+.main-menu ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main-menu ul li {
+    margin: 0 10px;
+}
+
+.main-menu ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
+.main-menu ul li a:hover,
+.main-menu ul li.current-menu-item a {
+    font-weight: 700;
 }
 
 .banner {
     background-image: url('images/PhotosNMota/Let\'s dance!.jpeg');
     background-size: cover;
     background-position: center;
-    height: 1200px; /* Ajustez la hauteur selon vos besoins */
+    height: 962px; /* Ajustez la hauteur selon vos besoins */
     width: 100%;
 }
+
 .banner-content .title-hero {    
     position: absolute;
-    top: 50%;
+    top: 45%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     width: 100%;
     text-transform: uppercase;
     text-align: center;
     font-size: 96px;
-   
     font-style: italic;
     color: transparent;
-    /* text-shadow: 0 0 2px rgb(255, 255, 255), 0 0 2px rgb(255, 255, 255); */
-    /* text-stroke: 2px rgb(255, 255, 255); */
     -webkit-text-stroke: 2px rgb(255, 255, 255);
 }
-
-.container-header {
-    position: relative; 
-    display: flex;
-    width: 100vw; 
-    height: 100%;
-    max-width: 1200px;   
-    justify-content: space-between;
-    align-items: center; 
-    z-index: 30;
-}
-
-.container-header img {
-    width: 220px;
-    height: auto;
-    margin: 40px;
+@media screen and (max-width: 649px) {
+    .banner-content .title-hero {
+        font-size: 48px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
+    }
 }
 
 #footer {
     height: 40px;
-    justify-content: center;
     border-top: 1px solid #000000;
     display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
+.footer-container {
+    display: flex;
+    justify-content: center; /* Centrer les éléments horizontalement */
+    align-items: center;
+    width: 100%;
+    padding: 0 220px; /* Ajouter un padding pour l'espace autour des éléments */
+    max-width: 1440px; /* Ajouter une largeur maximale */
+}
+
+.menu-footer-menu-container,
+.footer-center,
+#widget-area {
+    flex-grow: 1; /* Faire en sorte que les éléments s'adaptent à l'espace disponible */
 }
 
 
-#footer p {
-    margin-left: 60px;
-   
- }
- 
 
+.menu-footer-menu-container {
+    text-align: left;
+}
 
-#header a,
-#footer a,
-#mention_text_footer,
+.footer-center {
+    text-align: center;
+}
+
 #widget-area {
+    text-align: right;
+}
+
+#footer a {
     color: #000000; 
     text-decoration: none;
     font-weight: 400;
     font-size: 16px;
-    text-align: center; 
     text-transform: uppercase;
-    padding: 50px 0;
+    margin: 0 10px; /* Ajoute un espace entre les liens */
+    width: 194px;
+    height: 24px;
+  
+    
 }
 
-#header a:hover,
-#header nav ul li.current-menu-item a,
 #footer a:hover {
     font-weight: 700;
 }
 
-#header nav ul li {
-    padding: 0 20px; 
+.has-text-align-right {
+    text-transform: uppercase;
+}
+@media screen and (max-width: 768px) {
+    #footer {
+        height: auto;
+        border-top: 1px solid #000000;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        padding: 20px 0; /* Ajouter un espace intérieur */
+    }
+
+    .footer-container {
+        width: 320px;
+        padding: 0;
+        max-width: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .menu-footer-menu-container,
+    .footer-center,
+    #widget-area {
+        flex-grow: 0;
+        text-align: center;
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    #footer a {
+        display: block;
+        margin: 0;
+        width: auto;
+        height: auto;
+    }
+
+    /* Ordre des éléments */
+    .menu-footer-menu-container {
+        order: 1; /* "Mentions légales" en haut */
+    }
+
+    .footer-center {
+        order: 2; /* "Vie privée" au milieu */
+    }
+
+    #widget-area {
+        order: 3; /* "TOUS DROITS RÉSERVÉS" en bas */
+    }
 }
 
-#navigation {
+/* Media query pour le menu burger */
+@media screen and (max-width: 777px) {
+
+
+
+
+    /* Masquer le menu principal sur les petits écrans */
+    .main-menu {
+        display: none;
+    }
+
+    /* Afficher le bouton du menu burger */
+  
+
+    .menu-toggle {
+        display: block;
+        
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        padding: 0;
+      }
+
+      @media screen and (max-width: 440px) {
+        /* Redimensionner le menu toggle */
+        .menu-toggle {
+            width: 40px; /* Ajustez la largeur du menu toggle selon vos besoins */
+            height: 40px; /* Ajustez la hauteur du menu toggle selon vos besoins */
+            margin-left: 40px;
+        }
+    
+        /* Redimensionner l'image du logo */
+        .container-header img {
+            width: 150px; /* Ajustez la largeur de l'image selon vos besoins */
+            width: 220px;
+            height: auto;
+            display: flex;
+            justify-content: right;
+            margin-left: -60px; /* Ajoutez cette ligne pour enlever la marge à gauche */
+        }
+    }
+    
+    
+    
+      .menu-toggle .line {
+        width: 30px;
+        height: 3px;
+        background-color: #000;
+        display: block;
+        margin: 6px auto;
+        transition: background-color 0.3s ease;
+        width: 30px;
+        height: 3px;
+        background-color: #000;
+        display: block;
+        margin: 6px auto;
+        transition: all 0.3s ease;
+      }
+      
+      .menu-toggle.active .line:nth-child(1) {
+        transform: translateY(9px) rotate(45deg);
+      }
+      .menu-toggle.active .line:nth-child(2) {
+        opacity: 0;
+      }
+      .menu-toggle.active .line:nth-child(3) {
+        transform: translateY(-9px) rotate(-45deg);
+      }
+
+
+
+    
+
+
+
+    /* Styles pour le bouton de fermeture du menu burger */
+    .burger-menu-container .close-menu {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        color: #000000;
+        font-size: 24px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    /* styles.css */
+/* ... */
+
+/* Styles pour le menu burger container */
+.burger-menu-container {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #E00000;
+    display: none; /* Masquer le menu burger par défaut */
+    z-index: 999;
+    overflow: hidden;
+    
+}
+
+/* Afficher le menu burger lorsque la classe active est ajoutée */
+.burger-menu-container.active {
+    display: block;
+}
+
+
+/* Styles pour la liste de navigation du menu burger */
+.burger-menu-container .menu-nav ul {
     display: flex;
-    justify-content: space-between;
-    align-content: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px); /* Hauteur moins la hauteur du bouton de fermeture */
+    color: #ffffff;
+    font-family: 'Space Mono', monospace;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 80px; /* Ajuster la hauteur de ligne */
+    text-align: center;
 }
 
-#navigation .menu-header-menu-container,
-#navigation #modal__burger {
-    margin-right: 40px;    
-}
-
-#navigation .menu-header-menu-container {
-    opacity: 1;
-    transition: all .3s ease-in-out;
-}
-
-
-#navigation .menu-header-menu-container a {
+/* Styles pour les éléments de la liste de navigation du menu burger */
+.burger-menu-container .menu-nav ul {
     padding: 0;
+    margin: 0;
 }
 
+.burger-menu-container .menu-nav ul li {
+    margin-bottom: 20px;
+}
 
+.burger-menu-container .menu-nav ul li:last-child {
+    margin-bottom: 0;
+}
 
+.burger-menu-container .menu-nav ul li a {
+    color: #ffffff;
+    text-decoration: none;
+}
+}
+/* ... */
+
+/* Ajouter cette règle pour masquer le menu burger sur les grands écrans */
+@media screen and (min-width: 778px) {
+    .menu-toggle,
+    .burger-menu-container {
+        display: none;
+    }
+}
