@@ -33,13 +33,15 @@
                 <span class="line"></span>
             </button>
             <nav id="navigation" class="main-menu">
-                <ul>
-                    <!-- Ajoutez vos liens personnalisés ici -->
-                    <li><a href="<?php echo esc_url( home_url( '/' ) ); ?>">ACCUEIL</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/a-propos' ) ); ?>">A PROPOS</a></li>
-                    <li><a href="<?php echo esc_url( home_url( '/contact' ) ); ?>">CONTACT</a></li>
-                </ul>
-            </nav>
+    <?php
+    wp_nav_menu(
+        array(
+            'theme_location' => 'primary',
+            'menu_class'     => 'main-menu-nav',
+        )
+    );
+    ?>
+</nav>
         </div>
     </header>
 
@@ -56,12 +58,15 @@
     <div class="burger-menu-container">
         <span class="close-menu"></span>
         <nav class="menu-nav">
-            <ul>
-                <li><a href="<?php echo esc_url(home_url('/')); ?>">ACCUEIL</a></li>
-                <li><a href="<?php echo esc_url(home_url('/a-propos')); ?>">A PROPOS</a></li>
-                <li><a href="<?php echo esc_url(home_url('/contact')); ?>">CONTACT</a></li>
-            </ul>
-        </nav>
+    <?php
+    wp_nav_menu(
+        array(
+            'theme_location' => 'primary',
+            'menu_class'     => 'menu-nav-items',
+        )
+    );
+    ?>
+</nav>
     </div>
 
 </body>

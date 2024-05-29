@@ -9,6 +9,37 @@ Author URI: https://www.searching-murphy.com/
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+/* Intégration de la police Space Mono */
+@font-face {
+    font-family: 'Space Mono';
+    src: url('fonts/SpaceMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    src: url('fonts/SpaceMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+/* Intégrer les polices Poppins localement */
+@font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    src: url('fonts/Poppins-Regular.ttf') format('truetype');
+  }
+  
+  @font-face {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 700;
+    src: url('fonts/Poppins-Bold.ttf') format('truetype');
+  }
+  
+  /* Autres variantes de poids et styles de la police Poppins */
+/* Utilisation de la police Space Mono */
 
 * {
     box-sizing: border-box;
@@ -19,17 +50,32 @@ Author URI: https://www.searching-murphy.com/
 body {
     background: #FFFFFF; 
     color: #23282d; 
-    font-family: 'Space Mono', monospace;     
+    font-family: 'Space Mono', monospace; 
+    font-family: 'Poppins', sans-serif;    
     margin: auto; 
     max-width: 1440px;
 }
-
+/* Appliquer la police Poppins aux paragraphes */
+p {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 400; /* Poids normal */
+  }
+  
+  /* Vous pouvez également définir un poids différent si vous le souhaitez */
+  p.bold {
+    font-weight: 700; /* Gras */
+  }
+  
+  p.light {
+    font-weight: 300; /* Light */
+  }
 h1 {
     padding-top: 50px;
     text-align: center;
 }
 
-a {    
+a { 
+    font-family: 'Space Mono', monospace;    
     text-decoration: none;
     color: #000000;
 }
@@ -126,9 +172,9 @@ ul li {
     color: transparent;
     -webkit-text-stroke: 2px rgb(255, 255, 255);
 }
-@media screen and (max-width: 649px) {
+@media screen and (max-width: 770px) {
     .banner-content .title-hero {
-        font-size: 48px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
+        font-size: 36px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
     }
 }
 
