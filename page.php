@@ -7,27 +7,19 @@
  * @since 1.0
  */
 
-get_header();
-?>
+ get_header(); ?>
 
-<main id="site-content" role="main">
-
+<main id="main" class="site-main">
     <?php
-
-    while ( have_posts() ) :
-        the_post();
-
-        get_template_part( 'template-parts/content', 'page' );
-
-        // If comments are open or there is at least one comment, load up the comment template.
-        if ( comments_open() || get_comments_number() ) {
-            comments_template();
-        }
-
-    endwhile;
+    if ( have_posts() ) :
+        while ( have_posts() ) :
+            the_post();
+            the_content();
+        endwhile;
+    else :
+        echo '<p>No content found</p>';
+    endif;
     ?>
+</main><!-- #main -->
 
-</main><!-- #site-content -->
-
-<?php
-get_footer();
+<?php get_footer(); ?>

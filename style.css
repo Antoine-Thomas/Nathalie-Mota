@@ -306,7 +306,7 @@ ul li {
         
         top: 20px;
         right: 20px;
-        z-index: 1000;
+        z-index: 2;
         cursor: pointer;
         background-color: transparent;
         border: none;
@@ -374,7 +374,7 @@ ul li {
         color: #000000;
         font-size: 24px;
         cursor: pointer;
-        z-index: 1000;
+        z-index: 2;
     }
 
     /* styles.css */
@@ -389,7 +389,7 @@ ul li {
     height: 100vh;
     background-color: #E00000;
     display: none; /* Masquer le menu burger par défaut */
-    z-index: 999;
+    z-index: 2;
     overflow: hidden;
     
 }
@@ -443,3 +443,51 @@ ul li {
         display: none;
     }
 }
+
+/* Styles pour la popup de contact */
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.popup-overlay.hidden {
+    display: none;
+}
+
+.popup-contact {
+    background: #FFFFFF;
+    border: 5px solid #000000;
+    box-sizing: border-box;
+    width: 597px;
+    height: 769px;
+    padding: 20px;
+    position: relative;
+}
+
+.popup-title__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.popup-decor {
+    width: 50px; /* Ajustez la taille selon vos besoins */
+    height: auto;
+}
+
+.close-popup {
+    cursor:hidden;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+

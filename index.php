@@ -11,6 +11,12 @@ get_header();
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
         <section class="hero">
+              <!-- Banner -->
+    <div class="banner">
+        <div class="banner-content">
+            <h1 class="title-hero">Photographe event</h1>
+        </div>
+    </div>
             <div class="container">
                 <h1>Bienvenue sur le site de Nathalie Mota</h1>
                 <p>Découvrez ses magnifiques photos de mariage, concerts, et bien plus encore.</p>
