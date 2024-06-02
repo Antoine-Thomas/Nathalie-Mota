@@ -17,23 +17,56 @@ get_header();
                     <h1 class="title-hero">Photographe event</h1>
                 </div>
             </div>
-            <div class="container">
-                <h1>Bienvenue sur le site de Nathalie Mota</h1>
-                <p>Découvrez ses magnifiques photos de mariage, concerts, et bien plus encore.</p>
-            </div>
+            </section>
+          
+                <!-- Dropdown Filters -->
+        <section class="filter-area swiper-container">
+            <form class="flexrow swiper-wrapper" method="post">
+                <!-- Left dropdown box -->
+                <div class="filterleft swiper-slide flexrow">
+                    <div id="filtre-categorie" class="select-filter flexcolumn">   
+                        <span class="categorie_id-down dashicons dashicons-arrow-down select-close"></span>
+                        <label class="filter-label custom-label" for="categorie_id"><p>CATÉGORIES</p></label>
+
+                        <select class="option-filter" name="categorie_id" id="categorie_id">
+                            <option id="categorie_0" value=""></option>
+                            <option id="categorie_47" value="47">Réception</option>
+                            <option id="categorie_112" value="112">Concert</option>
+                            <option id="categorie_48" value="48">Mariage</option>
+                            <option id="categorie_49" value="49">Télévision</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Right dropdown boxes -->
+                <div class="filterright swiper-slide flexrow">
+                    <div id="filtre-format" class="select-filter flexcolumn">      
+                        <span class="format_id-down dashicons dashicons-arrow-down select-close"></span>
+                        <label class="filter-label custom-label" for="format_id"><p>FORMATS</p></label>
+                        <select class="option-filter" name="format_id" id="format_id"> 
+                            <option id="format_0" value=""></option>
+                            <option id="format_54" value="54">paysage</option>
+                            <option id="format_53" value="53">portrait</option>
+                        </select>
+                    </div>
+                    <div id="filtre-date" class="select-filter flexcolumn">       
+                        <span class="date-down dashicons dashicons-arrow-down select-close"></span>
+                        <label class="filter-label custom-label" for="date"><p>TRIER PAR</p></label>
+                        <select class="option-filter" name="date" id="date">
+                            <option value=""></option>
+                            <option value="desc">nouveauté</option>
+                            <option value="asc">Les plus anciens</option>
+                        </select>
+                    </div>
+                </div>        
+            </form>
+      
         </section>
 
-        <!-- Section manquante -->
-        <section class="featured-section">
-            <div class="container">
-                <h2>Section manquante</h2>
-                <!-- Ajoutez votre contenu ici -->
-            </div>
-        </section>
 
         <section class="photos">
             <div class="container">
-                <h2>Nos dernières photos</h2>
+                
                 <div id="photo-grid" class="photo-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid #FFFFFF;">
                     <?php
                     // Query custom post type 'photo'

@@ -75,7 +75,21 @@ jQuery(document).ready(function($) {
             }
         });
     }
+ // Event listeners for filters
+ document.getElementById('categorie_id').addEventListener('change', function() {
+    // Logique pour le filtre de catégorie
+    console.log('Catégorie sélectionnée:', this.value);
+});
 
+document.getElementById('format_id').addEventListener('change', function() {
+    // Logique pour le filtre de format
+    console.log('Format sélectionné:', this.value);
+});
+
+document.getElementById('date').addEventListener('change', function() {
+    // Logique pour le filtre de date
+    console.log('Tri sélectionné:', this.value);
+});
     $('#load-more').on('click', loadMorePhotos);
 });
 

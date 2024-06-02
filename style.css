@@ -161,7 +161,7 @@ ul li {
 
 .banner-content .title-hero {    
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     width: 100%;
@@ -616,3 +616,76 @@ label {
     height: 100%; /* Assurez-vous que l'image occupe toute la hauteur de son conteneur */
     object-fit: cover; /* Assurez-vous que l'image couvre le conteneur sans déformation */
 }
+
+/*dropbox*/
+
+.filter-area {
+    display: flex;
+    justify-content: space-between;
+    padding: 80px;
+    margin-top: 40px;
+    position: relative;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.select-filter {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 260px;
+    height: 43px;
+   
+    isolation: isolate;
+}
+
+
+#filtre-categorie {
+    left: 50px;
+   
+}
+
+#filtre-format {
+    left: 350px;
+ 
+}
+
+#filtre-date {
+    right: 50px;
+    
+}
+
+.select-filter label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.option-filter {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    width: 260px;
+    height: 43px;
+}
+
+.dashicons-arrow-down {
+  display: none;
+}
+
+.flexrow {
+    display: flex;
+    align-items: center;
+}
+
+.flexcolumn {
+    display: flex;
+    flex-direction: column;
+}
+.filter-area .custom-label {
+    position: relative;
+    left: 0px !important;
+    top: 0px !important;
+    font-weight: bold;
+}
+
