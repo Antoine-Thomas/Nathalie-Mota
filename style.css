@@ -12,14 +12,14 @@ Author URI: https://www.searching-murphy.com/
 /* Intégration de la police Space Mono */
 @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/SpaceMono-Regular.ttf') format('truetype');
+    src: url('assets/fonts/Poppins-Regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'Space Mono';
-    src: url('fonts/SpaceMono-Bold.ttf') format('truetype');
+    src: url('assets/fonts/SpaceMono-Bold.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -28,14 +28,14 @@ Author URI: https://www.searching-murphy.com/
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    src: url('fonts/Poppins-Regular.ttf') format('truetype');
+    src: url('assets/fonts/Poppins-Regular.ttf') format('truetype');
   }
   
   @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    src: url('fonts/Poppins-Bold.ttf') format('truetype');
+    src: url('assets/fonts/Poppins-Bold.ttf') format('truetype');
   }
   
   /* Autres variantes de poids et styles de la police Poppins */
@@ -152,7 +152,7 @@ ul li {
 }
 
 .banner {
-    background-image: url('images/PhotosNMota/Let\'s dance!.jpeg');
+    background-image: url('images/PhotosNMota/nathalie-11.jpeg');
     background-size: cover;
     background-position: center;
     height: 962px; /* Ajustez la hauteur selon vos besoins */
@@ -161,7 +161,7 @@ ul li {
 
 .banner-content .title-hero {    
     position: absolute;
-    top: 45%;
+    top: 40%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     width: 100%;
@@ -470,24 +470,149 @@ ul li {
     height: 769px;
     padding: 20px;
     position: relative;
+    overflow: hidden; /* Pour cacher les débordements */
 }
-
 .popup-title__container {
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap; /* Pour permettre le wrap des images */
     align-items: center;
     margin-bottom: 20px;
+    width: 800px;
+    left: -141.49px;
+    gap: 0px;
+    position: relative;
+    overflow: hidden; /* Pour cacher les débordements horizontaux */
 }
 
 .popup-decor {
-    width: 50px; /* Ajustez la taille selon vos besoins */
+    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
     height: auto;
+    margin: 5px; /* Espace entre les images */
+    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
+}
+
+.popup-decor:nth-child(n+4) {
+    position: relative;
+    right: 50px;
+}
+
+.popup-title {
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.popup-decor {
+    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
+    height: auto;
+    margin: 5px; /* Espace entre les images */
+    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
 }
 
 .close-popup {
-    cursor:hidden;
+    cursor: pointer;
     font-size: 24px;
     font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+#ff_3_message {
+    width: 263px; /* Largeur fixe */
+    height: 210px; /* Hauteur fixe */
+    padding: 8px 15px; /* Espacement intérieur */
+    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
+    border: 1px solid #B8BBC2; /* Bordure */
+    resize: none; /* Empêcher le redimensionnement */
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+    margin: auto; /* Centrer horizontalement */
+    display: block; /* Afficher en tant que bloc */
+}
+
+.ff-el-form-control  {
+    width: 263px !important; /* Largeur fixe */
+    height: 50px; /* Hauteur fixe */
+    padding: 8px 15px; /* Espacement intérieur */
+    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
+    border: 1px solid #B8BBC2; /* Bordure */
+    resize: none; /* Empêcher le redimensionnement */
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+    margin: auto; /* Centrer horizontalement */
+    display: block; /* Afficher en tant que bloc */
+  
+}
+/* Style par défaut */
+label {
+    position: relative;
+    left: 150px !important;
+}
+
+/* Les labels restent centrés pour les écrans entre 320px et 433px */
+@media (max-width: 433px) and (min-width: 0px) {
+    label {
+        left: 20px !important;
+        
+    }
 }
 
 
+.fluentform .ff-text-center {
+    width: 263px; /* Rend le bouton aussi large que le conteneur parent */
+    height: 50px ;
+    background: #D8D8D8; /* Fond gris */
+    color: #000; /* Texte noir */
+    border: none; /* Enlève les bordures par défaut */
+    text-align: center;
+    border-radius: 0; /* Bords carrés */
+    padding: 10px 0; /* Ajuste la hauteur du bouton */
+    cursor: pointer; /* Change le curseur au survol */
+    font-size: 16px; /* Taille de police */
+    margin: auto; /* Centrer horizontalement */
+    align-items: center; /* Centre verticalement */
+    font-family: Space Mono !important;
+   
+}
+
+
+.fluentform .ff-el-group {
+     margin-bottom: 15px !important; 
+}
+
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    grid-gap: 20px !important; /* Espacement de 20px entre les photos */
+    justify-content: center; /* Centrer horizontalement */
+    margin: 0 auto; /* Centrer la grille horizontalement */
+    max-width: 1148px; /* Limiter la largeur de la grille */
+    padding: 20px 0; /* Espacement en haut et en bas de la grille */
+}
+
+.load-more {
+    display: block;
+    width: 272px;
+    height: 50px;
+    margin: 20px auto; /* Pour centrer le bouton horizontalement */
+    text-align: center;
+    background: #D8D8D8;
+    border-radius: 2px;
+    cursor: pointer;
+    box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.02);
+}
+
+.photo-item {
+    width: 100%; /* Assurez-vous que chaque élément occupe toute la largeur de sa colonne */
+    max-width: 564px; /* Limitez la largeur de chaque élément à 564px */
+    height: 495px; /* Set the height to match the image size */
+}
+
+.photo-thumbnail {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; /* Assurez-vous que l'image occupe toute la largeur de son conteneur */
+    height: 100%; /* Assurez-vous que l'image occupe toute la hauteur de son conteneur */
+    object-fit: cover; /* Assurez-vous que l'image couvre le conteneur sans déformation */
+}

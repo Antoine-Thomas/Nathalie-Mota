@@ -14,6 +14,11 @@ function nathalie_mota_enqueue_scripts() {
 
     // Enqueue le script personnalisé
     wp_enqueue_script( 'nathalie-mota-script', get_template_directory_uri() . '/assets/script.js', array('jquery'), '1.0', true );
+
+    // Localize the script with new data
+    wp_localize_script( 'nathalie-mota-script', 'nmAjax', array(
+        'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+    ) );
 }
 add_action( 'wp_enqueue_scripts', 'nathalie_mota_enqueue_scripts' );
 
@@ -27,29 +32,57 @@ function nathalie_mota_register_menus() {
 }
 add_action( 'init', 'nathalie_mota_register_menus' );
 
+
+// Ajouter la prise en charge des images mises en avant
+add_theme_support( 'post-thumbnails' );
 /**
  * Ajoute des tailles d'images personnalisées
  */
 function nathalie_mota_add_image_sizes() {
-    add_image_size( 'featured-image', 1200, 600, true );
+    add_image_size( 'custom-thumb', 564, 495, true );
 }
 add_action( 'after_setup_theme', 'nathalie_mota_add_image_sizes' );
-
 
 /**
  * Fonction pour traiter les requêtes Ajax
  *
  * Cette fonction est appelée lorsqu'une requête Ajax est envoyée depuis le frontend.
  */
-function nathalie_mota_ajax_function() {
-    // Code pour traiter la requête Ajax
-    // Vous pouvez ajouter votre code ici pour traiter les requêtes Ajax
-    // Par exemple, vous pouvez utiliser $_POST pour récupérer les données envoyées via Ajax
-    // Et ensuite, vous pouvez effectuer le traitement nécessaire en fonction de ces données
-}
+
 add_action('wp_ajax_nopriv_nathalie_mota_ajax', 'nathalie_mota_ajax_function');
 add_action('wp_ajax_nathalie_mota_ajax', 'nathalie_mota_ajax_function');
+function nathalie_mota_load_more_photos() {
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
+    $photos_per_page = isset($_POST['photos_per_page']) ? intval($_POST['photos_per_page']) : 8;
 
+    $args = array(
+        'post_type' => 'photo',
+        'posts_per_page' => $photos_per_page,
+        'paged' => $page,
+        'order' => 'ASC'
+    );
+
+    $photo_query = new WP_Query($args);
+    if ($photo_query->have_posts()) :
+        while ($photo_query->have_posts()) : $photo_query->the_post(); ?>
+            <div class="photo-item">
+                <?php if (get_field('image')): ?>
+                    <?php $image = get_field('image'); ?>
+                    <div class="photo-thumbnail">
+                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" style="width: 564px; height: 495px; border: 1px solid #FFFFFF;" />
+                    </div>
+                <?php endif; ?>
+            </div>
+        <?php endwhile;
+        wp_reset_postdata();
+    else :
+        echo 0; // Indicate no more posts
+    endif;
+
+    wp_die();
+}
+add_action('wp_ajax_load_more_photos', 'nathalie_mota_load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'nathalie_mota_load_more_photos');
 
 /**
  * Ajoute la classe open-popup au lien de menu "Contact"
@@ -69,3 +102,4 @@ function ajouter_classe_open_popup($atts, $item, $args) {
 add_filter('nav_menu_link_attributes', 'ajouter_classe_open_popup', 10, 3);
 
 ?>
+

@@ -1,50 +1,85 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const menuToggle = document.querySelector('.menu-toggle');
-    const burgerMenuContainer = document.querySelector('.burger-menu-container');
-    const closeMenu = document.querySelector('.close-menu');
-    const body = document.querySelector('body');
-    const popupOverlay = document.querySelector('.popup-overlay');
-    const contactMenuLink = document.querySelector('.open-popup');
-    const popupCloseBtn = document.querySelector('.close-popup');
+jQuery(document).ready(function($) {
+    const menuToggle = $('.menu-toggle');
+    const burgerMenuContainer = $('.burger-menu-container');
+    const closeMenu = $('.close-menu');
+    const body = $('body');
+    const popupOverlay = $('.popup-overlay');
+    const contactMenuLink = $('.open-popup');
+    const popupCloseBtn = $('.close-popup');
+    const ajaxUrl = nmAjax.ajaxUrl;
+    let page = 1;
+    const photosPerPage = 8;
 
     function unScroll() {
-        if (burgerMenuContainer.classList.contains('active')) {
-            body.style.overflow = 'hidden';
-        } else {
-            body.style.overflow = 'auto';
-        }
+        body.css('overflow', burgerMenuContainer.hasClass('active') ? 'hidden' : 'auto');
     }
 
-    menuToggle.addEventListener('click', () => {
-        menuToggle.classList.toggle('active');
-        burgerMenuContainer.classList.toggle('active');
+    menuToggle.on('click', () => {
+        menuToggle.toggleClass('active');
+        burgerMenuContainer.toggleClass('active');
         unScroll();
     });
 
-    closeMenu.addEventListener('click', () => {
-        menuToggle.classList.remove('active');
-        burgerMenuContainer.classList.remove('active');
+    closeMenu.on('click', () => {
+        menuToggle.removeClass('active');
+        burgerMenuContainer.removeClass('active');
         unScroll();
     });
 
-    // Ouvrir la popup lors du clic sur le lien du menu "Contact"
-    contactMenuLink.addEventListener('click', function(event) {
+    contactMenuLink.on('click', function(event) {
         event.preventDefault();
-        popupOverlay.classList.remove('hidden');
+        popupOverlay.removeClass('hidden');
     });
 
-    // Fermer la popup lors du clic sur le bouton de fermeture
-    popupCloseBtn.addEventListener('click', function() {
-        popupOverlay.classList.add('hidden');
-    });
-
-    // Fermer la popup lors du clic en dehors de la zone de la popup
-    popupOverlay.addEventListener('click', function(event) {
-        if (event.target === popupOverlay) {
-            popupOverlay.classList.add('hidden');
+    burgerMenuContainer.on('click', function(event) {
+        if ($(event.target).hasClass('open-popup')) {
+            event.preventDefault();
+            popupOverlay.removeClass('hidden');
         }
     });
+
+    popupCloseBtn.on('click', function() {
+        popupOverlay.addClass('hidden');
+    });
+
+    popupOverlay.on('click', function(event) {
+        if ($(event.target).is(popupOverlay)) {
+            popupOverlay.addClass('hidden');
+        }
+    });
+
+    function loadMorePhotos() {
+        console.log('Load more photos clicked');
+        page++;
+        $.ajax({
+            url: ajaxUrl,
+            type: 'POST',
+            data: {
+                action: 'load_more_photos',
+                page: page,
+                photos_per_page: photosPerPage
+            },
+            success: function(response) {
+                if (response) {
+                    $('.photo-grid').append(response);
+                    if ($('.photo-grid .photo-item').length >= totalPhotos) {
+                        $('#load-more').hide();
+                    }
+                } else {
+                    $('#load-more-container').hide();
+                }
+            },
+            error: function(xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+                console.log(xhr.responseText);
+            }
+        });
+    }
+
+    $('#load-more').on('click', loadMorePhotos);
 });
 
 
 
+
+    
