@@ -70,6 +70,14 @@ function nathalie_mota_load_more_photos() {
                     <?php $image = get_field('image'); ?>
                     <div class="photo-thumbnail">
                         <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" style="width: 564px; height: 495px; border: 1px solid #FFFFFF;" />
+                        <div class="lightbox">
+                            <div class="lightbox-content">
+                                <div class="lightbox-title"><?php the_title(); ?></div>
+                                <a href="<?php the_permalink(); ?>" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>
+                                <a href="<?php echo esc_url($image['url']); ?>" class="lightbox-icon fullscreen-icon" title="Afficher en plein écran"></a>
+                                <div class="lightbox-category"><?php echo get_the_term_list( get_the_ID(), 'category', '', ', ' ); ?></div>
+                            </div>
+                        </div>
                     </div>
                 <?php endif; ?>
             </div>
@@ -81,6 +89,8 @@ function nathalie_mota_load_more_photos() {
 
     wp_die();
 }
+add_action('wp_ajax_load_more_photos', 'nathalie_mota_load_more_photos');
+add_action('wp_ajax_nopriv_load_more_photos', 'nathalie_mota_load_more_photos');
 add_action('wp_ajax_load_more_photos', 'nathalie_mota_load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'nathalie_mota_load_more_photos');
 
@@ -102,4 +112,3 @@ function ajouter_classe_open_popup($atts, $item, $args) {
 add_filter('nav_menu_link_attributes', 'ajouter_classe_open_popup', 10, 3);
 
 ?>
-

@@ -49,6 +49,10 @@ jQuery(document).ready(function($) {
     });
 
     function loadMorePhotos() {
+        const categorieId = $('#categorie_id').val();
+        const formatId = $('#format_id').val();
+        const dateOrder = $('#date').val();
+    
         console.log('Load more photos clicked');
         page++;
         $.ajax({
@@ -57,7 +61,10 @@ jQuery(document).ready(function($) {
             data: {
                 action: 'load_more_photos',
                 page: page,
-                photos_per_page: photosPerPage
+                photos_per_page: photosPerPage,
+                categorie_id: categorieId,
+                format_id: formatId,
+                date_order: dateOrder
             },
             success: function(response) {
                 if (response) {
@@ -75,23 +82,47 @@ jQuery(document).ready(function($) {
             }
         });
     }
- // Event listeners for filters
- document.getElementById('categorie_id').addEventListener('change', function() {
-    // Logique pour le filtre de catégorie
-    console.log('Catégorie sélectionnée:', this.value);
-});
 
-document.getElementById('format_id').addEventListener('change', function() {
-    // Logique pour le filtre de format
-    console.log('Format sélectionné:', this.value);
-});
+    $('#categorie_id, #format_id, #date').on('change', function() {
+        $('.photo-grid').empty();
+        page = 1;
+        loadMorePhotos();
+    }); 
 
-document.getElementById('date').addEventListener('change', function() {
-    // Logique pour le filtre de date
-    console.log('Tri sélectionné:', this.value);
-});
     $('#load-more').on('click', loadMorePhotos);
+
+    // Event listeners for filters
+    document.getElementById('categorie_id').addEventListener('change', function() {
+        console.log('Catégorie sélectionnée:', this.value);
+    });
+
+    document.getElementById('format_id').addEventListener('change', function() {
+        console.log('Format sélectionné:', this.value);
+    });
+
+    document.getElementById('date').addEventListener('change', function() {
+        console.log('Tri sélectionné:', this.value);
+    });
+
+// Ajouter l'effet de lightbox pour les nouvelles photos chargées
+function applyLightboxEffect() {
+    $('.photo-thumbnail').hover(function() {
+        $(this).find('.lightbox').fadeIn(300);
+    }, function() {
+        $(this).find('.lightbox').fadeOut(300);
+    });
+}
+
+// Appelle cette fonction après le chargement Ajax
+$(document).ajaxComplete(function() {
+    applyLightboxEffect();
 });
+
+// Appelle la fonction au chargement initial
+applyLightboxEffect();
+});
+
+
 
 
 
