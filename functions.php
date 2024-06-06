@@ -168,52 +168,41 @@ function load_photos_by_selection() {
     $photos_query = new WP_Query($args);
 
     // Génération de la sortie
-    ob_start();
-    if ($photos_query->have_posts()) {
-        echo '<div class="photo-grid">'; // Ajout de la classe photo-grid pour le style en grille
-        while ($photos_query->have_posts()) {
-            $photos_query->the_post();
+ob_start();
+if ($photos_query->have_posts()) {
+    echo '<div class="photo-grid">'; // Ajout de la classe photo-grid pour le style en grille
+    while ($photos_query->have_posts()) {
+        $photos_query->the_post();
 
-            // Récupération des champs ACF
-            $type = get_field('type');
-            $reference = get_field('reference');
-            $date = get_field('date');
-            $titre = get_field('titre');
-            $photo = get_field('photo');
-            $format = get_field('format');
+        // Récupération des champs ACF
+        $photo = get_field('photo');
 
-            // HTML de votre modèle photo
-            echo '<div class="photo">';
-            if ($photo) {
-                echo wp_get_attachment_image($photo['ID'], 'medium'); // Utiliser la taille 'medium' pour les miniatures
-            }
-            echo '<h2>' . get_the_title() . '</h2>';
-            if ($type) {
-                echo '<p>Type: ' . esc_html($type) . '</p>';
-            }
-            if ($reference) {
-                echo '<p>Reference: ' . esc_html($reference) . '</p>';
-            }
-            if ($date) {
-                echo '<p>Date: ' . esc_html($date) . '</p>';
-            }
-            if ($titre) {
-                echo '<p>Title: ' . esc_html($titre) . '</p>';
-            }
-            if ($format) {
-                echo '<p>Format: ' . esc_html($format) . '</p>';
-            }
-            echo '</div>';
+        // HTML de votre modèle photo
+        echo '<div class="photo-item">';
+        if ($photo) {
+            $image = wp_get_attachment_image_src($photo['ID'], 'medium'); // Utiliser la taille 'medium' pour les miniatures
+            echo '<div class="photo-thumbnail ' . ($image[2] > $image[1] ? 'portrait' : 'landscape') . '">';
+            echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
+            echo '<div class="lightbox" style="display: none;">';
+            echo '<div class="lightbox-content">';
+            echo '<div class="lightbox-title">' . get_the_title() . '</div>';
+            echo '<a href="' . get_permalink() . '" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>';
+            echo '<a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>';
+            echo '<div class="lightbox-category">' . get_the_term_list(get_the_ID(), 'category', '', ', ') . '</div>';
+            echo '</div></div></div>';
         }
-        echo '</div>'; // Fermeture de la div photo-grid
-    } else {
-        echo '<p>No photos found</p>';
+        echo '</div>';
     }
-    wp_reset_postdata();
+    echo '</div>'; // Fermeture de la div photo-grid
+} else {
+    echo '<p>No photos found</p>';
+}
+wp_reset_postdata();
 
-    $response = ob_get_clean();
-    echo $response;
-    wp_die();
+$response = ob_get_clean();
+echo $response;
+wp_die();
+
 }
 add_action('wp_ajax_load_photos_by_selection', 'load_photos_by_selection');
 add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection');
