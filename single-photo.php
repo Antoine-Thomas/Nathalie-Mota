@@ -1,53 +1,39 @@
-<?php
-get_header(); ?>
+<?php get_header(); ?>
 
-<div class="content">
-    <h1><?php the_title(); ?></h1>
+<div class="main-container">
+    <div class="single-photo-content">
+        <div class="photo-header">
+            
+        </div>
 
-    <!-- Afficher le contenu principal -->
-    <div class="main-content">
-        <?php
-        while ( have_posts() ) :
-            the_post();
-            the_content();
-        endwhile;
-        ?>
-    </div>
+        <div class="photo-main">
+            <!-- Afficher la photo principale -->
+            <div class="photo-display">
+                <?php if ( get_field('photo') ) : ?>
+                    <img src="<?php echo esc_url( get_field('photo')['url'] ); ?>" alt="<?php echo esc_attr( get_field('photo')['alt'] ); ?>">
+                <?php endif; ?>
+            </div>
 
-    <!-- Afficher les champs ACF -->
-    <div class="acf-fields">
-        <p><strong>Type:</strong> <?php the_field('type'); ?></p>
-        <p><strong>Référence:</strong> <?php the_field('reference'); ?></p>
-    </div>
+            <!-- Afficher les détails de la photo -->
+            <div class="photo-details frame-33">
+                <p class="title"><?php the_field('titre'); ?></p>
+                <p class="reference">Référence : <?php the_field('reference'); ?></p>
+                <p class="categorie">Catégorie : <?php the_field('categorie'); ?></p>
+                <p class="format">FORMAT : <?php the_field('format'); ?></p>
+                <p class="type">Type : <?php the_field('type'); ?></p>
+                <p class="annee">ANNÉE : <?php the_field('date'); ?></p>
+            </div>
+        </div>
 
-    <!-- Afficher les termes de taxonomie -->
-    <div class="taxonomy-terms">
-        <h2>Catégories</h2>
-        <ul>
-            <?php
-            $terms = get_the_terms( get_the_ID(), 'categorie' );
-            if ( $terms && ! is_wp_error( $terms ) ) :
-                foreach ( $terms as $term ) {
-                    echo '<li>' . esc_html( $term->name ) . '</li>';
-                }
-            endif;
-            ?>
-        </ul>
-    </div>
-
-    <div class="taxonomy-terms">
-        <h2>Formats</h2>
-        <ul>
-            <?php
-            $terms = get_the_terms( get_the_ID(), 'format' );
-            if ( $terms && ! is_wp_error( $terms ) ) :
-                foreach ( $terms as $term ) {
-                    echo '<li>' . esc_html( $term->name ) . '</li>';
-                }
-            endif;
-            ?>
-        </ul>
-    </div>
+        <!-- Ligne de séparation -->
+        <div class="line line-3"></div>
+        <div class="cette-photo">Cette photo vous intéresse?</div>
+        <div class="line line-4"></div>
+    </div> <!-- Fermeture de la div single-photo-content -->
 </div>
 
-<?php get_footer(); ?>
+<?php get_footer('single-photo-page'); ?>
+
+
+
+

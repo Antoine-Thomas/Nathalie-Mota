@@ -85,8 +85,9 @@ ul li {
 }
 
 /* Styles globaux pour les éléments du menu et du header */
-#header,
-#footer {
+#header
+{
+    
     display: flex;
     background-color: #ffffff;
     text-align: center;
@@ -94,9 +95,6 @@ ul li {
     justify-content: center;
     margin: auto;
     z-index: 100;
-}
-
-#header {
     justify-content: center;
     height: 80px;
     width: 100%;
@@ -161,7 +159,7 @@ ul li {
 
 .banner-content .title-hero {    
     position: absolute;
-    top: 30%;
+    top: 40%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     width: 100%;
@@ -185,6 +183,7 @@ ul li {
     justify-content: center;
     align-items: center;
     width: 100%;
+    flex-grow: 1; /* Permet au contenu de remplir l'espace restant */
 }
 
 .footer-container {
@@ -192,18 +191,10 @@ ul li {
     justify-content: center; /* Centrer les éléments horizontalement */
     align-items: center;
     width: 100%;
+    height: 100%;
     padding: 0 220px; /* Ajouter un padding pour l'espace autour des éléments */
     max-width: 1440px; /* Ajouter une largeur maximale */
 }
-
-.menu-footer-menu-container,
-.footer-center,
-#widget-area {
-    flex-grow: 1; /* Faire en sorte que les éléments s'adaptent à l'espace disponible */
-}
-
-
-
 .menu-footer-menu-container {
     text-align: left;
 }
@@ -233,6 +224,33 @@ ul li {
     font-weight: 700;
 }
 
+.has-text-align-right {
+    text-transform: uppercase;
+}
+
+.footer-center {
+    text-align: center;
+}
+
+#widget-area {
+    text-align: right;
+}
+
+#footer a {
+    color: #000000; 
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 16px;
+    text-transform: uppercase;
+    margin: 0 10px; /* Ajoute un espace entre les liens */
+    width: 194px;
+    height: 24px;
+  
+    
+}
+#footer a:hover {
+    font-weight: 700;
+}
 .has-text-align-right {
     text-transform: uppercase;
 }
@@ -704,6 +722,43 @@ label {
 
 /*style des images dropbox */
 
+/* Media query pour les écrans jusqu'à 1148px de largeur */
+@media screen and (max-width: 1148px) {
+    /* Mettre la grille gallery en colonne verticale */
+    .photo-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Pour centrer le contenu à l'intérieur de chaque colonne */
+        max-width: 320px;
+    }
+
+   
+   
+    .filter-area {
+        max-width:564px !important;
+        height: 400px !important;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        
+      }
+    
+      
+
+      
+   
+      
+    
+      
+   
+
+    }
+    
+  
+    
 
 
 
@@ -851,7 +906,7 @@ label {
     font-size: 20px;
     transition: 0.6s ease;
     border-radius: 0 3px 3px 0;
-    user-select: none;
+   
 }
 
 .carousel-next {
@@ -862,4 +917,114 @@ label {
 .carousel-prev {
     left: 0;
     border-radius: 3px 0 0 3px;
+}
+
+
+/*single photo*/
+
+.single-photo-content {
+    position: relative;
+    width: 100%;
+    padding: 1700px;
+    box-sizing: border-box;
+}
+
+/* Photo class */
+.photo-display {
+    position: absolute;
+    width: 563px;
+    height: 844px;
+    left: 731px;
+    top: 118px;
+}
+
+.photo-display img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Frame 33 */
+.frame-33 {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+    position: absolute;
+    width: 420px;
+    height: 321px;
+    left: 144px;
+    top: 605px;
+}
+
+.frame-33 p {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    text-transform: uppercase;
+    color: #000000;
+}
+
+/* Line 3 */
+.line-3 {
+    position: absolute;
+    width: 564px;
+    height: 0px;
+    left: 146px;
+    top: 963px;
+    border: 1px solid #000000;
+}
+
+/* Line 4 */
+.line-4 {
+    position: absolute;
+    width:  1148px; 
+    height: 0px;
+    left: 146px;
+    top: 1081px;
+    border: 1px solid #000000;
+}
+.photo-details p.title  {
+    font-family: Space Mono !important;
+    font-size: 66px !important;
+    font-style: italic !important;
+    font-weight: 400 !important;
+    line-height: 58px !important;
+    text-align: left !important;
+}
+
+
+.photo-details {
+    /* Style général pour tous les éléments de texte à l'intérieur de .photo-details */
+}
+
+.photo-details p {
+    font-family: Space Mono;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20.73px;
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+
+/* Cette photo vous intéresse ? */
+.cette-photo {
+    position: absolute;
+    width: 197px;
+    height: 21px;
+    left: 145px;
+    top: 1011px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 21px;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
 }

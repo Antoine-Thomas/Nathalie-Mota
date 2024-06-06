@@ -180,7 +180,7 @@ if ($photos_query->have_posts()) {
         // HTML de votre modèle photo
         echo '<div class="photo-item">';
         if ($photo) {
-            $image = wp_get_attachment_image_src($photo['ID'], 'medium'); // Utiliser la taille 'medium' pour les miniatures
+            $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'medium' pour les miniatures
             echo '<div class="photo-thumbnail ' . ($image[2] > $image[1] ? 'portrait' : 'landscape') . '">';
             echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
             echo '<div class="lightbox" style="display: none;">';
