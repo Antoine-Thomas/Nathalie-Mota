@@ -10,102 +10,36 @@ get_header();
 
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-        <section class="hero">
-            <!-- Banner -->
-            <div class="banner">
-                <div class="banner-content">
-                    <h1 class="title-hero">Photographe event</h1>
-                </div>
-            </div>
-        </section>
-          
-        <!-- Dropdown Filters -->
-        <section class="filter-area swiper-container">
-            <form class="flexrow swiper-wrapper" method="post">
-                <!-- Left dropdown box -->
-                <div class="filterleft swiper-slide flexrow">
-                    <div id="filtre-categorie" class="select-filter flexcolumn">   
-                        <span class="categorie_id-down dashicons dashicons-arrow-down select-close"></span>
-                        <label class="filter-label custom-label" for="categorie_id"><p>CATÉGORIES</p></label>
-                        <select class="option-filter" name="categorie_id" id="categorie_id">
-                            <option id="categorie_0" value=""></option>
-                            <option id="categorie_47" value="47">Réception</option>
-                            <option id="categorie_112" value="112">Concert</option>
-                            <option id="categorie_48" value="48">Mariage</option>
-                            <option id="categorie_49" value="49">Télévision</option>
-                        </select>
-                    </div>
-                </div>
+        <?php if ( have_posts() ) : ?>
+            <?php while ( have_posts() ) : the_post(); ?>
+                <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+                    <header class="entry-header">
+                        <h2 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h2>
+                    </header><!-- .entry-header -->
 
-                <!-- Right dropdown boxes -->
-                <div class="filterright swiper-slide flexrow">
-                    <div id="filtre-format" class="select-filter flexcolumn">      
-                        <span class="format_id-down dashicons dashicons-arrow-down select-close"></span>
-                        <label class="filter-label custom-label" for="format_id"><p>FORMATS</p></label>
-                        <select class="option-filter" name="format_id" id="format_id"> 
-                            <option id="format_0" value=""></option>
-                            <option id="format_54" value="54">paysage</option>
-                            <option id="format_53" value="53">portrait</option>
-                        </select>
-                    </div>
-                    <div id="filtre-date" class="select-filter flexcolumn">       
-                        <span class="date-down dashicons dashicons-arrow-down select-close"></span>
-                        <label class="filter-label custom-label" for="date"><p>TRIER PAR</p></label>
-                        <select class="option-filter" name="date" id="date">
-                            <option value=""></option>
-                            <option value="desc">nouveauté</option>
-                            <option value="asc">Les plus anciens</option>
-                        </select>
-                    </div>
-                </div>        
-            </form>
-        </section>
+                    <div class="entry-content">
+                        <?php the_excerpt(); ?>
+                    </div><!-- .entry-content -->
 
-        <section class="photos">
-            <div class="container">
-                <div id="photo-grid" class="photo-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0; border-top: 1px solid #FFFFFF;">
-                    <?php
-                    // Query custom post type 'photo'
-                    $args = array(
-                        'post_type' => 'photo',
-                        'posts_per_page' => 8, // Afficher les 8 premières photos
-                        'paged' => 1, // Afficher la première page
-                        'order' => 'ASC' // Ordre ascendant
-                    );
-                    
-                    $photo_query = new WP_Query($args);
-                    
-                    if ($photo_query->have_posts()) :
-                        while ($photo_query->have_posts()) : $photo_query->the_post(); ?>
-                            <div class="photo-item">
-                                <?php if (get_field('image')): ?>
-                                    <?php $image = get_field('image'); ?>
-                                    <div class="photo-thumbnail">
-                                        <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" style="width: 564px; height: 495px; border: 1px solid #FFFFFF;" />
-                                        <div class="lightbox">
-                                            <div class="lightbox-content">
-                                                <div class="lightbox-title"><?php the_title(); ?></div>
-                                                <a href="<?php the_permalink(); ?>" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>
-                                                <a href="<?php echo esc_url($image['url']); ?>" class="lightbox-icon fullscreen-icon" title="Afficher en plein écran"></a>
-                                                <div class="lightbox-category"><?php echo get_the_term_list( get_the_ID(), 'category', '', ', ' ); ?></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        <?php endwhile;
-                        wp_reset_postdata();
-                    else :
-                        echo 0; // Indicate no more posts
-                    endif;
-                    ?>
-                </div>
-                <!-- Bouton "Charger plus" -->
-                <div id="load-more-container" style="padding: 20px 0;">
-                    <button id="load-more" class="load-more" >Charger plus</button>
-                </div>
+                    <footer class="entry-footer">
+                        <a href="<?php the_permalink(); ?>" class="read-more">Lire la suite</a>
+                    </footer><!-- .entry-footer -->
+                </article><!-- #post-## -->
+            <?php endwhile; ?>
+
+            <div class="pagination">
+                <?php
+                // Pagination
+                the_posts_pagination( array(
+                    'prev_text' => 'Précédent',
+                    'next_text' => 'Suivant',
+                ) );
+                ?>
             </div>
-        </section>
+
+        <?php else : ?>
+            <p>Aucun article trouvé</p>
+        <?php endif; ?>
     </main><!-- #main -->
 </div><!-- #primary -->
 

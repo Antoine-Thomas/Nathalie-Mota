@@ -1,4 +1,4 @@
-jQuery(document).ready(function($) {
+jQuery(document).ready(function ($) {
     const menuToggle = $('.menu-toggle');
     const burgerMenuContainer = $('.burger-menu-container');
     const closeMenu = $('.close-menu');
@@ -26,23 +26,23 @@ jQuery(document).ready(function($) {
         unScroll();
     });
 
-    contactMenuLink.on('click', function(event) {
+    contactMenuLink.on('click', function (event) {
         event.preventDefault();
         popupOverlay.removeClass('hidden');
     });
 
-    burgerMenuContainer.on('click', function(event) {
+    burgerMenuContainer.on('click', function (event) {
         if ($(event.target).hasClass('open-popup')) {
             event.preventDefault();
             popupOverlay.removeClass('hidden');
         }
     });
 
-    popupCloseBtn.on('click', function() {
+    popupCloseBtn.on('click', function () {
         popupOverlay.addClass('hidden');
     });
 
-    popupOverlay.on('click', function(event) {
+    popupOverlay.on('click', function (event) {
         if ($(event.target).is(popupOverlay)) {
             popupOverlay.addClass('hidden');
         }
@@ -52,7 +52,7 @@ jQuery(document).ready(function($) {
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
         const dateOrder = $('#date').val();
-    
+
         console.log('Load more photos clicked');
         page++;
         $.ajax({
@@ -66,65 +66,88 @@ jQuery(document).ready(function($) {
                 format_id: formatId,
                 date_order: dateOrder
             },
-            success: function(response) {
+            success: function (response) {
                 if (response) {
                     $('.photo-grid').append(response);
-                    if ($('.photo-grid .photo-item').length >= totalPhotos) {
-                        $('#load-more').hide();
+                    if ($(response).length < photosPerPage) {
+                        $('#load-more').hide(); // Cache le bouton si moins de photos sont retournées
                     }
                 } else {
                     $('#load-more-container').hide();
                 }
             },
-            error: function(xhr, status, error) {
+            error: function (xhr, status, error) {
                 console.error('AJAX Error:', status, error);
                 console.log(xhr.responseText);
             }
         });
     }
 
-    $('#categorie_id, #format_id, #date').on('change', function() {
-        $('.photo-grid').empty();
-        page = 1;
-        loadMorePhotos();
-    }); 
+    function loadPhotosBySelection() {
+        const categorieId = $('#categorie_id').val();
+        const formatId = $('#format_id').val();
+        const dateOrder = $('#date').val();
+
+        $.ajax({
+            url: ajaxUrl,
+            type: 'POST',
+            data: {
+                action: 'load_photos_by_selection',
+                categorie_id: categorieId,
+                format_id: formatId,
+                date_order: dateOrder
+            },
+            success: function (response) {
+                $('.photo-grid').empty().append(response); // Remplace les photos actuelles par les nouvelles
+                page = 1; // Réinitialise la page pour le chargement plus
+                if ($(response).length < photosPerPage) {
+                    $('#load-more').hide(); // Cache le bouton si moins de photos sont retournées
+                } else {
+                    $('#load-more').show(); // Montre le bouton si suffisamment de photos sont retournées
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+                console.log(xhr.responseText);
+            }
+        });
+    }
+
+    // Écouteurs d'événements pour les dropdowns
+    $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
 
     $('#load-more').on('click', loadMorePhotos);
 
     // Event listeners for filters
-    document.getElementById('categorie_id').addEventListener('change', function() {
+    $('#categorie_id').on('change', function () {
         console.log('Catégorie sélectionnée:', this.value);
     });
 
-    document.getElementById('format_id').addEventListener('change', function() {
+    $('#format_id').on('change', function () {
         console.log('Format sélectionné:', this.value);
     });
 
-    document.getElementById('date').addEventListener('change', function() {
+    $('#date').on('change', function () {
         console.log('Tri sélectionné:', this.value);
     });
 
-// Ajouter l'effet de lightbox pour les nouvelles photos chargées
-function applyLightboxEffect() {
-    $('.photo-thumbnail').hover(function() {
-        $(this).find('.lightbox').fadeIn(300);
-    }, function() {
-        $(this).find('.lightbox').fadeOut(300);
-    });
-}
+    // Ajouter l'effet de lightbox pour les nouvelles photos chargées
+    function applyLightboxEffect() {
+        $('.photo-thumbnail').hover(function () {
+            $(this).find('.lightbox').fadeIn(300);
+        }, function () {
+            $(this).find('.lightbox').fadeOut(300);
+        });
+    }
 
-// Appelle cette fonction après le chargement Ajax
-$(document).ajaxComplete(function() {
+    // Appelle cette fonction après le chargement Ajax
+    $(document).ajaxComplete(function () {
+        applyLightboxEffect();
+    });
+
+    // Appelle la fonction au chargement initial
     applyLightboxEffect();
 });
 
-// Appelle la fonction au chargement initial
-applyLightboxEffect();
-});
 
 
-
-
-
-
-    
