@@ -69,11 +69,14 @@ add_action( 'after_setup_theme', 'nathalie_mota_add_image_sizes' );
         $page = intval( $_POST['page'] );
         $photos_per_page = intval( $_POST['photos_per_page'] );
 
+        // Utilisez l'offset pour récupérer les photos suivantes à partir de la page actuelle
+        $offset = ($page - 1) * $photos_per_page;
+
         $args = array(
-            'post_type' => 'photo',
-            'posts_per_page' => $photos_per_page,
-            'paged' => $page,
-            'order' => 'ASC'
+            'post_type'      => 'photo',
+            'posts_per_page' => $photos_per_page, // Récupérer un nombre limité de photos
+            'offset'         => $offset,
+            'order'          => 'ASC',
         );
 
         $photo_query = new WP_Query($args);
@@ -154,10 +157,13 @@ add_action('wp_ajax_nopriv_load_photo_carousel', 'nathalie_mota_load_photo_carou
 
 // Récupération des requetes dans les dropboxs
 function load_photos_by_selection() {
+    
     // Récupération des paramètres envoyés par la requête AJAX
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
     $format_ids = isset($_POST['format_id']) ? array_map('intval', (array) $_POST['format_id']) : array();
     $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1; // Ajouter cette ligne
+    $photos_per_page = isset($_POST['photos_per_page']) ? intval($_POST['photos_per_page']) : 8;
 
     error_log('Catégories: ' . implode(', ', $categorie_ids));
     error_log('Formats: ' . implode(', ', $format_ids));
@@ -166,11 +172,11 @@ function load_photos_by_selection() {
     // Construction de la requête WP_Query en fonction des options sélectionnées
     $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => -1, // Charger tous les posts correspondants
+        'posts_per_page' => $photos_per_page, // Utiliser le nombre de photos par page
+        'paged' => $page, // Utiliser le numéro de page
         'orderby' => 'date',
         'order' => $date_order,
     );
-
     // Ajout de la tax_query pour les catégories et les formats indépendamment
     $tax_query = array('relation' => 'AND');
 
@@ -264,10 +270,6 @@ add_filter('nav_menu_link_attributes', 'ajouter_classe_open_popup', 10, 3);
 // Inclure les fichiers php
 get_template_part( 'taxonomy-options.php' );
 get_template_part( 'custom-taxonomies.php' );
-
-
-
-
 ?>
 
 

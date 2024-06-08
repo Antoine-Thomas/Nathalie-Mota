@@ -89,10 +89,10 @@ function get_image_url_from_id($image_id) {
 
         <section class="photos">
             <div class="container">
-                <div id="photo-grid" class="photo-grid">
+                
                   
                     
-                </div>
+    </div>
             </div>
 
             <!-- Bouton "Charger plus" -->

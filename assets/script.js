@@ -48,117 +48,22 @@ jQuery(document).ready(function ($) {
         }
     });
 
-    function loadMorePhotos() {
-        const categorieId = $('#categorie_id').val();
-        const formatId = $('#format_id').val();
-        const dateOrder = $('#date').val();
-
-        console.log('Load more photos clicked');
-        page++;
-        $.ajax({
-            url: ajaxUrl,
-            type: 'POST',
-            data: {
-                action: 'load_more_photos',
-                page: page,
-                photos_per_page: photosPerPage,
-                categorie_id: categorieId,
-                format_id: formatId,
-                date_order: dateOrder
-            },
-            success: function (response) {
-                if (response) {
-                    $('.photo-grid').append(response);
-                    if ($(response).length < photosPerPage) {
-                        $('#load-more').hide(); // Cache le bouton si moins de photos sont retournées
-                    }
-                } else {
-                    $('#load-more-container').hide();
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-                console.log(xhr.responseText);
-            }
-        });
-    }
-
-    function loadPhotosBySelection() {
-        const categorieId = $('#categorie_id').val();
-        const formatId = $('#format_id').val();
-        const dateOrder = $('#date').val();
-
-        $.ajax({
-            url: ajaxUrl,
-            type: 'POST',
-            data: {
-                action: 'load_photos_by_selection',
-                categorie_id: categorieId,
-                format_id: formatId,
-                date_order: dateOrder
-            },
-            success: function (response) {
-                $('.photo-grid').empty().append(response); // Remplace les photos actuelles par les nouvelles
-                page = 1; // Réinitialise la page pour le chargement plus
-                if ($(response).length < photosPerPage) {
-                    $('#load-more').hide(); // Cache le bouton si moins de photos sont retournées
-                } else {
-                    $('#load-more').show(); // Montre le bouton si suffisamment de photos sont retournées
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-                console.log(xhr.responseText);
-            }
-        });
-    }
-
-
-
-    //Ajouter la référence de la photo dans la popup
-
-jQuery(document).ready(function($) {
-    // Ouvrir la popup de contact avec la référence de la photo
-    $('.open-popup').on('click', function(e) {
-        e.preventDefault();
-        var reference = $(this).data('reference');
-        // Ajouter la référence dans le champ caché du formulaire
-        $('input[name="reference"]').val(reference);
-        $('.popup-overlay').removeClass('hidden').fadeIn();
-    });
-
-    // Fermer la popup de contact
-    $('.close-popup').on('click', function() {
-        $('.popup-overlay').fadeOut(function() {
-            $(this).addClass('hidden');
-        });
-    });
-
-    // Fermer la popup lorsque l'utilisateur clique en dehors de la modal
-    $(window).on('click', function(event) {
-        if ($(event.target).hasClass('popup-overlay')) {
-            $('.popup-overlay').fadeOut(function() {
-                $(this).addClass('hidden');
-            });
-        }
-    });
-});
 
  
-jQuery(document).ready(function($) {
+
     function loadPhotosBySelection() {
-        var categorieId = $('#categorie_id').val();
-        var formatId = $('#format_id').val();
-        var dateOrder = $('#date').val();
+        const categorieId = $('#categorie_id').val();
+        const formatId = $('#format_id').val();
+        const dateOrder = $('#date').val();
 
         console.log('Catégorie sélectionnée:', categorieId);
         console.log('Format sélectionné:', formatId);
         console.log('Tri sélectionné:', dateOrder);
 
         // Construction de la requête WP_Query en fonction des options sélectionnées
-        var args = {
+        const args = {
             action: 'load_photos_by_selection',
-            date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC' // Modification du tri en fonction de la sélection
+            date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC'
         };
 
         if (categorieId !== '') {
@@ -171,11 +76,12 @@ jQuery(document).ready(function($) {
 
         $.ajax({
             type: 'POST',
-            url: ajaxurl,
+            url: ajaxUrl,
             data: args,
             success: function(response) {
                 $('.photo-grid-container').html(response);
                 console.log('Réponse réussie:', response);
+                applyLightboxEffect(); // Appliquer l'effet de la lightbox après chargement
             },
             error: function(response) {
                 console.error('Erreur:', response);
@@ -188,35 +94,50 @@ jQuery(document).ready(function($) {
 
     // Appeler la fonction au chargement initial
     loadPhotosBySelection();
-});
 
+    function loadMorePhotos() {
+        const categorieId = $('#categorie_id').val();
+        const formatId = $('#format_id').val();
+        const dateOrder = $('#date').val();
+    
+        page++; // Incrémente la variable page
+        $.ajax({
+            url: ajaxUrl,
+            type: 'POST',
+            data: {
+                action: 'load_more_photos',
+                page: page,
+                photos_per_page: 8, // Charger 8 photos supplémentaires à chaque fois
+                categorie_id: categorieId,
+                format_id: formatId,
+                date_order: dateOrder
+            },
+            success: function (response) {
+                if (response) {
+                    $('.photo-grid').append(response);
+                    if ($(response).length < 8) { // Vérifie si moins de 8 photos ont été chargées
+                        $('#load-more').prop('disabled', true).text('Toutes les photos sont chargées'); // Désactive le bouton et change son texte
+                    }
+                } else {
+                    $('#load-more').prop('disabled', true).text('Toutes les photos sont chargées'); // Désactive le bouton et change son texte
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('AJAX Error:', status, error);
+                console.log(xhr.responseText);
+            }
+        });
+    }
+    
+    
+    
+    
+    
 
-
-
-
-
-
-
-    // Écouteurs d'événements pour les dropdowns
-    $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
-
- // Écouteurs d'événements pour le bouton
+    // Écouteur d'événement pour le bouton "load-more"
     $('#load-more').on('click', loadMorePhotos);
 
-    // Event listeners for filters
-    $('#categorie_id').on('change', function () {
-        console.log('Catégorie sélectionnée:', this.value);
-    });
-
-    $('#format_id').on('change', function () {
-        console.log('Format sélectionné:', this.value);
-    });
-
-    $('#date').on('change', function () {
-        console.log('Tri sélectionné:', this.value);
-    });
-
-    // Ajouter l'effet de lightbox pour les nouvelles photos chargées
+    // Fonction pour appliquer l'effet de la lightbox
     function applyLightboxEffect() {
         $('.photo-thumbnail').hover(function () {
             $(this).find('.lightbox').fadeIn(300);
@@ -225,33 +146,6 @@ jQuery(document).ready(function($) {
         });
     }
 
-    // Appelle cette fonction après le chargement Ajax
-    $(document).ajaxComplete(function () {
-        applyLightboxEffect();
-    });
-
-    // Appelle la fonction au chargement initial
-    applyLightboxEffect();
-
-// Ajouter l'effet de lightbox pour les nouvelles photos chargées
-function applyLightboxEffect() {
-    $('.photo-thumbnail').hover(function() {
-        $(this).find('.lightbox').fadeIn(300);
-    }, function() {
-        $(this).find('.lightbox').fadeOut(300);
-    });
-}
-
-// Appelle cette fonction après le chargement Ajax
-$(document).ajaxComplete(function() {
-    applyLightboxEffect();
-});
-
-// Appelle la fonction au chargement initial
-applyLightboxEffect();
-
-jQuery(document).ready(function($) {
-    var currentIndex = 0;
 
     // Open the modal
     $(document).on('click', '.fullscreen-icon', function(e) {
@@ -327,7 +221,7 @@ jQuery(document).ready(function($) {
     
 });
 
-});
+
 
 
 
