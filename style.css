@@ -607,7 +607,17 @@ label {
     max-width: 1148px; /* Limiter la largeur de la grille */
     padding: 20px 0; /* Espacement en haut et en bas de la grille */
 }
-
+.photo-grid2 {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    grid-gap: 20px !important; /* Espacement de 20px entre les photos */
+    justify-content: center; /* Centrer horizontalement */
+    margin: 0 auto; /* Centrer la grille horizontalement */
+    max-width: 1148px; /* Limiter la largeur de la grille */
+    padding: 20px 0; /* Espacement en haut et en bas de la grille */
+    top: 300px;
+}
 /*bouton load more */
 .load-more {
     display: block;
@@ -738,8 +748,9 @@ label {
 
 /*style des images dropbox */
 
-/* Media query pour les écrans jusqu'à 1148px de largeur */
-@media screen and (max-width: 1148px) {
+
+    
+ @media screen and (min-width: 320px) and (max-width: 600px) {
     /* Mettre la grille gallery en colonne verticale */
     .photo-grid {
         display: grid;
@@ -751,105 +762,51 @@ label {
     }
 
    .filter-area {
-        max-width:320px !important;
-        height: 400px !important;
-        display: grid;
-        grid-template-columns: 1fr;
+        width:100%;
         justify-content: center;
         align-items: center;
         
       }
+    .filter-area form {
+    min-height: 200px;
+     width: 100%;
+     height: auto;
+     
+    }
+
+    .filter-left{
+width: 100%;
+
+    }
     
+
      /* Ajuster la position individuelle des filtres */
       .filter-categorie  {
           position: relative; /* ou absolute si vous préférez */
-          left: -115px; /* Ajustez selon vos besoins */
-          top: -200px; /* Ajustez selon vos besoins */
           padding: 8px;
           border: 1px solid #ccc;
           border-radius: 4px;
-          width: 260px;
-          height: 43px;
+          width:100%;
+          
+
       }
       
       .filter-format {
           position: relative; /* ou absolute si vous préférez */
-          left: -415px; /* Ajustez selon vos besoins */
-          top: -100px; /* Ajustez selon vos besoins */
           padding: 8px;
           border: 1px solid #ccc;
           border-radius: 4px;
-          width: 260px;
-          height: 43px;
+          width: 100%;
+        
       }
       
       .filter-date {
     position: relative; /* ou absolute si vous préférez */
-    right: -50 px !important; /* Ajustez selon vos besoins */
-    top: 0px; /* Ajustez selon vos besoins */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
-    width: 260px;
-    height: 43px;
-      }
-}
-    
- @media screen and (max-width: 1148px) {
-    /* Mettre la grille gallery en colonne verticale */
-    .photo-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: center;
-        align-items: center;
-        text-align: center; /* Pour centrer le contenu à l'intérieur de chaque colonne */
-        max-width: 320px;
-    }
-
-   .filter-area {
-        max-width:320px !important;
-        height: 400px !important;
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: center;
-        align-items: center;
-        
-      }
-    
-     /* Ajuster la position individuelle des filtres */
-      .filter-categorie  {
-          position: relative; /* ou absolute si vous préférez */
-          left: 200px; /* Ajustez selon vos besoins */
-          top: -200px; /* Ajustez selon vos besoins */
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          width: 260px;
-          height: 43px;
-      }
-      
-      .filter-format {
-          position: relative; /* ou absolute si vous préférez */
-          left: -100px; /* Ajustez selon vos besoins */
-          top: -100px; /* Ajustez selon vos besoins */
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          width: 260px;
-          height: 43px;
-      }
-      
-      .filter-date {
-    position: relative; /* ou absolute si vous préférez */
-    right: -50 px !important; /* Ajustez selon vos besoins */
-    top: 0px; /* Ajustez selon vos besoins */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    left: 240px;
-    width: 260px;
-    height: 43px;
+   
       }
 } 
     
@@ -1049,8 +1006,8 @@ label {
     position: relative;
     width: 100%;
     margin: 0 auto; /* Centrer le contenu dans la page */
-    padding-bottom: 1500px; /* Ajoutez ou ajustez la marge intérieure selon vos besoins */
-    box-sizing: border-box;
+    padding-bottom: 400px; /* Ajoutez ou ajustez la marge intérieure selon vos besoins */
+   
 }
 .main-container {
     position:relative;
@@ -1115,14 +1072,28 @@ label {
     top: 963px;
     border: 1px solid #000000;
 }
+.load-more2 {
+    position: relative;
+    display: block;
+    width: 272px;
+    height: 50px;
+    margin: 20px auto; /* Pour centrer le bouton horizontalement */
+    text-align: center;
+    background: #D8D8D8;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid #FFFFFF;
+    top: 130px;
+    right: 130px;
 
+}
 /* Line 4 */
 .line-4 {
     position: relative;
     width:  1148px; 
     height: 0px;
     left: 20px;
-    top: 240px;
+    top: 150px;
     border: 1px solid #000000;
 }
 .photo-details p.title  {

@@ -113,9 +113,94 @@ jQuery(document).ready(function ($) {
         });
     }
 
+
+
+    //Ajouter la référence de la photo dans la popup
+
+jQuery(document).ready(function($) {
+    // Ouvrir la popup de contact avec la référence de la photo
+    $('.open-popup').on('click', function(e) {
+        e.preventDefault();
+        var reference = $(this).data('reference');
+        // Ajouter la référence dans le champ caché du formulaire
+        $('input[name="reference"]').val(reference);
+        $('.popup-overlay').removeClass('hidden').fadeIn();
+    });
+
+    // Fermer la popup de contact
+    $('.close-popup').on('click', function() {
+        $('.popup-overlay').fadeOut(function() {
+            $(this).addClass('hidden');
+        });
+    });
+
+    // Fermer la popup lorsque l'utilisateur clique en dehors de la modal
+    $(window).on('click', function(event) {
+        if ($(event.target).hasClass('popup-overlay')) {
+            $('.popup-overlay').fadeOut(function() {
+                $(this).addClass('hidden');
+            });
+        }
+    });
+});
+
+ 
+jQuery(document).ready(function($) {
+    function loadPhotosBySelection() {
+        var categorieId = $('#categorie_id').val();
+        var formatId = $('#format_id').val();
+        var dateOrder = $('#date').val();
+
+        console.log('Catégorie sélectionnée:', categorieId);
+        console.log('Format sélectionné:', formatId);
+        console.log('Tri sélectionné:', dateOrder);
+
+        // Construction de la requête WP_Query en fonction des options sélectionnées
+        var args = {
+            action: 'load_photos_by_selection',
+            date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC' // Modification du tri en fonction de la sélection
+        };
+
+        if (categorieId !== '') {
+            args.categorie_id = categorieId;
+        }
+
+        if (formatId !== '') {
+            args.format_id = formatId;
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxurl,
+            data: args,
+            success: function(response) {
+                $('.photo-grid-container').html(response);
+                console.log('Réponse réussie:', response);
+            },
+            error: function(response) {
+                console.error('Erreur:', response);
+            }
+        });
+    }
+
     // Écouteurs d'événements pour les dropdowns
     $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
 
+    // Appeler la fonction au chargement initial
+    loadPhotosBySelection();
+});
+
+
+
+
+
+
+
+
+    // Écouteurs d'événements pour les dropdowns
+    $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
+
+ // Écouteurs d'événements pour le bouton
     $('#load-more').on('click', loadMorePhotos);
 
     // Event listeners for filters

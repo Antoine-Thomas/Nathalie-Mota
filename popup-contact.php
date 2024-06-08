@@ -16,7 +16,6 @@
             <span class="close-popup"></span> <!-- Ajout du bouton de fermeture -->
         </div>
         <div class="popup-informations">
-       
             <?php
             // On insère le formulaire de demandes de renseignements
             echo do_shortcode('[fluentform id="3"]');
@@ -24,3 +23,5 @@
         </div>
     </div>
 </div>
+
+

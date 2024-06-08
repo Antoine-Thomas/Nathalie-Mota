@@ -38,6 +38,14 @@ add_action( 'init', 'nathalie_mota_register_menus' );
 // Ajouter la prise en charge des images mises en avant
 add_theme_support( 'post-thumbnails' );
 
+function add_ajaxurl_to_front_end() {
+    ?>
+    <script>
+        var ajaxurl = '<?php echo admin_url('admin-ajax.php'); ?>';
+    </script>
+    <?php
+}
+add_action('wp_head', 'add_ajaxurl_to_front_end');
 
 
 /**
@@ -108,7 +116,7 @@ add_action('wp_ajax_nopriv_load_more_photos', 'nathalie_mota_load_more_photos');
  * Fonction pour charger plus de photos via AJAX
  */
 
-function nathalie_mota_load_photo_carousel() {
+function nathalie_mota_load_photo_carousel()  {
     $photo_id = isset($_POST['photo_id']) ? intval($_POST['photo_id']) : 0;
 
     $args = array(
@@ -116,6 +124,7 @@ function nathalie_mota_load_photo_carousel() {
         'posts_per_page' => -1,
         'order' => 'ASC'
     );
+    $images = get_field('photo_details'); // Remplacez 'photo_details' par le nom de votre groupe de champs ACF contenant la galerie d'images
 
     $photo_query = new WP_Query($args);
     $photos = array();
@@ -143,27 +152,30 @@ add_action('wp_ajax_load_photo_carousel', 'nathalie_mota_load_photo_carousel');
 add_action('wp_ajax_nopriv_load_photo_carousel', 'nathalie_mota_load_photo_carousel');
 
 
-
-// Fonction pour charger les photos en fonction des options sélectionnées dans les dropboxs
+// Récupération des requetes dans les dropboxs
 function load_photos_by_selection() {
     // Récupération des paramètres envoyés par la requête AJAX
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
     $format_ids = isset($_POST['format_id']) ? array_map('intval', (array) $_POST['format_id']) : array();
     $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
 
+    error_log('Catégories: ' . implode(', ', $categorie_ids));
+    error_log('Formats: ' . implode(', ', $format_ids));
+    error_log('Ordre: ' . $date_order);
+
     // Construction de la requête WP_Query en fonction des options sélectionnées
     $args = array(
         'post_type' => 'photo',
         'posts_per_page' => -1, // Charger tous les posts correspondants
-        'tax_query' => array(
-            'relation' => 'AND',
-        ),
         'orderby' => 'date',
         'order' => $date_order,
     );
 
+    // Ajout de la tax_query pour les catégories et les formats indépendamment
+    $tax_query = array('relation' => 'AND');
+
     if (!empty($categorie_ids)) {
-        $args['tax_query'][] = array(
+        $tax_query[] = array(
             'taxonomy' => 'categorie',
             'field'    => 'term_id',
             'terms'    => $categorie_ids,
@@ -172,7 +184,7 @@ function load_photos_by_selection() {
     }
 
     if (!empty($format_ids)) {
-        $args['tax_query'][] = array(
+        $tax_query[] = array(
             'taxonomy' => 'format',
             'field'    => 'term_id',
             'terms'    => $format_ids,
@@ -180,45 +192,51 @@ function load_photos_by_selection() {
         );
     }
 
+    // N'ajouter tax_query que s'il y a des conditions
+    if (!empty($categorie_ids) || !empty($format_ids)) {
+        $args['tax_query'] = $tax_query;
+    }
+
     $photos_query = new WP_Query($args);
 
     // Génération de la sortie
-ob_start();
-if ($photos_query->have_posts()) {
-    echo '<div class="photo-grid">'; // Ajout de la classe photo-grid pour le style en grille
-    while ($photos_query->have_posts()) {
-        $photos_query->the_post();
+    ob_start();
+    if ($photos_query->have_posts()) {
+        echo '<div class="photo-grid">'; // Ajout de la classe photo-grid pour le style en grille
+        while ($photos_query->have_posts()) {
+            $photos_query->the_post();
 
-        // Récupération des champs ACF
-        $photo = get_field('photo');
+            // Récupération des champs ACF
+            $photo = get_field('photo');
 
-        // HTML de votre modèle photo
-        echo '<div class="photo-item">';
-        if ($photo) {
-            $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'medium' pour les miniatures
-            echo '<div class="photo-thumbnail ' . ($image[2] > $image[1] ? 'portrait' : 'landscape') . '">';
-            echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
-            echo '<div class="lightbox" style="display: none;">';
-            echo '<div class="lightbox-content">';
-            echo '<div class="lightbox-title">' . get_the_title() . '</div>';
-            echo '<a href="' . get_permalink() . '" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>';
-            echo '<a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>';
-            echo '<div class="lightbox-category">' . get_the_term_list(get_the_ID(), 'category', '', ', ') . '</div>';
-            echo '</div></div></div>';
+            // HTML de votre modèle photo
+            echo '<div class="photo-item">';
+            if ($photo) {
+                $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'full' pour les images complètes
+                echo '<div class="photo-thumbnail ' . ($image[2] > $image[1] ? 'portrait' : 'landscape') . '">';
+                echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
+                echo '<div class="lightbox" style="display: none;">';
+                echo '<div class="lightbox-content">';
+                echo '<div class="lightbox-title">' . get_the_title() . '</div>';
+                echo '<a href="' . get_permalink() . '" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>';
+                echo '<a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>';
+                echo '<div class="lightbox-category">' . get_the_term_list(get_the_ID(), 'categorie', '', ', ') . '</div>';
+                echo '</div></div></div>';
+            }
+            echo '</div>';
         }
-        echo '</div>';
+        echo '</div>'; // Fermeture de la div photo-grid
+    } else {
+        echo '<p>No photos found</p>';
     }
-    echo '</div>'; // Fermeture de la div photo-grid
-} else {
-    echo '<p>No photos found</p>';
-}
-wp_reset_postdata();
+    wp_reset_postdata();
 
-$response = ob_get_clean();
-echo $response;
-wp_die();
-
+    $response = ob_get_clean();
+    echo $response;
+    wp_die();
 }
+
+
 add_action('wp_ajax_load_photos_by_selection', 'load_photos_by_selection');
 add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection');
 
@@ -246,6 +264,9 @@ add_filter('nav_menu_link_attributes', 'ajouter_classe_open_popup', 10, 3);
 // Inclure les fichiers php
 get_template_part( 'taxonomy-options.php' );
 get_template_part( 'custom-taxonomies.php' );
+
+
+
 
 ?>
 
