@@ -691,7 +691,23 @@ label {
     margin-bottom: 5px;
 }
 
-.option-filter {
+.filter-categorie {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    width: 260px;
+    height: 43px;
+}
+.filter-format {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    width: 260px;
+    height: 43px;
+}
+.filter-date {
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -734,10 +750,8 @@ label {
         max-width: 320px;
     }
 
-   
-   
-    .filter-area {
-        max-width:564px !important;
+   .filter-area {
+        max-width:320px !important;
         height: 400px !important;
         display: grid;
         grid-template-columns: 1fr;
@@ -746,18 +760,98 @@ label {
         
       }
     
+     /* Ajuster la position individuelle des filtres */
+      .filter-categorie  {
+          position: relative; /* ou absolute si vous préférez */
+          left: -115px; /* Ajustez selon vos besoins */
+          top: -200px; /* Ajustez selon vos besoins */
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          width: 260px;
+          height: 43px;
+      }
       
-
+      .filter-format {
+          position: relative; /* ou absolute si vous préférez */
+          left: -415px; /* Ajustez selon vos besoins */
+          top: -100px; /* Ajustez selon vos besoins */
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          width: 260px;
+          height: 43px;
+      }
       
-   
-      
+      .filter-date {
+    position: relative; /* ou absolute si vous préférez */
+    right: -50 px !important; /* Ajustez selon vos besoins */
+    top: 0px; /* Ajustez selon vos besoins */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    width: 260px;
+    height: 43px;
+      }
+}
     
-      
-   
-
+ @media screen and (max-width: 1148px) {
+    /* Mettre la grille gallery en colonne verticale */
+    .photo-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        text-align: center; /* Pour centrer le contenu à l'intérieur de chaque colonne */
+        max-width: 320px;
     }
+
+   .filter-area {
+        max-width:320px !important;
+        height: 400px !important;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        
+      }
     
-  
+     /* Ajuster la position individuelle des filtres */
+      .filter-categorie  {
+          position: relative; /* ou absolute si vous préférez */
+          left: 200px; /* Ajustez selon vos besoins */
+          top: -200px; /* Ajustez selon vos besoins */
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          width: 260px;
+          height: 43px;
+      }
+      
+      .filter-format {
+          position: relative; /* ou absolute si vous préférez */
+          left: -100px; /* Ajustez selon vos besoins */
+          top: -100px; /* Ajustez selon vos besoins */
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          width: 260px;
+          height: 43px;
+      }
+      
+      .filter-date {
+    position: relative; /* ou absolute si vous préférez */
+    right: -50 px !important; /* Ajustez selon vos besoins */
+    top: 0px; /* Ajustez selon vos besoins */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    left: 240px;
+    width: 260px;
+    height: 43px;
+      }
+} 
     
 
 
@@ -878,10 +972,36 @@ label {
     max-width: 1200px;
 }
 
-.carousel-image {
-    width: 100%;
+
+
+.carousel-image.portrait {
+    position:relative;
+    top :0px; 
+    width:50%;
     height: auto;
+    left: 250px;;
 }
+.carousel-modal {
+    display: flex;
+    justify-content: center; /* Centrer horizontalement */
+    align-items: center; /* Centrer verticalement */
+    background-color: rgba(0, 0, 0, 0.9);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-content {
+    position: relative;
+}
+
+.carousel-image {
+    max-width: 100%;
+    max-height: 100%;
+}
+
 
 .carousel-close {
     position: absolute;
@@ -923,18 +1043,35 @@ label {
 /*single photo*/
 
 .single-photo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centrer le contenu horizontalement */
     position: relative;
     width: 100%;
-    padding: 1700px;
+    margin: 0 auto; /* Centrer le contenu dans la page */
+    padding-bottom: 1500px; /* Ajoutez ou ajustez la marge intérieure selon vos besoins */
+    box-sizing: border-box;
+}
+.main-container {
+    position:relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 20px;
     box-sizing: border-box;
 }
 
+
+
+
 /* Photo class */
 .photo-display {
-    position: absolute;
+    position: relative;
     width: 563px;
     height: 844px;
-    left: 731px;
+    left: 300px;
     top: 118px;
 }
 
@@ -955,7 +1092,8 @@ label {
     width: 420px;
     height: 321px;
     left: 144px;
-    top: 605px;
+    top: 555px;
+
 }
 
 .frame-33 p {
@@ -980,16 +1118,16 @@ label {
 
 /* Line 4 */
 .line-4 {
-    position: absolute;
+    position: relative;
     width:  1148px; 
     height: 0px;
-    left: 146px;
-    top: 1081px;
+    left: 20px;
+    top: 240px;
     border: 1px solid #000000;
 }
 .photo-details p.title  {
     font-family: Space Mono !important;
-    font-size: 66px !important;
+    font-size: 44px !important;
     font-style: italic !important;
     font-weight: 400 !important;
     line-height: 58px !important;
@@ -997,9 +1135,10 @@ label {
 }
 
 
-.photo-details {
-    /* Style général pour tous les éléments de texte à l'intérieur de .photo-details */
-}
+
+
+
+
 
 .photo-details p {
     font-family: Space Mono;
@@ -1012,6 +1151,7 @@ label {
 
 
 /* Cette photo vous intéresse ? */
+
 .cette-photo {
     position: absolute;
     width: 197px;
@@ -1028,3 +1168,47 @@ label {
     text-align: right;
     color: #000000;
 }
+
+
+/* Style pour le titre "Vous aimerez AUSSI" */
+.aussi {
+ position: absolute;
+        width: 229px;
+        height: 27px;
+        top: 1158px;
+        left: 145px;
+        
+      
+        font-family: Space Mono;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 26.66px;
+    letter-spacing: 0.1em;
+        display: flex;
+        align-items: center;
+        text-align: right;
+        color: #000000;
+    
+}
+
+/* Style pour les cartes photo */
+.photo {
+    position: absolute;
+    width: 564px;
+    height: 495px;
+}
+
+/* Style pour la première carte photo */
+.photo:nth-child(1) {
+    left: 728px;
+    top: 1237px;
+}
+
+/* Style pour la deuxième carte photo */
+.photo:nth-child(2) {
+    left: 144px;
+    top: 1237px;
+}
+
+
+

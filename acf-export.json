@@ -134,8 +134,8 @@
             },
             {
                 "key": "field_6662308611262",
-                "label": "Categorie",
-                "name": "Categorie",
+                "label": "categorie",
+                "name": "categorie",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -172,56 +172,119 @@
                 {
                     "param": "post_type",
                     "operator": "==",
-                    "value": "photo"
+                    "value": "post"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post_category",
                     "operator": "==",
-                    "value": "categorie"
+                    "value": "category:concert"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post_category",
                     "operator": "==",
-                    "value": "format"
+                    "value": "category:mariage"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post_category",
                     "operator": "==",
-                    "value": "all"
+                    "value": "category:reception"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post_category",
                     "operator": "==",
-                    "value": "format"
+                    "value": "category:television"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post_format",
                     "operator": "==",
-                    "value": "all"
+                    "value": "image"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post",
                     "operator": "==",
-                    "value": "format"
+                    "value": "174"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post_taxonomy",
                     "operator": "==",
-                    "value": "categorie"
+                    "value": "category:concert"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "category:mariage"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "category:reception"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "category:television"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "categorie:concert"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "categorie:mariage"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "categorie:reception"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "categorie:television"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "format:paysage"
+                }
+            ],
+            [
+                {
+                    "param": "post_taxonomy",
+                    "operator": "==",
+                    "value": "format:portrait"
                 }
             ]
         ],
@@ -358,7 +421,7 @@
             },
             {
                 "key": "field_665f24a17958a",
-                "label": "categorie",
+                "label": "Categorie",
                 "name": "categorie",
                 "aria-label": "",
                 "type": "taxonomy",
@@ -370,7 +433,7 @@
                     "class": "",
                     "id": ""
                 },
-                "taxonomy": "category",
+                "taxonomy": "categorie",
                 "add_term": 1,
                 "save_terms": 1,
                 "load_terms": 0,
@@ -408,7 +471,7 @@
                 {
                     "param": "taxonomy",
                     "operator": "==",
-                    "value": "date"
+                    "value": "all"
                 }
             ],
             [
@@ -422,7 +485,7 @@
                 {
                     "param": "taxonomy",
                     "operator": "==",
-                    "value": "date"
+                    "value": "all"
                 }
             ],
             [
@@ -443,7 +506,7 @@
                 {
                     "param": "taxonomy",
                     "operator": "==",
-                    "value": "date"
+                    "value": "all"
                 }
             ],
             [
@@ -471,7 +534,7 @@
                 {
                     "param": "taxonomy",
                     "operator": "==",
-                    "value": "date"
+                    "value": "all"
                 }
             ],
             [
@@ -501,7 +564,7 @@
     },
     {
         "key": "taxonomy_665f11ce31bf3",
-        "title": "Categories",
+        "title": "categories",
         "menu_order": 0,
         "active": true,
         "taxonomy": "categorie",
@@ -514,8 +577,8 @@
         "import_source": "",
         "import_date": "",
         "labels": {
-            "name": "Categories",
-            "singular_name": "Categorie",
+            "name": "categories",
+            "singular_name": "categorie",
             "menu_name": "categories",
             "all_items": "Tous les categories",
             "edit_item": "Modifier categorie",
@@ -524,10 +587,10 @@
             "add_new_item": "Ajouter categorie",
             "new_item_name": "Nom du nouveau categorie",
             "search_items": "Rechercher categories",
-            "popular_items": "",
-            "separate_items_with_commas": "",
-            "add_or_remove_items": "",
-            "choose_from_most_used": "",
+            "popular_items": "categories populaire",
+            "separate_items_with_commas": "Séparer les categories avec une virgule",
+            "add_or_remove_items": "Ajouter ou retirer categories",
+            "choose_from_most_used": "Choisir parmi les categories les plus utilisés",
             "most_used": "",
             "not_found": "Aucun categories trouvé",
             "no_terms": "Aucun categories",

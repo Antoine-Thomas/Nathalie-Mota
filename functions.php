@@ -38,6 +38,8 @@ add_action( 'init', 'nathalie_mota_register_menus' );
 // Ajouter la prise en charge des images mises en avant
 add_theme_support( 'post-thumbnails' );
 
+
+
 /**
  * Ajoute des tailles d'images personnalisées
  */
@@ -48,10 +50,12 @@ function nathalie_mota_add_image_sizes() {
 add_action( 'after_setup_theme', 'nathalie_mota_add_image_sizes' );
 
 
+
 /**
  * Fonction pour charger plus de photos via AJAX
  */
-function nathalie_mota_load_more_photos() {
+
+ function nathalie_mota_load_more_photos() {
     // Vérifie si les données POST spécifiques sont présentes
     if ( isset( $_POST['page'] ) && isset( $_POST['photos_per_page'] ) ) {
         $page = intval( $_POST['page'] );
@@ -99,6 +103,11 @@ function nathalie_mota_load_more_photos() {
 add_action('wp_ajax_load_more_photos', 'nathalie_mota_load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'nathalie_mota_load_more_photos');
 
+
+/**
+ * Fonction pour charger plus de photos via AJAX
+ */
+
 function nathalie_mota_load_photo_carousel() {
     $photo_id = isset($_POST['photo_id']) ? intval($_POST['photo_id']) : 0;
 
@@ -113,9 +122,15 @@ function nathalie_mota_load_photo_carousel() {
     if ($photo_query->have_posts()) :
         while ($photo_query->have_posts()) : $photo_query->the_post();
             $image = get_field('image');
+            // Récupérer les dimensions de l'image
+            $width = $image['width'];
+            $height = $image['height'];
+            // Déterminer le format de l'image
+            $format = ($width > $height) ? 'paysage' : 'portrait';
             $photos[] = array(
                 'url' => $image['url'],
-                'title' => get_the_title()
+                'title' => get_the_title(),
+                'format' => $format // Ajouter le format à l'array des images
             );
         endwhile;
         wp_reset_postdata();
@@ -129,7 +144,7 @@ add_action('wp_ajax_nopriv_load_photo_carousel', 'nathalie_mota_load_photo_carou
 
 
 
-// Fonction pour charger les photos en fonction des options sélectionnées
+// Fonction pour charger les photos en fonction des options sélectionnées dans les dropboxs
 function load_photos_by_selection() {
     // Récupération des paramètres envoyés par la requête AJAX
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
@@ -209,13 +224,6 @@ add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection'
 
 
 
-
-
-
-
-
-
-
 /**
  * Ajoute la classe open-popup au lien de menu "Contact"
  *
@@ -235,7 +243,7 @@ function ajouter_classe_open_popup($atts, $item, $args) {
 }
 add_filter('nav_menu_link_attributes', 'ajouter_classe_open_popup', 10, 3);
 
-// Inclure les fichiers taxonomy's.php
+// Inclure les fichiers php
 get_template_part( 'taxonomy-options.php' );
 get_template_part( 'custom-taxonomies.php' );
 

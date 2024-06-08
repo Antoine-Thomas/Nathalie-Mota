@@ -48,7 +48,7 @@ function nathalie_mota_load_more_photos() {
                                 <div class="lightbox-title"><?php the_title(); ?></div>
                                 <a href="<?php the_permalink(); ?>" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>
                                 <a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>
-                                <div class="lightbox-category"><?php echo get_the_term_list( get_the_ID(), 'category', '', ', ' ); ?></div>
+                                <div class="lightbox-category"><?php echo get_the_term_list( get_the_ID(), 'categorie', '', ', ' ); ?></div>
                             </div>
                         </div>
                     </div>

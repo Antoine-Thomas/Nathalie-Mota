@@ -17,23 +17,37 @@ function generate_taxonomy_options($taxonomy) {
     }
 }
 
+
 function generate_categorie_options() {
-    $categories = get_terms( 'categorie' );
-    if ( ! empty( $categories ) && ! is_wp_error( $categories ) ){
+    $categories = get_terms( array(
+        'taxonomy' => 'categorie',
+        'hide_empty' => false,
+    ) );
+
+    if ( ! empty( $categories ) && ! is_wp_error( $categories ) ) {
         foreach ( $categories as $category ) {
-            echo '<option value="' . esc_attr( $category->term_id ) . '">' . esc_html( $category->name ) . '</option>';
+            $image_id = get_field('image', 'categorie_' . $category->term_id);
+            $image_url = get_image_url_from_id($image_id);
+            echo '<option value="' . esc_attr( $category->term_id ) . '" data-image="' . $image_url . '">' . esc_html( $category->name ) . '</option>';
         }
     }
 }
 
 function generate_format_options() {
-    $formats = get_terms( 'format' );
-    if ( ! empty( $formats ) && ! is_wp_error( $formats ) ){
+    $formats = get_terms( array(
+        'taxonomy' => 'format',
+        'hide_empty' => false,
+    ) );
+
+    if ( ! empty( $formats ) && ! is_wp_error( $formats ) ) {
         foreach ( $formats as $format ) {
-            echo '<option value="' . esc_attr( $format->term_id ) . '">' . esc_html( $format->name ) . '</option>';
+            $image_id = get_field('image', 'format_' . $format->term_id);
+            $image_url = get_image_url_from_id($image_id);
+            echo '<option value="' . esc_attr( $format->term_id ) . '" data-image="' . $image_url . '">' . esc_html( $format->name ) . '</option>';
         }
     }
 }
+
 
 
 

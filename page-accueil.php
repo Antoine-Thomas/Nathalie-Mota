@@ -35,8 +35,8 @@ function get_image_url_from_id($image_id) {
         <div class="filterleft swiper-slide flexrow">
             <div id="filtre-categorie" class="select-filter flexcolumn">
                 <span class="categorie_id-down dashicons dashicons-arrow-down select-close"></span>
-                <label class="filter-label custom-label" for="categorie_id"><p>CATÉGORIES</p></label>
-                <select class="option-filter" name="categorie_id" id="categorie_id">
+                <label class="filter-label custom-label cat" for="categorie_id"><p>CATÉGORIES</p></label>
+                <select class="filter-categorie" name="categorie_id" id="categorie">
                     <option value=""></option>
                     <!-- Autres options -->
                     <?php
@@ -58,8 +58,8 @@ function get_image_url_from_id($image_id) {
         <div class="filterright swiper-slide flexrow">
             <div id="filtre-format" class="select-filter flexcolumn">
                 <span class="format_id-down dashicons dashicons-arrow-down select-close"></span>
-                <label class="filter-label custom-label" for="format_id"><p>FORMATS</p></label>
-                <select class="option-filter" name="format_id" id="format_id">
+                <label class="filter-label custom-label form" for="format_id"><p>FORMATS</p></label>
+                <select class="filter-format " name="format_id" id="format_id">
                     <option value=""></option>
                     <!-- Autres options -->
                     <?php
@@ -77,8 +77,8 @@ function get_image_url_from_id($image_id) {
             </div>
             <div id="filtre-date" class="select-filter flexcolumn">
                 <span class="date-down dashicons dashicons-arrow-down select-close"></span>
-                <label class="filter-label custom-label" for="date"><p>TRIER PAR</p></label>
-                <select class="option-filter" name="date" id="date">
+                <label class="filter-label custom-label date " for="date"><p>TRIER PAR</p></label>
+                <select class="filter-date" name="date" id="date">
                     <option value=""></option>
                     <option value="desc">Nouveauté</option>
                     <option value="asc">Les plus anciens</option>
@@ -115,7 +115,7 @@ function get_image_url_from_id($image_id) {
                                                 <div class="lightbox-title"><?php the_title(); ?></div>
                                                 <a href="<?php the_permalink(); ?>" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>
                                                 <a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>
-                                                <div class="lightbox-category"><?php echo get_the_term_list(get_the_ID(), 'category', '', ', '); ?></div>
+                                                <div class="lightbox-category"><?php echo get_the_term_list(get_the_ID(), 'category', '', ''); ?></div>
                                             </div>
                                         </div>
                                     </div>
@@ -136,9 +136,7 @@ function get_image_url_from_id($image_id) {
     </main><!-- #main -->
 </div><!-- #primary -->
 
-<script>
-    // Collez votre code JavaScript ici
-</script>
+
 
 <?php
 get_footer();
