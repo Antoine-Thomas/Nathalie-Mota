@@ -48,9 +48,6 @@ jQuery(document).ready(function ($) {
         }
     });
 
-
- 
-
     function loadPhotosBySelection() {
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
@@ -60,7 +57,6 @@ jQuery(document).ready(function ($) {
         console.log('Format sélectionné:', formatId);
         console.log('Tri sélectionné:', dateOrder);
 
-        // Construction de la requête WP_Query en fonction des options sélectionnées
         const args = {
             action: 'load_photos_by_selection',
             date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC'
@@ -78,15 +74,30 @@ jQuery(document).ready(function ($) {
             type: 'POST',
             url: ajaxUrl,
             data: args,
-            success: function(response) {
+            success: function (response) {
                 $('.photo-grid-container').html(response);
                 console.log('Réponse réussie:', response);
-                applyLightboxEffect(); // Appliquer l'effet de la lightbox après chargement
+                applyLightboxEffect(); 
             },
-            error: function(response) {
+            error: function (response) {
                 console.error('Erreur:', response);
             }
         });
+    }
+
+    // JavaScript pour mettre à jour l'URL de l'image lorsque l'icône plein écran est cliquée
+    $('.fullscreen-icon').on('click', function (event) {
+        event.preventDefault();
+        var imageURL = $(this).data('image');
+        openFullscreen(imageURL);
+    });
+
+    function openFullscreen(imageURL) {
+        // Implémentez ici la logique pour afficher l'image en plein écran
+        console.log('URL de l\'image en plein écran : ' + imageURL);
+        // Vous pouvez utiliser imageURL pour afficher l'image en plein écran
+        // Par exemple :
+        // document.getElementById('fullscreen-image').src = imageURL;
     }
 
     // Écouteurs d'événements pour les dropdowns
@@ -128,11 +139,6 @@ jQuery(document).ready(function ($) {
             }
         });
     }
-    
-    
-    
-    
-    
 
     // Écouteur d'événement pour le bouton "load-more"
     $('#load-more').on('click', loadMorePhotos);
@@ -145,6 +151,9 @@ jQuery(document).ready(function ($) {
             $(this).find('.lightbox').fadeOut(300);
         });
     }
+
+
+
 
 
     // Open the modal

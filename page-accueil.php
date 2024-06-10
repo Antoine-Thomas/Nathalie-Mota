@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Template Name: Accueil
@@ -19,80 +18,67 @@ get_header();
             </div>
         </section>
 
-       <?php
-// Fonction pour récupérer le chemin de l'image à partir de l'ID de l'image
-function get_image_url_from_id($image_id) {
-    $image_url = wp_get_attachment_url($image_id);
-    return $image_url;
-}
+        <?php
+        // Fonction pour récupérer le chemin de l'image à partir de l'ID de l'image
+        function get_image_url_from_id($image_id) {
+            $image_url = wp_get_attachment_url($image_id);
+            return $image_url;
+        }
+        ?>
 
-?>
+        <!-- Dropdown Filters -->
+        <section class="filter-area">
+            <form method="post">
+                <!-- Dropdown box for Categories -->
+                <div class="filter-box filter-box-left" id="filtre-categorie">
+                    <label class="filter-label" for="categorie_id"></label>
+                    <select name="categorie_id" id="categorie_id">
+                        <option value="">CATEGORIES</option>
+                        <?php
+                        $terms = get_terms(array(
+                            'taxonomy' => 'categorie',
+                            'hide_empty' => false,
+                        ));
+                        foreach ($terms as $term) {
+                            echo '<option value="' . $term->term_id . '">' . $term->name . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                
+                <!-- Dropdown box for Formats -->
+                <div class="filter-box filter-box-center" id="filtre-format">
+                    <label class="filter-label" for="format_id"></label>
+                    <select name="format_id" id="format_id">
+                        <option value="">FORMATS</option>
+                        <?php
+                        $terms = get_terms(array(
+                            'taxonomy' => 'format',
+                            'hide_empty' => false,
+                        ));
+                        foreach ($terms as $term) {
+                            echo '<option value="' . $term->term_id . '">' . $term->name . '</option>';
+                        }
+                        ?>
+                    </select>
+                </div>
+                
+                <!-- Dropdown box for Date Order -->
+                <div class="filter-box filter-box-right" id="filtre-date">
+                    <label class="filter-label" for="date"></label>
+                    <select name="date" id="date">
+                        <option value="desc">NOUVEAUTES</option>
+                        <option value="asc">PLUS ANCIENS</option>
+                    </select>
+                </div>
+            </form>
+        </section>
 
-<!-- Dropdown Filters -->
-<section class="filter-area">
-    <form class="flexrow" method="post">
-        <!-- Left dropdown box -->
-        <div class="filterleft flexrow">
-            <div id="filtre-categorie" class="select-filter flexcolumn">
-                <span class="categorie_id-down dashicons dashicons-arrow-down select-close"></span>
-                <label class="filter-label custom-label cat" for="categorie_id"><p>CATÉGORIES</p></label>
-                <select class="filter-categorie" name="categorie_id" id="categorie_id">
-                    <option value="">Toutes les catégories</option>
-                    <!-- Options des catégories -->
-                    <?php
-                    $terms = get_terms(array(
-                        'taxonomy' => 'categorie',
-                        'hide_empty' => false,
-                    ));
-                    foreach ($terms as $term) {
-                        echo '<option value="' . $term->term_id . '">' . $term->name . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-        </div>
-
-        <!-- Right dropdown boxes -->
-        <div class="filterright flexrow">
-            <div id="filtre-format" class="select-filter flexcolumn">
-                <span class="format_id-down dashicons dashicons-arrow-down select-close"></span>
-                <label class="filter-label custom-label form" for="format_id"><p>FORMATS</p></label>
-                <select class="filter-format" name="format_id" id="format_id">
-                    <option value="">Tous les formats</option>
-                    <!-- Options des formats -->
-                    <?php
-                    $terms = get_terms(array(
-                        'taxonomy' => 'format',
-                        'hide_empty' => false,
-                    ));
-                    foreach ($terms as $term) {
-                        echo '<option value="' . $term->term_id . '">' . $term->name . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <div id="filtre-date" class="select-filter flexcolumn">
-                <span class="date-down dashicons dashicons-arrow-down select-close"></span>
-                <label class="filter-label custom-label date" for="date"><p>TRIER PAR</p></label>
-                <select class="filter-date" name="date" id="date">
-                    <option value="desc">Nouveauté</option>
-                    <option value="asc">Les plus anciens</option>
-                </select>
-            </div>
-        </div>
-    </form>
-</section>
-
-<div class="photo-grid-container"></div> <!-- Conteneur pour les photos -->
-
-
+        <div class="photo-grid-container"></div> <!-- Conteneur pour les photos -->
 
         <section class="photos">
             <div class="container">
-                
-                  
-                    
-    </div>
+                <!-- Vos autres contenus de la section photos -->
             </div>
 
             <!-- Bouton "Charger plus" -->
@@ -103,8 +89,7 @@ function get_image_url_from_id($image_id) {
     </main><!-- #main -->
 </div><!-- #primary -->
 
-
-
 <?php
 get_footer();
 ?>
+

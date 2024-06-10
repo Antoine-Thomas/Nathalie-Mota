@@ -150,10 +150,15 @@ ul li {
 }
 
 .banner {
+    position: absolute; /* Position absolue par rapport au header */
+    top: 80px; /* Collé au bas du header */
+    left: 0;
+    right: 0;
     background-image: url('images/PhotosNMota/nathalie-11.jpeg');
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat; /* Pour éviter la répétition de l'image */
     background-position: center;
-    height: 962px; /* Ajustez la hauteur selon vos besoins */
+    height: 962px; /* Remplacez 500px par la hauteur de votre photo */
     width: 100%;
 }
 
@@ -599,13 +604,15 @@ label {
 
 /* grille de base*/
 .photo-grid {
+    position: relative;
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-    grid-gap: 20px !important; /* Espacement de 20px entre les photos */
-    justify-content: center; /* Centrer horizontalement */
-    margin: 0 auto; /* Centrer la grille horizontalement */
-    max-width: 1148px; /* Limiter la largeur de la grille */
-    padding: 20px 0; /* Espacement en haut et en bas de la grille */
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px !important;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: 1148px;
+  margin-top: 1100px;
+   
 }
 .photo-grid2 {
     position: relative;
@@ -658,159 +665,161 @@ label {
     height: 750px;
 }
 
-/*dropbox*/
+/* Styles pour les écrans de bureau */
+
+ /* Nouvelle règle pour décaler le dropdown des formats */
 
 .filter-area {
     display: flex;
-    justify-content: space-between;
-    padding: 80px;
-    margin-top: 40px;
+    justify-content: center;
+    margin: 20px 0;
+    position: relative; /* Ajouter cette ligne */
+    top: 980px;
+}
+
+.filter-box {
+    flex: 1 1 30%;
+    margin: 10px;
+    min-width: 250px;
+    position: absolute; /* Ajouter cette ligne */
+}
+
+.filter-box-left {
+    left: 140px; /* Remplacer right: 450px par left: 10px */
+    top: 30px;
+}
+
+.filter-box-center {
+    left: 40%;
+    transform: translateX(-50%);
+    top: 30px
+}
+
+.filter-box-right {
+    right: 140px; /* Remplacer margin-left: auto par right: 10px */
+    top: 30px;
+}
+
+.filter-box label {
     position: relative;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
-.select-filter {
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    width: 260px;
-    height: 43px;
-   
-    isolation: isolate;
-}
-
-
-#filtre-categorie {
-    left: 50px;
-   
-}
-
-#filtre-format {
-    left: 350px;
- 
-}
-
-#filtre-date {
-    right: 50px;
-    
-}
-
-.select-filter label {
+    display: block;
     font-weight: bold;
     margin-bottom: 5px;
-}
-
-.filter-categorie {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    width: 260px;
-    height: 43px;
-}
-.filter-format {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    width: 260px;
-    height: 43px;
-}
-.filter-date {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    width: 100%;
-    width: 260px;
-    height: 43px;
-}
-
-.dashicons-arrow-down {
-  display: none;
-}
-
-.flexrow {
-    display: flex;
-    align-items: center;
-}
-
-.flexcolumn {
-    display: flex;
-    flex-direction: column;
-}
-.filter-area .custom-label {
-    position: relative;
     left: 0px !important;
-    top: 0px !important;
-    font-weight: bold;
 }
 
-/*style des images dropbox */
-
-
-    
- @media screen and (min-width: 320px) and (max-width: 600px) {
-    /* Mettre la grille gallery en colonne verticale */
-    .photo-grid {
-        display: grid;
-        grid-template-columns: 1fr;
-        justify-content: center;
-        align-items: center;
-        text-align: center; /* Pour centrer le contenu à l'intérieur de chaque colonne */
-        max-width: 320px;
-    }
-
-   .filter-area {
-        width:100%;
-        justify-content: center;
-        align-items: center;
-        
-      }
-    .filter-area form {
-    min-height: 200px;
-     width: 100%;
-     height: auto;
-     
-    }
-
-    .filter-left{
-width: 100%;
-
-    }
-    
-
-     /* Ajuster la position individuelle des filtres */
-      .filter-categorie  {
-          position: relative; /* ou absolute si vous préférez */
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          width:100%;
-          
-
-      }
-      
-      .filter-format {
-          position: relative; /* ou absolute si vous préférez */
-          padding: 8px;
-          border: 1px solid #ccc;
-          border-radius: 4px;
-          width: 100%;
-        
-      }
-      
-      .filter-date {
-    position: relative; /* ou absolute si vous préférez */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+.filter-box select {
     width: 100%;
-   
-      }
-} 
-    
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @media screen and (max-width: 1440px) {
+
+        .photo-grid {
+            position:relative;
+            display: grid;
+            grid-template-columns: 1fr;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            max-width: 320px;
+          }
+        .filter-area {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+            top:1000 px;
+        }
+    
+        .filter-box {
+            flex: 1 1 30%;
+            margin: 10px;
+            min-width: 250px;
+            position: static;
+        }
+    
+        .filter-box label {
+            position: relative;
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+    
+        .filter-box select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+    
+        /* Nouvelle règle pour décaler le dropdown des formats sur les petits écrans */
+        #format_id {
+            position: relative;
+           left: 125px;
+        }
+    }
+
+
+@media (max-width:564px) {
+   
+    .photo-thumbnail.landscape img {
+        width: 320px;
+        height: 320px;
+    }
+        .photo-thumbnail.portrait img {
+            width: 320px;
+            height: 320px;
+        }
+
+        
+            .photo-grid {
+                position:relative;
+                display: grid;
+                grid-template-columns: 1fr;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                max-width: 320px;
+              }
+            .lightbox-content {
+                position: relative;
+                width: 320px;
+                height: 320px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                padding: -20px;
+                box-sizing: border-box;
+            }
+            
+            .photo-item {
+                width: 100%;
+                max-width: 564px;
+                height: 320px;    
+
+}
+
+}
 
 
 /*lightbox*/
@@ -1180,6 +1189,4 @@ width: 100%;
     left: 144px;
     top: 1237px;
 }
-
-
 
