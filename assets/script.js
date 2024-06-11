@@ -8,7 +8,7 @@ jQuery(document).ready(function ($) {
     const popupCloseBtn = $('.close-popup');
     const ajaxUrl = nmAjax.ajaxUrl;
     let page = 1;
-    const photosPerPage = 8;
+   
 
     function unScroll() {
         body.css('overflow', burgerMenuContainer.hasClass('active') ? 'hidden' : 'auto');
@@ -47,29 +47,32 @@ jQuery(document).ready(function ($) {
             popupOverlay.addClass('hidden');
         }
     });
-
+  
+  
+   // load photos 
+   
     function loadPhotosBySelection() {
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
         const dateOrder = $('#date').val();
-
+    
         console.log('Catégorie sélectionnée:', categorieId);
         console.log('Format sélectionné:', formatId);
         console.log('Tri sélectionné:', dateOrder);
-
+    
         const args = {
             action: 'load_photos_by_selection',
             date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC'
         };
-
+    
         if (categorieId !== '') {
             args.categorie_id = categorieId;
         }
-
+    
         if (formatId !== '') {
             args.format_id = formatId;
         }
-
+    
         $.ajax({
             type: 'POST',
             url: ajaxUrl,
@@ -77,34 +80,23 @@ jQuery(document).ready(function ($) {
             success: function (response) {
                 $('.photo-grid-container').html(response);
                 console.log('Réponse réussie:', response);
-                applyLightboxEffect(); 
+                applyLightboxEffect();
             },
             error: function (response) {
                 console.error('Erreur:', response);
             }
         });
     }
+    // Écouteur d'événement pour le bouton "load-more"
+    $('#load-more').on('click', loadMorePhotos);
 
-    // JavaScript pour mettre à jour l'URL de l'image lorsque l'icône plein écran est cliquée
-    $('.fullscreen-icon').on('click', function (event) {
-        event.preventDefault();
-        var imageURL = $(this).data('image');
-        openFullscreen(imageURL);
-    });
-
-    function openFullscreen(imageURL) {
-        // Implémentez ici la logique pour afficher l'image en plein écran
-        console.log('URL de l\'image en plein écran : ' + imageURL);
-        // Vous pouvez utiliser imageURL pour afficher l'image en plein écran
-        // Par exemple :
-        // document.getElementById('fullscreen-image').src = imageURL;
-    }
-
-    // Écouteurs d'événements pour les dropdowns
+    // Écouteurs d'événements pour les dropdownboxs
     $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
 
-    // Appeler la fonction au chargement initial
-    loadPhotosBySelection();
+    
+     
+    // bouton load more photos par selections
+   loadPhotosBySelection();
 
     function loadMorePhotos() {
         const categorieId = $('#categorie_id').val();
@@ -140,10 +132,9 @@ jQuery(document).ready(function ($) {
         });
     }
 
-    // Écouteur d'événement pour le bouton "load-more"
-    $('#load-more').on('click', loadMorePhotos);
+   
 
-    // Fonction pour appliquer l'effet de la lightbox
+    // Fonction pour appliquer l'effet de la lightbox // Navigation entre les pages
     function applyLightboxEffect() {
         $('.photo-thumbnail').hover(function () {
             $(this).find('.lightbox').fadeIn(300);
@@ -152,81 +143,76 @@ jQuery(document).ready(function ($) {
         });
     }
 
+function loadPage(pageUrl) {
+    window.location.href = pageUrl;
+}
 
-
-
-
-    // Open the modal
-    $(document).on('click', '.fullscreen-icon', function(e) {
-        e.preventDefault();
-        var photo_id = $(this).data('id');
-        var clickedIndex = $(this).index('.fullscreen-icon'); // Trouver l'index de la photo cliquée
-    
+function updatePreviewImage() {
+    var nextPageUrl = $('.right-arrow').data('next-page-url');
+    if (nextPageUrl) {
         $.ajax({
-            url: nmAjax.ajaxUrl,
-            method: 'POST',
-            data: {
-                action: 'load_photo_carousel',
-                photo_id: photo_id
-            },
-            success: function(response) {
-                var photos = JSON.parse(response).photos;
-                if (photos.length > 0) {
-                    var modal = '<div class="carousel-modal">' +
-                                    '<span class="carousel-close">&times;</span>' +
-                                    '<div class="carousel-content">';
-                                    photos.forEach(function(photo) {
-                                        var orientationClass = (photo.width > photo.height) ? 'paysage' : 'portrait'; // Déterminer la classe d'orientation en fonction des dimensions de la photo
-                                        modal += '<img class="carousel-image ' + orientationClass + '" src="' + photo.url + '" alt="' + photo.title + '">';
-                                    });
-                                    
-                    modal += '</div>' +
-                             '<a class="carousel-prev">&#10094;</a>' +
-                             '<a class="carousel-next">&#10095;</a>' +
-                             '</div>';
-                    $('body').append(modal);
-                    $('.carousel-modal').fadeIn();
-    
-                    var totalPhotos = photos.length;
-                    var currentIndex = clickedIndex; // Définir l'index actuel sur celui de la photo cliquée
-    
-                    showSlide(currentIndex);
-                    
-                    $(document).on('click', '.carousel-image', function() {
-                        $('.carousel-modal').fadeOut(function() {
-                            $(this).remove();
-                        });
-                    });
-                    
-                    function showSlide(index) {
-                        var slides = $('.carousel-image');
-                        if (index >= totalPhotos) {
-                            currentIndex = 0;
-                        }
-                        if (index < 0) {
-                            currentIndex = totalPhotos - 1;
-                        }
-                        slides.hide();
-                        slides.eq(currentIndex).show();
-                    }
-    
-                    $('.carousel-next').on('click', function() {
-                        showSlide(++currentIndex);
-                    });
-    
-                    $('.carousel-prev').on('click', function() {
-                        showSlide(--currentIndex);
-                    });
-    
-                    $('.carousel-close').on('click', function() {
-                        $('.carousel-modal').fadeOut(function() {
-                            $(this).remove();
-                        });
-                    });
+            url: nextPageUrl,
+            method: 'GET',
+            success: function(data) {
+                var $pageContent = $(data);
+                var nextImageUrl = $pageContent.find('.photo-display img').attr('src');
+                console.log("Next image URL: ", nextImageUrl);
+                if (nextImageUrl) {
+                    $('.next-page-preview .preview-image').attr('src', nextImageUrl);
+                } else {
+                    $('.next-page-preview .preview-image').attr('src', ''); // Reset if no image found
+                    console.log("No image found in the next page");
                 }
+            },
+            error: function(xhr, status, error) {
+                console.log("Error fetching next page: ", status, error);
             }
         });
-    });
+    } else {
+        console.log("No next page URL found");
+    }
+}
+// URL de la page suivante
+var nextPageUrl = $('.navigation-arrow.right-arrow').data('next-page-url');
+console.log("Next page URL: ", nextPageUrl);
+
+if (nextPageUrl && nextPageUrl !== '#') {
+    updatePreviewImage(nextPageUrl);
+} else {
+    console.log("Next page URL is not valid");
+}
+
+
+
+
+// Navigation entre les pages minimod en cliquant sur les flèches
+$('.left-arrow').on('click', function (event) {
+    event.preventDefault();
+    const prevPageUrl = $(this).data('prev-page-url');
+    if (prevPageUrl) {
+        loadPage(prevPageUrl);
+    }
+});
+
+$('.right-arrow').on('click', function (event) {
+    event.preventDefault();
+    const nextPageUrl = $(this).data('next-page-url');
+    if (nextPageUrl) {
+        loadPage(nextPageUrl);
+    }
+});
+
+// Mettre à jour l'image de prévisualisation lors du chargement initial de la page
+$(document).ready(function() {
+    updatePreviewImage(window.location.href);
+});
+
+
+
+
+
+
+    
     
 });
 

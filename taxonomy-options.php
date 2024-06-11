@@ -48,10 +48,6 @@ function generate_format_options() {
     }
 }
 
-
-
-
-
 function generate_date_options() {
     // Vous devez déterminer la source des dates à utiliser dans votre dropdown box.
     // Par exemple, vous pouvez récupérer les dates des articles ou des publications personnalisées.

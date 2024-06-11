@@ -32,7 +32,7 @@ get_header();
                 <!-- Dropdown box for Categories -->
                 <div class="filter-box filter-box-left" id="filtre-categorie">
                     <label class="filter-label" for="categorie_id"></label>
-                    <select name="categorie_id" id="categorie_id">
+                    <select name="categorie_id" id="categorie_id" autocomplete="categorie">
                         <option value="">CATEGORIES</option>
                         <?php
                         $terms = get_terms(array(
@@ -49,7 +49,7 @@ get_header();
                 <!-- Dropdown box for Formats -->
                 <div class="filter-box filter-box-center" id="filtre-format">
                     <label class="filter-label" for="format_id"></label>
-                    <select name="format_id" id="format_id">
+                    <select name="format_id" id="format_id" autocomplete="format" >
                         <option value="">FORMATS</option>
                         <?php
                         $terms = get_terms(array(
@@ -66,9 +66,10 @@ get_header();
                 <!-- Dropdown box for Date Order -->
                 <div class="filter-box filter-box-right" id="filtre-date">
                     <label class="filter-label" for="date"></label>
-                    <select name="date" id="date">
-                        <option value="desc">NOUVEAUTES</option>
-                        <option value="asc">PLUS ANCIENS</option>
+                    <select name="date" id="date" autocomplete="off">
+                        <option value="desc">TRIER PAR</option>
+                        <option value="asc">NOUVEAUTES</option>
+                        <option value="desc">PLUS ANCIENS</option>
                     </select>
                 </div>
             </form>
@@ -88,6 +89,7 @@ get_header();
         </section>
     </main><!-- #main -->
 </div><!-- #primary -->
+
 
 <?php
 get_footer();

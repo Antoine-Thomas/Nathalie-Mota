@@ -9,7 +9,6 @@ get_header(); ?>
 
 <div class="main-container">
     <div class="single-photo-content">
-
         <div class="photo-main">
             <!-- Afficher la photo principale -->
             <div class="photo-display">
@@ -37,6 +36,36 @@ get_header(); ?>
         <!-- Bouton de contact -->
         <div id="reference">
             <button href="#" class="open-popup load-more2" data-reference="<?php echo esc_attr(get_field('reference')); ?>">Contact</button>
+        </div>
+
+        <!-- Préview -->
+        <?php
+        // Récupérer le post précédent et suivant
+        $prev_post = get_previous_post();
+        $next_post = get_next_post();
+
+        // Définir les URLs des pages précédente et suivante
+        $url_page_precedente = $prev_post ? get_permalink($prev_post) : '#';
+        $url_page_suivante = $next_post ? get_permalink($next_post) : '#';
+        ?>
+
+        <!-- Carré de prévisualisation et flèches de navigation -->
+        <div class="navigation-container">
+            <div class="next-page-preview">
+                <!-- Afficher un aperçu de la page suivante en petit carré -->
+                <div class="page-preview ">
+                    <img src="photo-display" alt="Aperçu de la page suivante" class="preview-image">
+                </div>
+            </div>
+            <!-- Flèches de navigation -->
+            <div class="navigation-arrows">
+                <a href="#" class="navigation-arrow left-arrow" data-prev-page-url="<?php echo esc_url($url_page_precedente); ?>">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/fleche-gauche.png" alt="Flèche gauche">
+                </a>
+                <a href="#" class="navigation-arrow right-arrow" data-next-page-url="<?php echo esc_url($url_page_suivante); ?>">
+                    <img src="<?php echo get_template_directory_uri(); ?>/images/fleche-droite.png" alt="Flèche droite">
+                </a>
+            </div>
         </div>
 
         <div class="line line-4"></div>
@@ -86,9 +115,7 @@ get_header(); ?>
                                             <div class="lightbox-content">
                                                 <div class="lightbox-title"><?php the_title(); ?></div>
                                                 <a href="<?php the_permalink(); ?>" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>
-                                               
                                                 <a href="#" class="lightbox-icon fullscreen-icon" data-image="<?php echo esc_url($image['url']); ?>" title="Afficher en plein écran"></a>
-
                                                 <div class="lightbox-category"><?php echo get_the_term_list(get_the_ID(), 'categorie', '', ''); ?></div>
                                             </div>
                                         </div>
@@ -104,10 +131,5 @@ get_header(); ?>
         </section>
     </div> <!-- Fermeture de la div single-photo-content -->
 </div>
-
 <?php get_footer('single-photo-page'); ?>
-
-
-
-
 

@@ -150,14 +150,14 @@ ul li {
 }
 
 .banner {
-    position: absolute; /* Position absolue par rapport au header */
-    top: 80px; /* Collé au bas du header */
+    position: relative; /* Position absolue par rapport au header */
+    top: 0px; /* Collé au bas du header */
     left: 0;
     right: 0;
     background-image: url('images/PhotosNMota/nathalie-11.jpeg');
     background-size: contain;
     background-repeat: no-repeat; /* Pour éviter la répétition de l'image */
-    background-position: center;
+    
     height: 962px; /* Remplacez 500px par la hauteur de votre photo */
     width: 100%;
 }
@@ -611,7 +611,7 @@ label {
     justify-content: center;
     margin: 0 auto;
     max-width: 1148px;
-  margin-top: 1100px;
+    margin-top: 120px;
    
 }
 .photo-grid2 {
@@ -623,7 +623,7 @@ label {
     margin: 0 auto; /* Centrer la grille horizontalement */
     max-width: 1148px; /* Limiter la largeur de la grille */
     padding: 20px 0; /* Espacement en haut et en bas de la grille */
-    top: 300px;
+    top: 120px;
 }
 /*bouton load more */
 .load-more {
@@ -674,7 +674,7 @@ label {
     justify-content: center;
     margin: 20px 0;
     position: relative; /* Ajouter cette ligne */
-    top: 980px;
+   
 }
 
 .filter-box {
@@ -734,21 +734,37 @@ label {
 
     @media screen and (max-width: 1440px) {
 
-        .photo-grid {
-            position:relative;
-            display: grid;
-            grid-template-columns: 1fr;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            max-width: 320px;
-          }
+        .photo-thumbnail.landscape img {
+            position: relative;
+            width: 400px;
+            height: 400px;
+          
+            
+        }
+            .photo-thumbnail.portrait img {
+                width: 400px;
+                height: 400px;
+               
+            }
+        
+            .photo-grid {
+                position: relative;
+                display: grid;
+                grid-template-columns: 1fr; /* ou grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); si vous voulez plusieurs colonnes */
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                max-width: 320px;
+                gap: 80px 0; /* Réduisez l'écart vertical entre les éléments */
+            }
+            
         .filter-area {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            margin: 20px 0;
-            top:1000 px;
+            margin: 110px 0;
+            margin-bottom:-100px ;
+            
         }
     
         .filter-box {
@@ -780,15 +796,17 @@ label {
     }
 
 
-@media (max-width:564px) {
+@media (max-width:432px) {
    
     .photo-thumbnail.landscape img {
         width: 320px;
         height: 320px;
+        padding: 20px;
     }
         .photo-thumbnail.portrait img {
             width: 320px;
             height: 320px;
+            padding: 20px;
         }
 
         
@@ -800,7 +818,11 @@ label {
                 align-items: center;
                 text-align: center;
                 max-width: 320px;
+                margin-bottom: 20px;
+                top: 0px;
               }
+
+
             .lightbox-content {
                 position: relative;
                 width: 320px;
@@ -818,9 +840,34 @@ label {
                 height: 320px;    
 
 }
-
+.filter-area {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 110px 0;
+    margin-bottom: -100px;
+    top: 10px;
+}
+.banner {
+    margin-bottom: -800px;
+    position: relative;
+    top: 0px;
+    left: 0;
+    right: 0;
+    background-image: url(images/PhotosNMota/nathalie-11.jpeg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 962px;
+    width: 100%;
+}
 }
 
+@media (max-width:432px)  {
+
+margin-bottom: -400px;
+
+    
+}
 
 /*lightbox*/
 
@@ -1011,12 +1058,12 @@ label {
 .single-photo-content {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centrer le contenu horizontalement */
+    align-items: center;
     position: relative;
     width: 100%;
-    margin: 0 auto; /* Centrer le contenu dans la page */
-    padding-bottom: 400px; /* Ajoutez ou ajustez la marge intérieure selon vos besoins */
-   
+    margin: 0 auto;
+    padding-bottom: 200px;
+    top: 20px;
 }
 .main-container {
     position:relative;
@@ -1102,7 +1149,7 @@ label {
     width:  1148px; 
     height: 0px;
     left: 20px;
-    top: 150px;
+    top: 20px;
     border: 1px solid #000000;
 }
 .photo-details p.title  {
@@ -1113,7 +1160,6 @@ label {
     line-height: 58px !important;
     text-align: left !important;
 }
-
 
 
 
@@ -1190,3 +1236,55 @@ label {
     top: 1237px;
 }
 
+
+/*micro nav*/
+
+.navigation-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end; /* Aligner à droite */
+    margin-top: 40px; /* Ajuster selon vos besoins */
+    left: 540px;
+}
+.preview-image {
+    width: 81px;
+    height: 71px;
+    top: 1461px;
+    left: 6038px;
+    gap: 0px;
+    opacity: 0px;
+}
+
+.page-preview img {
+    width: 81px;
+    height: 71px;
+}
+
+.next-page-preview {
+    position: relative;
+    width: 81px;
+    height: 71px;
+
+   
+    cursor: pointer; /* Ajouter un curseur pour indiquer que c'est cliquable */
+    margin-bottom: 10px; /* Espace entre le carré et les flèches */
+}
+
+.navigation-arrows {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.navigation-arrow {
+    display: block;
+    width: 25px; /* Ajuster la taille selon vos besoins */
+    height: 25px; /* Ajuster la taille selon vos besoins */
+    z-index: 9999;
+}
+
+.navigation-arrow img {
+    width: 100%;
+    height: auto;
+}
