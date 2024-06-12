@@ -1,5 +1,11 @@
 
 
+
+
+
+
+
+
 [
     {
         "key": "group_66609114d9e4b",
@@ -28,7 +34,7 @@
             {
                 "key": "field_666091fd28ee8",
                 "label": "Référence",
-                "name": "Reference",
+                "name": "reference",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -102,7 +108,7 @@
                     "id": ""
                 },
                 "return_format": "array",
-                "library": "uploadedTo",
+                "library": "all",
                 "min_width": "",
                 "min_height": "",
                 "min_size": "",
@@ -116,26 +122,6 @@
                 "key": "field_6660e9f51c8a9",
                 "label": "Format",
                 "name": "format",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_6662308611262",
-                "label": "categorie",
-                "name": "categorie",
                 "aria-label": "",
                 "type": "text",
                 "instructions": "",
@@ -214,7 +200,7 @@
                 {
                     "param": "post",
                     "operator": "==",
-                    "value": "174"
+                    "value": "89"
                 }
             ],
             [
@@ -285,6 +271,41 @@
                     "param": "post_taxonomy",
                     "operator": "==",
                     "value": "format:portrait"
+                }
+            ],
+            [
+                {
+                    "param": "post_type",
+                    "operator": "==",
+                    "value": "photo"
+                }
+            ],
+            [
+                {
+                    "param": "taxonomy",
+                    "operator": "==",
+                    "value": "categorie"
+                }
+            ],
+            [
+                {
+                    "param": "post_template",
+                    "operator": "==",
+                    "value": "single-photo.php"
+                }
+            ],
+            [
+                {
+                    "param": "post_template",
+                    "operator": "==",
+                    "value": "page-accueil.php"
+                }
+            ],
+            [
+                {
+                    "param": "post_template",
+                    "operator": "==",
+                    "value": "dropbox.php"
                 }
             ]
         ],
@@ -787,9 +808,7 @@
             "thumbnail",
             "custom-fields",
             "post-formats",
-            "date",
-            "type",
-            "reference"
+            "date"
         ],
         "taxonomies": [
             "format",
