@@ -23,7 +23,20 @@ get_header(); ?>
                 <?php if ($reference = get_field('reference')) : ?>
                     <p class="reference">Référence : <?php echo esc_html($reference); ?></p>
                 <?php endif; ?>
-                <p class="categorie">Catégorie : <?php the_field('categorie'); ?></p>
+                
+                <!-- Utilisation de get_the_terms pour récupérer la taxonomie catégorie -->
+                <?php
+                $categories = get_the_terms(get_the_ID(), 'categorie');
+                if ($categories && !is_wp_error($categories)) :
+                    $category_names = array();
+                    foreach ($categories as $category) {
+                        $category_names[] = $category->name;
+                    }
+                    $category_list = join(', ', $category_names);
+                ?>
+                    <p class="categorie">Catégorie : <?php echo esc_html($category_list); ?></p>
+                <?php endif; ?>
+                
                 <p class="format">FORMAT : <?php the_field('format'); ?></p>
                 <p class="type">Type : <?php the_field('type'); ?></p>
                 <p class="date">ANNÉE : <?php the_field('date'); ?></p>
@@ -36,9 +49,6 @@ get_header(); ?>
         <!-- Bouton de contact -->
         <div id="subject">
             <button href="#" class="open-popup load-more2 subject reference" data-reference="<?php echo esc_attr(get_field('reference')); ?>">Contact</button>
-            <!-- Bouton de contact -->
-
-
         </div>
 
         <!-- Préview -->
@@ -94,7 +104,6 @@ get_header(); ?>
                         'post_type' => 'photo',
                         'posts_per_page' => 2, // Afficher 2 photos
                         'orderby' => 'rand', // Trier aléatoirement
-                        'post__not_in' => array(get_the_ID()), // Exclure la photo courante
                         'tax_query' => array(
                             array(
                                 'taxonomy' => 'categorie',
@@ -108,6 +117,7 @@ get_header(); ?>
 
                     if ($photo_query->have_posts()) :
                         while ($photo_query->have_posts()) : $photo_query->the_post();
+                          
                     ?>
                             <div class="photo-item">
                                 <?php if (get_field('image')) : ?>
@@ -116,10 +126,17 @@ get_header(); ?>
                                         <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                                         <div class="lightbox">
                                             <div class="lightbox-content">
-                                                <div class="lightbox-title"><?php the_title(); ?></div>
+                                               
                                                 <a href="<?php the_permalink(); ?>" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>
                                                 <a href="#" class="lightbox-icon fullscreen-icon" data-image="<?php echo esc_url($image['url']); ?>" title="Afficher en plein écran"></a>
                                                 <div class="lightbox-category"><?php echo get_the_term_list(get_the_ID(), 'categorie', '', ''); ?></div>
+                                                <?php
+                                    // Récupération et affichage de la référence
+                                    $reference = get_field('reference');
+                                    if ($reference) {
+                                        echo '<div class="lightbox-title">' . esc_html($reference) . '</div>';
+                                    }
+                                    ?>
                                             </div>
                                         </div>
                                     </div>
@@ -135,4 +152,6 @@ get_header(); ?>
     </div> <!-- Fermeture de la div single-photo-content -->
 </div>
 <?php get_footer('single-photo-page'); ?>
+
+
 

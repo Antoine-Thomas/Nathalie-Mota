@@ -7,24 +7,40 @@
 
 get_header();
 ?>
+
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-        <section class="hero">
-            <!-- Banner -->
-            <div class="banner">
-                <div class="banner-content">
-                    <h1 class="title-hero">Photographe event</h1>
-                </div>
-            </div>
-        </section>
+    <section class="hero">
+    <!-- Banner -->
+    <?php
+    // Récupérer les images à partir du champ ACF `photo`
+    $photos = get_field('photo');
 
-        <?php
-        // Fonction pour récupérer le chemin de l'image à partir de l'ID de l'image
-        function get_image_url_from_id($image_id) {
-            $image_url = wp_get_attachment_url($image_id);
-            return $image_url;
-        }
-        ?>
+    if ($photos):
+    ?>
+        <div class="banner">
+            <?php foreach ($photos as $photo): ?>
+                <?php
+                // Récupérer l'URL de chaque image
+                $image_url = wp_get_attachment_url($photo['ID']);
+                if ($image_url):
+                ?>
+                    <div class="photo" style="background-image: url('<?php echo esc_url($image_url); ?>');">
+                        <div class="banner-content">
+                            <h1 class="title-hero">Photographe event</h1>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
+    <?php else: ?>
+        <div class="banner">
+            <div class="banner-content">
+                <h1 class="title-hero">Photographe event</h1>
+            </div>
+        </div>
+    <?php endif; ?>
+</section>
 
         <!-- Dropdown Filters -->
         <section class="filter-area">
@@ -45,11 +61,11 @@ get_header();
                         ?>
                     </select>
                 </div>
-                
+
                 <!-- Dropdown box for Formats -->
                 <div class="filter-box filter-box-center" id="filtre-format">
                     <label class="filter-label" for="format_id"></label>
-                    <select name="format_id" id="format_id" autocomplete="format" >
+                    <select name="format_id" id="format_id" autocomplete="format">
                         <option value="">FORMATS</option>
                         <?php
                         $terms = get_terms(array(
@@ -62,7 +78,7 @@ get_header();
                         ?>
                     </select>
                 </div>
-                
+
                 <!-- Dropdown box for Date Order -->
                 <div class="filter-box filter-box-right" id="filtre-date">
                     <label class="filter-label" for="date"></label>
@@ -90,8 +106,6 @@ get_header();
     </main><!-- #main -->
 </div><!-- #primary -->
 
-
 <?php
 get_footer();
 ?>
-

@@ -139,9 +139,6 @@ jQuery(document).ready(function ($) {
     $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
     loadPhotosBySelection(); // Charge les photos initiales
 
-
-    
-
     // Module de gestion de l'effet de lightbox
     function applyLightboxEffect() {
         $('.photo-thumbnail').hover(
@@ -159,7 +156,10 @@ jQuery(document).ready(function ($) {
 
     // Module de navigation entre les pages
     function updatePreviewImage() {
-        const nextPageUrl = $('.right-arrow').data('next-page-url');
+        const rightArrow = $('.right-arrow');
+        const nextPageUrl = rightArrow.data('next-page-url');
+        const previewImage = $('.next-page-preview .preview-image');
+
         if (nextPageUrl) {
             $.ajax({
                 url: nextPageUrl,
@@ -168,9 +168,9 @@ jQuery(document).ready(function ($) {
                     const $pageContent = $(data);
                     const nextImageUrl = $pageContent.find('.photo-display img').attr('src');
                     if (nextImageUrl) {
-                        $('.next-page-preview .preview-image').attr('src', nextImageUrl);
+                        previewImage.attr('src', nextImageUrl);
                     } else {
-                        $('.next-page-preview .preview-image').attr('src', '');
+                        previewImage.attr('src', '');
                         console.log("Aucune image trouvée sur la page suivante");
                     }
                 },
@@ -179,7 +179,13 @@ jQuery(document).ready(function ($) {
                 }
             });
         } else {
-            console.log("Aucune URL de page suivante n'a été trouvée");
+            // Vérifier si l'élément .right-arrow existe
+            if (rightArrow.length > 0) {
+                console.log("Aucune URL de page suivante n'a été trouvée");
+                previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image
+            } else {
+                // Sinon, ne rien faire (dernière page)
+            }
         }
     }
 
@@ -200,6 +206,9 @@ jQuery(document).ready(function ($) {
     });
 
     updatePreviewImage();
+
+    // Ajout de l'écouteur d'événement passif
+    document.addEventListener('touchstart', function() {}, { passive: true });
 });
 
 

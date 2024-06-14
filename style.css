@@ -154,7 +154,7 @@ ul li {
     top: 0px; /* Collé au bas du header */
     left: 0;
     right: 0;
-    background-image: url('images/PhotosNMota/nathalie-11.jpeg');
+    /*background-image: url('images/PhotosNMota/nathalie-11.jpeg');*/
     background-size: contain;
     background-repeat: no-repeat; /* Pour éviter la répétition de l'image */
     
@@ -669,13 +669,14 @@ label {
 
 /* Styles pour les écrans de bureau */
 
- /* Nouvelle règle pour décaler le dropdown des formats */
+ /* règle pour décaler le dropdown des formats */
 
 .filter-area {
     display: flex;
     justify-content: center;
     margin: 20px 0;
     position: relative; /* Ajouter cette ligne */
+   
    
 }
 
@@ -684,6 +685,9 @@ label {
     margin: 10px;
     min-width: 250px;
     position: absolute; /* Ajouter cette ligne */
+border-radius: 4px;
+ 
+
 }
 
 .filter-box-left {
@@ -710,11 +714,19 @@ label {
     left: 0px !important;
 }
 
+
+
 .filter-box select {
     width: 100%;
-    padding: 8px;
-    border-radius: 4px;
+    padding: 12px;
     border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #333;
+    font-size: 16px;
+    
+
+ 
 }
 
 
@@ -723,18 +735,27 @@ label {
 
 
 
+.filter-box select option:hover {
+    background-color: #FFD6D6;
+}
 
+.filter-box select option:active {
+    background-color: #FE5858;
+}
 
+.filter-box select option:checked {
+    background-color: #E00000;
+    color: #fff;
+}
 
-
-
-
-
-
-
-
-
-    @media screen and (max-width: 1440px) {
+/* Custom arrow for dropdown */
+.filter-box select {
+   
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 10px 10px;
+}
+ @media screen and (max-width: 1440px) {
 
         .photo-thumbnail.landscape img {
             position: relative;
@@ -974,24 +995,84 @@ label {
     top: 10px;
     right: 10px;
 }
-.fullscreen-container {
+/* Overlay */
+#fullscreen-overlay {
+    display: none; /* Caché par défaut */
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
+    z-index: 999; /* Juste en dessous du conteneur plein écran */
+}
+
+
+
+
+.fullscreen-container {
+    position: fixed;
+    top: 50%; /* Centrer verticalement */
+    left: 50%; /* Centrer horizontalement */
+    transform: translate(-50%, -50%); /* Centrer exactement au milieu */
+    width: 978px; /* Largeur fixe */
+    height: 857px; /* Hauteur fixe */
+    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
+    z-index: 1000; /* Assurez-vous que le conteneur est au-dessus de tout le reste */
     display: flex;
-    align-items: center;
     justify-content: center;
-    z-index: 9999;
+    align-items: center;
+}
+
+
+.grid-container3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(564px, 1fr)); /* Colonnes de taille minimale 564px */
+    grid-gap: 20px; /* Espacement entre les images */
+    max-width: 100%;
+    max-height: 100%;
+    overflow: auto; /* Activer le défilement si nécessaire */
 }
 
 .fullscreen-image {
-    max-width: 90%;
-    max-height: 90%;
+    max-width: 564px;
+    max-height: 495px;
+    object-fit: cover;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border: 5px solid white;
+}
+
+/* Styles spécifiques pour les images en plein écran */
+.fullscreen-image.landscape {
+    width: 564px;
+    height: 495px;
+}
+
+.fullscreen-image.portrait {
+    width: 495px;
+    height: 564px;
+}
+
+
+.fullscreen-title {
+    position: absolute;
+    bottom: 120px;
+    left: 710px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.fullscreen-category {
+    position: absolute;
+    bottom: 120px;
+    right: 680px;
+    color: #fff !important;
+    font-size: 18px;
+    
+        pointer-events: none;
+        cursor: default;
+        text-decoration: none;
+        color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
 }
 
 
@@ -1004,13 +1085,26 @@ label {
 }
 
 .left-arrow {
-    left: 10px;
+    left: 80px;
 }
 
 .right-arrow {
-    right: 10px;
+    right: 80px;
 }
 
+.close-button {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 60px;
+    cursor: pointer;
+    color: #fff;
+    z-index: 1100; /* Assurez-vous que la croix est au-dessus du contenu du fullscreen */
+}
+
+.close-button:hover {
+    color: #ff0000; /* Changez la couleur au survol si désiré */
+}
 
 
 
