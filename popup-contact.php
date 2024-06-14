@@ -7,7 +7,7 @@
  */
 ?>
 
-<div class="popup-overlay hidden">
+<div class="popup-overlay hidden visible">
     <div class="popup-contact">
         <div class="popup-title__container">
             <?php for ($i = 0; $i < 6; $i++): ?>

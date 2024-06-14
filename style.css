@@ -312,9 +312,9 @@ ul li {
 
 /* Media query pour le menu burger */
 @media screen and (max-width: 777px) {
+ 
 
-
-
+   
 
     /* Masquer le menu principal sur les petits écrans */
     .main-menu {
@@ -406,7 +406,7 @@ ul li {
 /* Styles pour le menu burger container */
 .burger-menu-container {
     position: fixed;
-    top: 70px;
+    top: 40px;
     left: 0;
     width: 100%;
     height: 100vh;
@@ -478,7 +478,7 @@ ul li {
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index:2;
 }
 
 .popup-overlay.hidden {
@@ -494,6 +494,7 @@ ul li {
     padding: 20px;
     position: relative;
     overflow: hidden; /* Pour cacher les débordements */
+    z-index: 2;
 }
 .popup-title__container {
     display: flex;
@@ -636,6 +637,7 @@ label {
     border-radius: 2px;
     cursor: pointer;
     border: 1px solid #FFFFFF;
+    
   
 }
 
@@ -834,6 +836,8 @@ label {
                 box-sizing: border-box;
             }
             
+            
+            
             .photo-item {
                 width: 100%;
                 max-width: 564px;
@@ -920,13 +924,25 @@ label {
     right: 10px;
     color: #fff !important;
     font-size: 18px;
-}
+    
+        pointer-events: none;
+        cursor: default;
+        text-decoration: none;
+        color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
+    }
+
 
 /* Style spécifique pour les liens dans .lightbox-category */
 .lightbox-category a {
     color: #fff !important;
     text-decoration: none;
-}
+    
+        pointer-events: none;
+        cursor: default;
+        text-decoration: none;
+        color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
+    }
+
 
 .lightbox-category a:hover {
     text-decoration: underline;
@@ -979,6 +995,21 @@ label {
 }
 
 
+.fullscreen-arrow {
+    position: absolute;
+    top: 50%;
+    color: white;
+    font-size: 80px; /* Augmenter la taille de la police */
+    cursor: pointer;
+}
+
+.left-arrow {
+    left: 10px;
+}
+
+.right-arrow {
+    right: 10px;
+}
 
 
 

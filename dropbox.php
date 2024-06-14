@@ -63,26 +63,42 @@ $photos_query = new WP_Query($args);
         while ($photos_query->have_posts()) {
             $photos_query->the_post();
 
-            // Récupération des champs ACF
-            $photo = get_field('photo');
+    // Récupération des champs ACF
+    $photo = get_field('photo');
+    $numero_reference = get_field('reference'); // Récupérer le champ ACF pour le numéro de référence
 
-            // HTML de votre modèle photo
-            echo '<div class="photo-item">';
-            if ($photo) {
-                $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'full' pour les images complètes
-                echo '<div class="photo-thumbnail ' . ($image[2] > $image[1] ? 'portrait' : 'landscape') . '">';
-                echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
-                echo '<div class="lightbox" style="display: none;">';
-                echo '<div class="lightbox-content">';
-                echo '<div class="lightbox-title">' . get_the_title() . '</div>';
-                echo '<a href="' . get_permalink() . '" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>';
-                echo '<a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>';
-                echo '<div class="lightbox-category">' . get_the_term_list(get_the_ID(), 'categorie', '', ', ') . '</div>';
-                echo '</div></div></div>';
-            }
-            echo '</div>';
+    //  modèle photo
+    echo '<div class="photo-item">';
+    if ($photo) {
+        $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'full' pour les images complètes
+        echo '<div class="photo-thumbnail ' . ($image[2] > $image[1] ? 'portrait' : 'landscape') . '">';
+        echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
+        echo '<div class="lightbox" style="display: none;">';
+        echo '<div class="lightbox-content">';
+        
+        // Afficher le numéro de référence à la place du titre
+        if ($numero_reference) {
+            echo '<div class="lightbox-title">' . esc_html($numero_reference) . '</div>';
         }
-        echo '</div>'; // Fermeture de la div photo-grid
+        
+        echo '<a href="' . get_permalink() . '" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>';
+        echo '<a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>';
+        
+        // Récupération des termes de la taxonomie 'categorie'
+        $categories = get_the_terms(get_the_ID(), 'categorie');
+        if ($categories && !is_wp_error($categories)) {
+            $category_list = array();
+            foreach ($categories as $category) {
+                $category_list[] = '<span class="non-clickable">' . esc_html($category->slug) . '</span>';
+            }
+            echo '<div class="lightbox-category">' . implode(', ', $category_list) . '</div>';
+        }
+        
+        echo '</div></div></div>';
+    }
+    echo '</div>';
+}
+echo '</div>'; // Fermeture de la div photo-grid
     } else {
         echo '<p>No photos found</p>';
     }

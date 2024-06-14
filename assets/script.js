@@ -23,24 +23,40 @@ jQuery(document).ready(function ($) {
     menuToggle.on('click', toggleBurgerMenu);
     closeMenu.on('click', toggleBurgerMenu);
 
+    // Fonction pour extraire la référence de la photo
+    function getPhotoReference() {
+        return $('.reference').text().replace('Référence : ', '').trim();
+    }
+
     // Module de gestion de la popup de contact
     function toggleContactPopup(event) {
         event.preventDefault();
+        
+        // Récupérer la référence de la photo
+        const photoReference = getPhotoReference();
+        
+        // Insérer la référence dans le champ "subject" du formulaire de contact
+        const referenceField = $('input[name="reference"]');
+        if (referenceField.length && photoReference) {
+            referenceField.val(photoReference);
+        }
+        
+        // Afficher ou masquer la popup
         popupOverlay.toggleClass('hidden');
     }
 
     contactMenuLink.on('click', toggleContactPopup);
-    burgerMenuContainer.on('click', function (event) {
+    burgerMenuContainer.on('click', function(event) {
         if ($(event.target).hasClass('open-popup')) {
             toggleContactPopup(event);
         }
     });
 
-    popupCloseBtn.on('click', function () {
+    popupCloseBtn.on('click', function() {
         popupOverlay.addClass('hidden');
     });
 
-    popupOverlay.on('click', function (event) {
+    popupOverlay.on('click', function(event) {
         if ($(event.target).is(popupOverlay)) {
             popupOverlay.addClass('hidden');
         }
@@ -123,6 +139,9 @@ jQuery(document).ready(function ($) {
     $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
     loadPhotosBySelection(); // Charge les photos initiales
 
+
+    
+
     // Module de gestion de l'effet de lightbox
     function applyLightboxEffect() {
         $('.photo-thumbnail').hover(
@@ -134,6 +153,9 @@ jQuery(document).ready(function ($) {
             }
         );
     }
+
+    // Appeler la fonction pour appliquer l'effet de lightbox
+    applyLightboxEffect();
 
     // Module de navigation entre les pages
     function updatePreviewImage() {
@@ -179,6 +201,7 @@ jQuery(document).ready(function ($) {
 
     updatePreviewImage();
 });
+
 
 
 

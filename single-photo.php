@@ -34,8 +34,11 @@ get_header(); ?>
         <div class="line line-3"></div>
         <div class="cette-photo">Cette photo vous intéresse?</div>
         <!-- Bouton de contact -->
-        <div id="reference">
-            <button href="#" class="open-popup load-more2" data-reference="<?php echo esc_attr(get_field('reference')); ?>">Contact</button>
+        <div id="subject">
+            <button href="#" class="open-popup load-more2 subject reference" data-reference="<?php echo esc_attr(get_field('reference')); ?>">Contact</button>
+            <!-- Bouton de contact -->
+
+
         </div>
 
         <!-- Préview -->
