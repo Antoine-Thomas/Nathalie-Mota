@@ -86,8 +86,8 @@ get_header(); ?>
         <div class="line line-4"></div>
         <div class="aussi">Vous aimerez AUSSI</div>
 
-        <!-- Ajouter les photos de la même catégorie -->
-        <section class="photos">
+         <!-- Ajouter les photos de la même catégorie -->
+         <section class="photos">
             <div class="container">
                 <div id="photo-grid2" class="photo-grid2">
                     <?php
@@ -122,23 +122,22 @@ get_header(); ?>
                           
                     ?>
                             <div class="photo-item">
-                                <?php if (get_field('image')) : ?>
-                                    <?php $image = get_field('image'); ?>
+                                <?php if (get_field('photo')) : ?>
+                                    <?php $image = get_field('photo'); ?>
                                     <div class="photo-thumbnail <?php echo ($image['height'] > $image['width']) ? 'portrait' : 'landscape'; ?>">
                                         <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt']); ?>" />
                                         <div class="lightbox">
                                             <div class="lightbox-content">
-                                               
                                                 <a href="<?php the_permalink(); ?>" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>
                                                 <a href="#" class="lightbox-icon fullscreen-icon" data-image="<?php echo esc_url($image['url']); ?>" title="Afficher en plein écran"></a>
                                                 <div class="lightbox-category"><?php echo get_the_term_list(get_the_ID(), 'categorie', '', ''); ?></div>
                                                 <?php
-                                    // Récupération et affichage de la référence
-                                    $reference = get_field('reference');
-                                    if ($reference) {
-                                        echo '<div class="lightbox-title">' . esc_html($reference) . '</div>';
-                                    }
-                                    ?>
+                                                // Récupération et affichage de la référence
+                                                $reference = get_field('reference');
+                                                if ($reference) {
+                                                    echo '<div class="lightbox-title">' . esc_html($reference) . '</div>';
+                                                }
+                                                ?>
                                             </div>
                                         </div>
                                     </div>
@@ -153,8 +152,5 @@ get_header(); ?>
         </section>
     </div> <!-- Fermeture de la div single-photo-content -->
 </div>
-<?php get_footer('single-photo-page'); ?>
 
-
-
-
+<?php get_footer(); ?>
