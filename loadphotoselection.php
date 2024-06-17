@@ -1,12 +1,6 @@
+
 <?php
-/**
- * Template Name: dropbox 
- *
- * @package Nathalie Mota
- */
-// Récupération des requetes dans les dropboxs
-function load_photos_by_selection() {
-    
+        function load_photos_by_selection() {
     // Récupération des paramètres envoyés par la requête AJAX
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
     $format_ids = isset($_POST['format_id']) ? array_map('intval', (array) $_POST['format_id']) : array();
@@ -14,19 +8,15 @@ function load_photos_by_selection() {
     $page = isset($_POST['page']) ? intval($_POST['page']) : 1; // Ajouter cette ligne
     $photos_per_page = isset($_POST['photos_per_page']) ? intval($_POST['photos_per_page']) : 8;
 
-    error_log('Catégories: ' . implode(', ', $categorie_ids));
-    error_log('Formats: ' . implode(', ', $format_ids));
-    error_log('Ordre: ' . $date_order);
-
-    $offset = ($page - 1) * $photos_per_page;
+    // Construction de la requête WP_Query en fonction des options sélectionnées
     $args = array(
         'post_type' => 'photo',
-        'posts_per_page' => $photos_per_page,
-        'offset' => $offset,
-        'orderby' => 'date', // Trier par date 
-        'order' => $date_order, // Ordre de tri (ASC ou DESC)
+        'posts_per_page' => $photos_per_page, // Utiliser le nombre de photos par page
+        'paged' => $page, // Utiliser le numéro de page
+        'orderby' => 'date',
+        'order' => $date_order,
     );
-    
+
     // Ajout de la tax_query pour les catégories et les formats indépendamment
     $tax_query = array('relation' => 'AND');
 
@@ -66,7 +56,7 @@ function load_photos_by_selection() {
             $photo = get_field('photo');
             $numero_reference = get_field('reference'); // Récupérer le champ ACF pour le numéro de référence
 
-            // Modèle photo
+            //  modèle photo
             echo '<div class="photo-item">';
             if ($photo) {
                 $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'full' pour les images complètes
@@ -103,11 +93,14 @@ function load_photos_by_selection() {
     }
     wp_reset_postdata();
 
-    $response = ob_get_clean();
-    echo $response;
+    $response = array(
+        'html' => ob_get_clean(),
+        'max_pages' => $photos_query->max_num_pages
+    );
+
+    echo json_encode($response);
     wp_die();
 }
 
 add_action('wp_ajax_load_photos_by_selection', 'load_photos_by_selection');
 add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection');
-?>

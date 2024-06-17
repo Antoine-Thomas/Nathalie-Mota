@@ -1,27 +1,18 @@
 jQuery(document).ready(function($) {
-    // Chargement initial des images de bannière
-    loadBannerImages();
-
+    // Fonction pour charger les images de la bannière
     function loadBannerImages() {
         $.ajax({
-            url: nmAjax.ajaxUrl, // URL définie pour les requêtes AJAX dans WordPress
+            url: nmAjax.ajaxUrl,
             method: 'POST',
             data: {
-                action: 'load_photo_banner' // Action définie dans votre fichier PHP pour charger les photos de la bannière
+                action: 'load_photos_for_banner'
             },
             success: function(response) {
-                try {
-                    var parsedResponse = JSON.parse(response);
-                    console.log('Images de bannière chargées avec succès:', parsedResponse);
-
-                    // Vérifier si des photos ont été renvoyées
-                    if (parsedResponse.photos && parsedResponse.photos.length > 0) {
-                        displayBannerImages(parsedResponse.photos);
-                    } else {
-                        console.log('Aucune image de bannière trouvée.');
-                    }
-                } catch (e) {
-                    console.error('Erreur lors de l\'analyse de la réponse:', e);
+                var images = JSON.parse(response);
+                if (images.length > 0) {
+                    displayBannerImages(images);
+                } else {
+                    console.log('Aucune image de bannière trouvée.');
                 }
             },
             error: function(_xhr, _status, error) {
@@ -30,16 +21,20 @@ jQuery(document).ready(function($) {
         });
     }
 
-    function displayBannerImages(photos) {
-        var $banner = $('.banner');
+    // Fonction pour afficher les images dans la bannière
+    function displayBannerImages(images) {
+        var $bannerContent = $('.banner-content');
 
-        // Vider le contenu existant de la bannière
-        $banner.empty();
+        // Vide le contenu actuel de la bannière
+        $bannerContent.empty();
 
-        // Parcourir les photos et les ajouter à la bannière
-        $.each(photos, function(_index, photo) {
-            var $photoElement = $('<div class="photo" style="background-image: url(\'' + photo.url + '\');"></div>');
-            $banner.append($photoElement);
+        // Ajoute chaque image à la bannière
+        images.forEach(function(imageUrl) {
+            var $photoElement = $('<div class="photo-banner" style="background-image: url(' + imageUrl + ');"></div>');
+            $bannerContent.append($photoElement);
         });
     }
+
+    // Chargement initial des images de la bannière
+    loadBannerImages();
 });

@@ -1,11 +1,4 @@
 
-
-
-
-
-
-
-
 [
     {
         "key": "group_66609114d9e4b",
@@ -137,9 +130,41 @@
                 "placeholder": "",
                 "prepend": "",
                 "append": ""
+            },
+            {
+                "key": "field_666b62bddce63",
+                "label": "Categories",
+                "name": "categorie",
+                "aria-label": "",
+                "type": "taxonomy",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                    "width": "",
+                    "class": "",
+                    "id": ""
+                },
+                "taxonomy": "categorie",
+                "add_term": 1,
+                "save_terms": 0,
+                "load_terms": 0,
+                "return_format": "id",
+                "field_type": "checkbox",
+                "bidirectional": 0,
+                "multiple": 0,
+                "allow_null": 0,
+                "bidirectional_target": []
             }
         ],
         "location": [
+            [
+                {
+                    "param": "taxonomy",
+                    "operator": "==",
+                    "value": "categorie"
+                }
+            ],
             [
                 {
                     "param": "post_type",
@@ -151,42 +176,7 @@
                 {
                     "param": "taxonomy",
                     "operator": "==",
-                    "value": "all"
-                }
-            ],
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "post"
-                }
-            ],
-            [
-                {
-                    "param": "post_category",
-                    "operator": "==",
-                    "value": "category:concert"
-                }
-            ],
-            [
-                {
-                    "param": "post_category",
-                    "operator": "==",
-                    "value": "category:mariage"
-                }
-            ],
-            [
-                {
-                    "param": "post_category",
-                    "operator": "==",
-                    "value": "category:reception"
-                }
-            ],
-            [
-                {
-                    "param": "post_category",
-                    "operator": "==",
-                    "value": "category:television"
+                    "value": "format"
                 }
             ],
             [
@@ -198,65 +188,16 @@
             ],
             [
                 {
-                    "param": "post",
+                    "param": "post_template",
                     "operator": "==",
-                    "value": "89"
+                    "value": "single-photo.php"
                 }
             ],
             [
                 {
-                    "param": "post_taxonomy",
+                    "param": "page_template",
                     "operator": "==",
-                    "value": "category:concert"
-                }
-            ],
-            [
-                {
-                    "param": "post_taxonomy",
-                    "operator": "==",
-                    "value": "category:mariage"
-                }
-            ],
-            [
-                {
-                    "param": "post_taxonomy",
-                    "operator": "==",
-                    "value": "category:reception"
-                }
-            ],
-            [
-                {
-                    "param": "post_taxonomy",
-                    "operator": "==",
-                    "value": "category:television"
-                }
-            ],
-            [
-                {
-                    "param": "post_taxonomy",
-                    "operator": "==",
-                    "value": "categorie:concert"
-                }
-            ],
-            [
-                {
-                    "param": "post_taxonomy",
-                    "operator": "==",
-                    "value": "categorie:mariage"
-                }
-            ],
-            [
-                {
-                    "param": "post_taxonomy",
-                    "operator": "==",
-                    "value": "categorie:reception"
-                }
-            ],
-            [
-                {
-                    "param": "post_taxonomy",
-                    "operator": "==",
-                    "value": "categorie:television"
+                    "value": "single-photo.php"
                 }
             ],
             [
@@ -275,37 +216,30 @@
             ],
             [
                 {
-                    "param": "post_type",
+                    "param": "post_taxonomy",
                     "operator": "==",
-                    "value": "photo"
+                    "value": "category:concert"
                 }
             ],
             [
                 {
-                    "param": "taxonomy",
+                    "param": "post_taxonomy",
                     "operator": "==",
-                    "value": "categorie"
+                    "value": "category:mariage"
                 }
             ],
             [
                 {
-                    "param": "post_template",
+                    "param": "post_taxonomy",
                     "operator": "==",
-                    "value": "single-photo.php"
+                    "value": "category:reception"
                 }
             ],
             [
                 {
-                    "param": "post_template",
+                    "param": "post_taxonomy",
                     "operator": "==",
-                    "value": "page-accueil.php"
-                }
-            ],
-            [
-                {
-                    "param": "post_template",
-                    "operator": "==",
-                    "value": "dropbox.php"
+                    "value": "category:television"
                 }
             ]
         ],
@@ -317,271 +251,7 @@
         "hide_on_screen": "",
         "active": true,
         "description": "",
-        "show_in_rest": 1
-    },
-    {
-        "key": "group_6658c51025231",
-        "title": "photos",
-        "fields": [
-            {
-                "key": "field_6658c567e0c05",
-                "label": "référence",
-                "name": "reference",
-                "aria-label": "",
-                "type": "text",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": "ref"
-                },
-                "default_value": "",
-                "maxlength": "",
-                "placeholder": "",
-                "prepend": "",
-                "append": ""
-            },
-            {
-                "key": "field_6658c8d01376e",
-                "label": "Année",
-                "name": "annee",
-                "aria-label": "",
-                "type": "radio",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": "date"
-                },
-                "choices": [],
-                "default_value": "",
-                "return_format": "value",
-                "allow_null": 0,
-                "other_choice": 0,
-                "layout": "vertical",
-                "save_other_choice": 0
-            },
-            {
-                "key": "field_6658c8862f8d4",
-                "label": "format",
-                "name": "format",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": "form"
-                },
-                "taxonomy": "category",
-                "add_term": 1,
-                "save_terms": 0,
-                "load_terms": 0,
-                "return_format": "id",
-                "field_type": "checkbox",
-                "bidirectional": 0,
-                "multiple": 0,
-                "allow_null": 0,
-                "bidirectional_target": []
-            },
-            {
-                "key": "field_6658c510a6043",
-                "label": "type",
-                "name": "type",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": "type"
-                },
-                "taxonomy": "category",
-                "add_term": 1,
-                "save_terms": 0,
-                "load_terms": 0,
-                "return_format": "id",
-                "field_type": "checkbox",
-                "bidirectional": 0,
-                "multiple": 0,
-                "allow_null": 0,
-                "bidirectional_target": []
-            },
-            {
-                "key": "field_6658c7f92cf0c",
-                "label": "image",
-                "name": "image",
-                "aria-label": "",
-                "type": "image",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "return_format": "array",
-                "library": "all",
-                "min_width": 564,
-                "min_height": 495,
-                "min_size": "",
-                "max_width": "",
-                "max_height": "",
-                "max_size": "",
-                "mime_types": "",
-                "preview_size": "custom-thumb"
-            },
-            {
-                "key": "field_665f24a17958a",
-                "label": "Categorie",
-                "name": "categorie",
-                "aria-label": "",
-                "type": "taxonomy",
-                "instructions": "",
-                "required": 0,
-                "conditional_logic": 0,
-                "wrapper": {
-                    "width": "",
-                    "class": "",
-                    "id": ""
-                },
-                "taxonomy": "categorie",
-                "add_term": 1,
-                "save_terms": 1,
-                "load_terms": 0,
-                "return_format": "id",
-                "field_type": "multi_select",
-                "allow_null": 0,
-                "bidirectional": 0,
-                "multiple": 0,
-                "bidirectional_target": []
-            }
-        ],
-        "location": [
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "photo"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "format"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "categorie"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "all"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "format"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "all"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "format"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "format"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "all"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "format"
-                }
-            ],
-            [
-                {
-                    "param": "post_type",
-                    "operator": "==",
-                    "value": "photo"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "categorie"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "all"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "format"
-                }
-            ],
-            [
-                {
-                    "param": "taxonomy",
-                    "operator": "==",
-                    "value": "categorie"
-                }
-            ]
-        ],
-        "menu_order": 0,
-        "position": "normal",
-        "style": "default",
-        "label_placement": "top",
-        "instruction_placement": "label",
-        "hide_on_screen": "",
-        "active": false,
-        "description": "",
-        "show_in_rest": 1
+        "show_in_rest": 0
     },
     {
         "key": "taxonomy_665f11ce31bf3",
@@ -643,7 +313,7 @@
         "rest_controller_class": "WP_REST_Terms_Controller",
         "show_tagcloud": 1,
         "show_in_quick_edit": 1,
-        "show_admin_column": 0,
+        "show_admin_column": 1,
         "rewrite": {
             "permalink_rewrite": "taxonomy_key",
             "with_front": "1",
@@ -789,8 +459,8 @@
         "admin_menu_parent": "",
         "show_in_admin_bar": true,
         "show_in_nav_menus": true,
-        "show_in_rest": true,
-        "rest_base": "http:\/\/localhost:10101\/",
+        "show_in_rest": false,
+        "rest_base": "",
         "rest_namespace": "wp\/v2",
         "rest_controller_class": "WP_REST_Posts_Controller",
         "menu_position": "",

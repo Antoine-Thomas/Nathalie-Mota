@@ -48,7 +48,9 @@ get_header(); ?>
         <div class="cette-photo">Cette photo vous intéresse?</div>
         <!-- Bouton de contact -->
         <div id="subject">
-            <button href="#" class="open-popup load-more2 subject reference" data-reference="<?php echo esc_attr(get_field('reference')); ?>">Contact</button>
+            <button href="#" class="open-popup load-more2 subject reference subject"
+                data-reference="<?php echo esc_attr(get_field('reference')); ?>"
+                data-photo-id="<?php echo esc_attr(get_the_ID()); ?>">Contact</button>
         </div>
 
         <!-- Préview -->
@@ -152,6 +154,7 @@ get_header(); ?>
     </div> <!-- Fermeture de la div single-photo-content -->
 </div>
 <?php get_footer('single-photo-page'); ?>
+
 
 
 

@@ -1,6 +1,9 @@
-jQuery(document).ready(function($) {
-    var page = 1;
+$(document).ready(function () {
+    let page = 1;
+    const photosPerPage = 8;
+    let maxPages = 1;
 
+    // Fonction pour charger les photos selon la sélection
     function loadPhotosBySelection() {
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
@@ -8,7 +11,9 @@ jQuery(document).ready(function($) {
 
         const args = {
             action: 'load_photos_by_selection',
-            date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC'
+            date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC',
+            page: page,
+            photos_per_page: photosPerPage
         };
 
         if (categorieId !== '') {
@@ -19,16 +24,15 @@ jQuery(document).ready(function($) {
             args.format_id = formatId;
         }
 
-        console.log('Load Photos By Selection Args:', args);
-
         $.ajax({
             type: 'POST',
             url: ajaxUrl,
             data: args,
             success: function (response) {
-                $('.photo-grid').html(response);
+                const res = JSON.parse(response);
+                $('.photo-grid-container').html(res.html);
+                maxPages = res.max_pages;
                 applyLightboxEffect();
-                page = 1; // Reset the page number when new selection is made
             },
             error: function (response) {
                 console.error('Erreur:', response);
@@ -36,40 +40,33 @@ jQuery(document).ready(function($) {
         });
     }
 
+    // Fonction pour charger plus de photos
     function loadMorePhotos() {
+        if (page >= maxPages) {
+            showEndOfResultsMessage(); // Affiche un message à l'utilisateur
+            return;
+        }
+
+        page++;
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
         const dateOrder = $('#date').val();
 
-        page++;
-        const args = {
-            action: 'load_more_photos',
-            page: page,
-            photos_per_page: 8,
-            date_order: dateOrder
-        };
-
-        if (categorieId !== '') {
-            args.categorie_id = categorieId;
-        }
-
-        if (formatId !== '') {
-            args.format_id = formatId;
-        }
-
-        console.log('Load More Photos Args:', args);
-
         $.ajax({
             url: ajaxUrl,
             type: 'POST',
-            data: args,
+            data: {
+                action: 'load_photos_by_selection',
+                page: page,
+                photos_per_page: photosPerPage,
+                categorie_id: categorieId,
+                format_id: formatId,
+                date_order: dateOrder
+            },
             success: function (response) {
-                if (response.trim() !== '') {
-                    $('.photo-grid').append(response);
-                    if ($(response).filter('.photo-item').length < 8) {
-                        showEndOfResultsMessage(); // Affiche un message à l'utilisateur
-                    }
-                } else {
+                const res = JSON.parse(response);
+                $('.photo-grid').append(res.html);
+                if (page >= maxPages) {
                     showEndOfResultsMessage(); // Affiche un message à l'utilisateur
                 }
             },
@@ -80,16 +77,24 @@ jQuery(document).ready(function($) {
         });
     }
 
+    // Fonction pour afficher un message de fin de résultats
     function showEndOfResultsMessage() {
         $('#load-more')
             .prop('disabled', true)
             .text('Vous avez atteint la fin des résultats');
     }
 
+    // Définir les événements
     $('#load-more').on('click', loadMorePhotos);
-    $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
-    loadPhotosBySelection(); // Charge les photos initiales
+    $('#categorie_id, #format_id, #date').on('change', function () {
+        page = 1; // Réinitialiser à la première page
+        loadPhotosBySelection();
+    });
 
+    // Charger les photos initiales
+    loadPhotosBySelection();
+
+    // Fonction pour appliquer l'effet de lightbox
     function applyLightboxEffect() {
         $('.photo-thumbnail').hover(
             function () {
@@ -100,9 +105,7 @@ jQuery(document).ready(function($) {
             }
         );
     }
+
+    // Appeler la fonction pour appliquer l'effet de lightbox
+    applyLightboxEffect();
 });
-
-
-
-
-

@@ -31,7 +31,7 @@ add_action( 'acf/include_fields', function() {
 		array(
 			'key' => 'field_666091fd28ee8',
 			'label' => 'Référence',
-			'name' => 'Reference',
+			'name' => 'reference',
 			'aria-label' => '',
 			'type' => 'text',
 			'instructions' => '',
@@ -48,29 +48,121 @@ add_action( 'acf/include_fields', function() {
 			'prepend' => '',
 			'append' => '',
 		),
+		array(
+			'key' => 'field_6660e791b1ea0',
+			'label' => 'Date',
+			'name' => 'date',
+			'aria-label' => '',
+			'type' => 'number',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'min' => '',
+			'max' => '',
+			'placeholder' => '',
+			'step' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6660e80ae5dde',
+			'label' => 'Titre',
+			'name' => 'titre',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_6660e8727dd7c',
+			'label' => 'Photo',
+			'name' => 'photo',
+			'aria-label' => '',
+			'type' => 'image',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'return_format' => 'array',
+			'library' => 'all',
+			'min_width' => '',
+			'min_height' => '',
+			'min_size' => '',
+			'max_width' => '',
+			'max_height' => '',
+			'max_size' => '',
+			'mime_types' => '',
+			'preview_size' => 'medium',
+		),
+		array(
+			'key' => 'field_6660e9f51c8a9',
+			'label' => 'Format',
+			'name' => 'format',
+			'aria-label' => '',
+			'type' => 'text',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'default_value' => '',
+			'maxlength' => '',
+			'placeholder' => '',
+			'prepend' => '',
+			'append' => '',
+		),
+		array(
+			'key' => 'field_666b62bddce63',
+			'label' => 'Categories',
+			'name' => 'categorie',
+			'aria-label' => '',
+			'type' => 'taxonomy',
+			'instructions' => '',
+			'required' => 0,
+			'conditional_logic' => 0,
+			'wrapper' => array(
+				'width' => '',
+				'class' => '',
+				'id' => '',
+			),
+			'taxonomy' => 'categorie',
+			'add_term' => 1,
+			'save_terms' => 0,
+			'load_terms' => 0,
+			'return_format' => 'id',
+			'field_type' => 'checkbox',
+			'bidirectional' => 0,
+			'multiple' => 0,
+			'allow_null' => 0,
+			'bidirectional_target' => array(
+			),
+		),
 	),
 	'location' => array(
-		array(
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'photo',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'all',
-			),
-		),
-		array(
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'photo',
-			),
-		),
 		array(
 			array(
 				'param' => 'taxonomy',
@@ -80,16 +172,9 @@ add_action( 'acf/include_fields', function() {
 		),
 		array(
 			array(
-				'param' => 'taxonomy',
+				'param' => 'post_type',
 				'operator' => '==',
-				'value' => 'format',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'date',
+				'value' => 'photo',
 			),
 		),
 		array(
@@ -101,9 +186,9 @@ add_action( 'acf/include_fields', function() {
 		),
 		array(
 			array(
-				'param' => 'taxonomy',
+				'param' => 'post_format',
 				'operator' => '==',
-				'value' => 'reference',
+				'value' => 'image',
 			),
 		),
 	),
@@ -117,284 +202,17 @@ add_action( 'acf/include_fields', function() {
 	'description' => '',
 	'show_in_rest' => 0,
 ) );
-
-	acf_add_local_field_group( array(
-	'key' => 'group_6658c51025231',
-	'title' => 'photos',
-	'fields' => array(
-		array(
-			'key' => 'field_6658c567e0c05',
-			'label' => 'référence',
-			'name' => 'reference',
-			'aria-label' => '',
-			'type' => 'text',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => 'ref',
-			),
-			'default_value' => '',
-			'maxlength' => '',
-			'placeholder' => '',
-			'prepend' => '',
-			'append' => '',
-		),
-		array(
-			'key' => 'field_6658c8d01376e',
-			'label' => 'Année',
-			'name' => 'annee',
-			'aria-label' => '',
-			'type' => 'radio',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => 'date',
-			),
-			'choices' => array(
-			),
-			'default_value' => '',
-			'return_format' => 'value',
-			'allow_null' => 0,
-			'other_choice' => 0,
-			'layout' => 'vertical',
-			'save_other_choice' => 0,
-		),
-		array(
-			'key' => 'field_6658c8862f8d4',
-			'label' => 'format',
-			'name' => 'format',
-			'aria-label' => '',
-			'type' => 'taxonomy',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => 'form',
-			),
-			'taxonomy' => 'category',
-			'add_term' => 1,
-			'save_terms' => 0,
-			'load_terms' => 0,
-			'return_format' => 'id',
-			'field_type' => 'checkbox',
-			'bidirectional' => 0,
-			'multiple' => 0,
-			'allow_null' => 0,
-			'bidirectional_target' => array(
-			),
-		),
-		array(
-			'key' => 'field_6658c510a6043',
-			'label' => 'type',
-			'name' => 'type',
-			'aria-label' => '',
-			'type' => 'taxonomy',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => 'type',
-			),
-			'taxonomy' => 'category',
-			'add_term' => 1,
-			'save_terms' => 0,
-			'load_terms' => 0,
-			'return_format' => 'id',
-			'field_type' => 'checkbox',
-			'bidirectional' => 0,
-			'multiple' => 0,
-			'allow_null' => 0,
-			'bidirectional_target' => array(
-			),
-		),
-		array(
-			'key' => 'field_6658c7f92cf0c',
-			'label' => 'image',
-			'name' => 'image',
-			'aria-label' => '',
-			'type' => 'image',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'return_format' => 'array',
-			'library' => 'all',
-			'min_width' => 564,
-			'min_height' => 495,
-			'min_size' => '',
-			'max_width' => '',
-			'max_height' => '',
-			'max_size' => '',
-			'mime_types' => '',
-			'preview_size' => 'custom-thumb',
-		),
-		array(
-			'key' => 'field_665f24a17958a',
-			'label' => 'categorie',
-			'name' => 'categorie',
-			'aria-label' => '',
-			'type' => 'taxonomy',
-			'instructions' => '',
-			'required' => 0,
-			'conditional_logic' => 0,
-			'wrapper' => array(
-				'width' => '',
-				'class' => '',
-				'id' => '',
-			),
-			'taxonomy' => 'category',
-			'add_term' => 1,
-			'save_terms' => 1,
-			'load_terms' => 0,
-			'return_format' => 'id',
-			'field_type' => 'multi_select',
-			'allow_null' => 0,
-			'bidirectional' => 0,
-			'multiple' => 0,
-			'bidirectional_target' => array(
-			),
-		),
-	),
-	'location' => array(
-		array(
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'photo',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'format',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'categorie',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'date',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'format',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'date',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'format',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'format',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'date',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'format',
-			),
-		),
-		array(
-			array(
-				'param' => 'post_type',
-				'operator' => '==',
-				'value' => 'photo',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'categorie',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'date',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'format',
-			),
-		),
-		array(
-			array(
-				'param' => 'taxonomy',
-				'operator' => '==',
-				'value' => 'categorie',
-			),
-		),
-	),
-	'menu_order' => 0,
-	'position' => 'normal',
-	'style' => 'default',
-	'label_placement' => 'top',
-	'instruction_placement' => 'label',
-	'hide_on_screen' => '',
-	'active' => false,
-	'description' => '',
-	'show_in_rest' => 1,
-) );
 } );
 
 add_action( 'init', function() {
 	register_taxonomy( 'categorie', array(
 	0 => 'photo',
+	1 => 'post',
+	2 => 'page',
 ), array(
 	'labels' => array(
-		'name' => 'Categories',
-		'singular_name' => 'Categorie',
+		'name' => 'categories',
+		'singular_name' => 'categorie',
 		'menu_name' => 'categories',
 		'all_items' => 'Tous les categories',
 		'edit_item' => 'Modifier categorie',
@@ -403,6 +221,10 @@ add_action( 'init', function() {
 		'add_new_item' => 'Ajouter categorie',
 		'new_item_name' => 'Nom du nouveau categorie',
 		'search_items' => 'Rechercher categories',
+		'popular_items' => 'categories populaire',
+		'separate_items_with_commas' => 'Séparer les categories avec une virgule',
+		'add_or_remove_items' => 'Ajouter ou retirer categories',
+		'choose_from_most_used' => 'Choisir parmi les categories les plus utilisés',
 		'not_found' => 'Aucun categories trouvé',
 		'no_terms' => 'Aucun categories',
 		'items_list_navigation' => 'Navigation dans la liste categories',
@@ -414,42 +236,14 @@ add_action( 'init', function() {
 	'public' => true,
 	'show_in_menu' => true,
 	'show_in_rest' => true,
+	'show_admin_column' => true,
 	'sort' => true,
-) );
-
-	register_taxonomy( 'date', array(
-	0 => 'photo',
-), array(
-	'labels' => array(
-		'name' => 'dates',
-		'singular_name' => 'date',
-		'menu_name' => 'dates',
-		'all_items' => 'Tous les dates',
-		'edit_item' => 'Modifier date',
-		'view_item' => 'Voir date',
-		'update_item' => 'Mettre à jour date',
-		'add_new_item' => 'Ajouter date',
-		'new_item_name' => 'Nom du nouveau date',
-		'search_items' => 'Rechercher dates',
-		'popular_items' => 'dates populaire',
-		'separate_items_with_commas' => 'Séparer les dates avec une virgule',
-		'add_or_remove_items' => 'Ajouter ou retirer dates',
-		'choose_from_most_used' => 'Choisir parmi les dates les plus utilisés',
-		'not_found' => 'Aucun dates trouvé',
-		'no_terms' => 'Aucun dates',
-		'items_list_navigation' => 'Navigation dans la liste dates',
-		'items_list' => 'Liste dates',
-		'back_to_items' => '← Aller à « dates »',
-		'item_link' => 'Lien date',
-		'item_link_description' => 'Un lien vers un date',
-	),
-	'public' => true,
-	'show_in_menu' => true,
-	'show_in_rest' => true,
 ) );
 
 	register_taxonomy( 'format', array(
 	0 => 'photo',
+	1 => 'post',
+	2 => 'page',
 ), array(
 	'labels' => array(
 		'name' => 'formats',
@@ -476,42 +270,11 @@ add_action( 'init', function() {
 	),
 	'public' => true,
 	'show_in_menu' => true,
-	'show_in_rest' => true,
+	'show_in_rest' => false,
 	'rewrite' => array(
 		'hierarchical' => true,
 	),
 	'sort' => true,
-) );
-
-	register_taxonomy( 'reference', array(
-	0 => 'photo',
-), array(
-	'labels' => array(
-		'name' => 'references',
-		'singular_name' => 'reference',
-		'menu_name' => 'ref',
-		'all_items' => 'Tous les ref',
-		'edit_item' => 'Modifier ref',
-		'view_item' => 'Voir ref',
-		'update_item' => 'Mettre à jour ref',
-		'add_new_item' => 'Ajouter ref',
-		'new_item_name' => 'Nom du nouveau ref',
-		'search_items' => 'Rechercher ref',
-		'popular_items' => 'ref populaire',
-		'separate_items_with_commas' => 'Séparer les ref avec une virgule',
-		'add_or_remove_items' => 'Ajouter ou retirer ref',
-		'choose_from_most_used' => 'Choisir parmi les ref les plus utilisés',
-		'not_found' => 'Aucun ref trouvé',
-		'no_terms' => 'Aucun ref',
-		'items_list_navigation' => 'Navigation dans la liste ref',
-		'items_list' => 'Liste ref',
-		'back_to_items' => '← Aller à « ref »',
-		'item_link' => 'Lien ref',
-		'item_link_description' => 'Un lien vers un ref',
-	),
-	'public' => true,
-	'show_in_menu' => true,
-	'show_in_rest' => true,
 ) );
 } );
 
@@ -550,8 +313,7 @@ add_action( 'init', function() {
 	),
 	'public' => true,
 	'hierarchical' => true,
-	'show_in_rest' => true,
-	'rest_base' => 'http://localhost:10101/',
+	'show_in_rest' => false,
 	'menu_icon' => 'dashicons-admin-post',
 	'supports' => array(
 		0 => 'title',
@@ -560,20 +322,14 @@ add_action( 'init', function() {
 		3 => 'thumbnail',
 		4 => 'custom-fields',
 		5 => 'post-formats',
+		6 => 'date',
 	),
 	'taxonomies' => array(
 		0 => 'format',
 		1 => 'categorie',
 	),
-	'rewrite' => array(
-		'with_front' => false,
-	),
 	'delete_with_user' => false,
 ) );
 } );
-
-
-
-
 
 

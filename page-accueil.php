@@ -7,40 +7,39 @@
 
 get_header();
 ?>
-
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
-    <section class="hero">
-    <!-- Banner -->
-    <?php
-    // Récupérer les images à partir du champ ACF `photo`
-    $photos = get_field('photo');
-
-    if ($photos):
-    ?>
-        <div class="banner">
-            <?php foreach ($photos as $photo): ?>
-                <?php
-                // Récupérer l'URL de chaque image
-                $image_url = wp_get_attachment_url($photo['ID']);
-                if ($image_url):
-                ?>
-                    <div class="photo" style="background-image: url('<?php echo esc_url($image_url); ?>');">
-                        <div class="banner-content">
-                            <h1 class="title-hero">Photographe event</h1>
+        <section class="hero">
+            <!-- Banner -->
+            <div class="banner">
+                <div class="banner-content">
+                    <?php 
+                    $photos = get_banner_images(); // Récupérer les images de la bannière
+                    
+                    if (!empty($photos)) : ?>
+                        <?php 
+                        $random_index = array_rand($photos); // Choisir un index aléatoire
+                        $random_photo = $photos[$random_index]['photo']; // Récupérer l'URL de l'image aléatoire
+                        ?>
+                        <div class="photo-banner" style="background-image: url('<?php echo esc_url($random_photo); ?>');">
+                            <!-- Contenu de la photo -->
+                            <div class="banner-content">
+                                <div class="title-hero">
+                                   PHOTOGRAPHE EVENT
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                <?php endif; ?>
-            <?php endforeach; ?>
-        </div>
-    <?php else: ?>
-        <div class="banner">
-            <div class="banner-content">
-                <h1 class="title-hero">Photographe event</h1>
+                    <?php else : ?>
+                        <p>Aucune image de bannière trouvée.</p>
+                    <?php endif; ?>
+                </div>
             </div>
-        </div>
-    <?php endif; ?>
-</section>
+        </section>
+   
+
+
+
+       
 
         <!-- Dropdown Filters -->
         <section class="filter-area">
@@ -109,3 +108,6 @@ get_header();
 <?php
 get_footer();
 ?>
+
+
+

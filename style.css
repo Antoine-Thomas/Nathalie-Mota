@@ -149,22 +149,24 @@ ul li {
     font-weight: 700;
 }
 
-.banner {
-    position: relative; /* Position absolue par rapport au header */
-    top: 0px; /* Collé au bas du header */
+
+
+.photo-banner {
+    position: relative;
+    top: 0;
     left: 0;
     right: 0;
-    /*background-image: url('images/PhotosNMota/nathalie-11.jpeg');*/
-    background-size: contain;
-    background-repeat: no-repeat; /* Pour éviter la répétition de l'image */
-    
-    height: 962px; /* Remplacez 500px par la hauteur de votre photo */
+    height: 962px; /* Hauteur de votre bannière */
     width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+   
 }
 
-.banner-content .title-hero {    
+.banner-content .title-hero {
     position: absolute;
-    top: 40%;
+    top: 50%;
     left: 50%;
     transform: translate3d(-50%, -50%, 0);
     width: 100%;
@@ -174,7 +176,9 @@ ul li {
     font-style: italic;
     color: transparent;
     -webkit-text-stroke: 2px rgb(255, 255, 255);
+    z-index: 1;
 }
+
 @media screen and (max-width: 770px) {
     .banner-content .title-hero {
         font-size: 36px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
