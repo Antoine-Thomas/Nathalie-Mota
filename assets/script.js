@@ -99,15 +99,16 @@ jQuery(document).ready(function ($) {
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
         const dateOrder = $('#date').val();
-
-        page++;
+    
+        page++; // Incrémente la page pour charger la suivante
+    
         $.ajax({
             url: ajaxUrl,
             type: 'POST',
             data: {
                 action: 'load_more_photos',
                 page: page,
-                photos_per_page: 8,
+                photos_per_page: 8, // Nombre de photos à charger par page
                 categorie_id: categorieId,
                 format_id: formatId,
                 date_order: dateOrder
@@ -115,7 +116,8 @@ jQuery(document).ready(function ($) {
             success: function (response) {
                 if (response) {
                     $('.photo-grid').append(response);
-                    if ($(response).length < 8) {
+                    // Vérifie si le nombre de nouvelles photos chargées est inférieur à 8
+                    if ($(response).find('.photo-item').length < 8) {
                         showEndOfResultsMessage(); // Affiche un message à l'utilisateur
                     }
                 } else {
@@ -128,6 +130,7 @@ jQuery(document).ready(function ($) {
             }
         });
     }
+    
 
     function showEndOfResultsMessage() {
         $('#load-more')
@@ -210,8 +213,6 @@ jQuery(document).ready(function ($) {
     // Ajout de l'écouteur d'événement passif
     document.addEventListener('touchstart', function() {}, { passive: true });
 });
-
-
 
 
 

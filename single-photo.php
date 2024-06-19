@@ -46,12 +46,15 @@ get_header(); ?>
         <!-- Ligne de séparation -->
         <div class="line line-3"></div>
         <div class="cette-photo">Cette photo vous intéresse?</div>
+        
         <!-- Bouton de contact -->
-        <div id="subject">
-            <button href="#" class="open-popup load-more2 subject reference subject"
-                data-reference="<?php echo esc_attr(get_field('reference')); ?>"
-                data-photo-id="<?php echo esc_attr(get_the_ID()); ?>">Contact</button>
-        </div>
+       
+           <!-- Bouton de contact simplifié -->
+<button class="open-popup load-more2" data-reference="<?php echo esc_attr(get_field('reference')); ?>">
+    Contact
+</button>
+
+ 
 
         <!-- Préview -->
         <?php
@@ -154,3 +157,7 @@ get_header(); ?>
 </div>
 
 <?php get_footer(); ?>
+
+
+
+

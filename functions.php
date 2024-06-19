@@ -45,8 +45,8 @@ function nathalie_mota_enqueue_scripts() {
     // Enqueue le script du carrousel.
     wp_enqueue_script('nathalie-mota-modal', get_template_directory_uri() . '/assets/modal.js', array('jquery'), null, true);
       // Enqueue le script du carrousel.
-    //wp_enqueue_script('nathalie-mota-modal', get_template_directory_uri() . '/assets/loadphotoselection.js', array('jquery'), null, true);//
-    wp_enqueue_script('nathalie-mota-modal', get_template_directory_uri() . '/assets/popup.js', array('jquery'), null, true);
+    
+   
     wp_enqueue_script('nathalie-mota-modal', get_template_directory_uri() . '/assets/banner.js', array('jquery'), null, true);
     // Localize the script with new data.
     wp_localize_script('nathalie-mota-modal', 'nmAjax', array(
