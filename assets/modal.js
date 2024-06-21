@@ -3,8 +3,8 @@ jQuery(document).ready(function($) {
     var currentIndex = 0; // Index de l'image actuellement affichée
     var isFullscreenOpen = false; // Variable pour suivre l'état du conteneur plein écran
 
-    // Gestionnaire d'événements pour le survol sur les icônes de plein écran
-    $(document).on('mouseenter', '.fullscreen-icon', function(e) {
+   // Gestionnaire d'événements pour le clic sur les icônes de plein écran
+    $(document).on('click', '.fullscreen-icon', function(e) {
         e.preventDefault();
 
         // Vérifier si un conteneur plein écran est déjà ouvert
@@ -57,30 +57,32 @@ jQuery(document).ready(function($) {
             fullscreenImage.classList.add('portrait');
         }
 
-        // Créer les flèches gauche et droite
-        const leftArrow = document.createElement('div');
-        leftArrow.classList.add('fullscreen-arrow', 'left-arrow');
-        leftArrow.innerHTML = '&lt;'; // Ajouter du contenu à la flèche gauche
+       // Créer les flèches gauche et droite
+const leftArrow = document.createElement('img');
+leftArrow.classList.add('fullscreen-arrow', 'left-arrow');
+leftArrow.src = '/wp-content/themes/nathalie-mota/images/left.png'; // Chemin relatif vers l'image de la flèche gauche
 
-        const rightArrow = document.createElement('div');
-        rightArrow.classList.add('fullscreen-arrow', 'right-arrow');
-        rightArrow.innerHTML = '&gt;'; // Ajouter du contenu à la flèche droite
+const rightArrow = document.createElement('img');
+rightArrow.classList.add('fullscreen-arrow', 'right-arrow');
+rightArrow.src = '/wp-content/themes/nathalie-mota/images/right.png'; // Chemin relatif vers l'image de la flèche droite
 
-        // Gestionnaire d'événements pour la flèche gauche
-        leftArrow.addEventListener('click', function(e) {
-            e.stopPropagation(); // Empêcher la propagation de l'événement pour éviter la fermeture de la popup
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1; // Passer à l'image précédente
-            fullscreenImage.src = images[currentIndex].url; // Mettre à jour l'image affichée
-            updateDetails(images[currentIndex]); // Mettre à jour les détails
-        }, { passive: true });
 
-        // Gestionnaire d'événements pour la flèche droite
-        rightArrow.addEventListener('click', function(e) {
-            e.stopPropagation(); // Empêcher la propagation de l'événement pour éviter la fermeture de la popup
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0; // Passer à l'image suivante
-            fullscreenImage.src = images[currentIndex].url; // Mettre à jour l'image affichée
-            updateDetails(images[currentIndex]); // Mettre à jour les détails
-        }, { passive: true });
+  // Gestionnaire d'événements pour la flèche gauche
+leftArrow.addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+    fullscreenImage.src = images[currentIndex].url;
+    updateDetails(images[currentIndex]);
+});
+
+// Gestionnaire d'événements pour la flèche droite
+rightArrow.addEventListener('click', function(e) {
+    e.stopPropagation();
+    currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+    fullscreenImage.src = images[currentIndex].url;
+    updateDetails(images[currentIndex]);
+});
+
 
         // Créer un conteneur pour les détails à gauche de l'image
         const leftDetails = document.createElement('div');
@@ -140,7 +142,7 @@ jQuery(document).ready(function($) {
         fullscreenContainer.style.opacity = 0;
         document.body.appendChild(fullscreenContainer);
         requestAnimationFrame(() => {
-            fullscreenContainer.style.transition = 'opacity 0.5s';
+            fullscreenContainer.style.transition = 'opacity 1s';
             fullscreenContainer.style.opacity = 1;
         });
     }

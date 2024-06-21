@@ -1,12 +1,16 @@
-
 <?php
-        function load_photos_by_selection() {
+function load_photos_by_selection() {
     // Récupération des paramètres envoyés par la requête AJAX
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
     $format_ids = isset($_POST['format_id']) ? array_map('intval', (array) $_POST['format_id']) : array();
     $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
-    $page = isset($_POST['page']) ? intval($_POST['page']) : 1; // Ajouter cette ligne
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1; // Récupérer le numéro de page
     $photos_per_page = isset($_POST['photos_per_page']) ? intval($_POST['photos_per_page']) : 8;
+
+    // Incrémenter le nombre de photos par page pour charger une photo supplémentaire
+    if ($page > 1) {
+        $photos_per_page += 1;
+    }
 
     // Construction de la requête WP_Query en fonction des options sélectionnées
     $args = array(
@@ -56,7 +60,7 @@
             $photo = get_field('photo');
             $numero_reference = get_field('reference'); // Récupérer le champ ACF pour le numéro de référence
 
-            //  modèle photo
+            // modèle photo
             echo '<div class="photo-item">';
             if ($photo) {
                 $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'full' pour les images complètes
@@ -104,3 +108,4 @@
 
 add_action('wp_ajax_load_photos_by_selection', 'load_photos_by_selection');
 add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection');
+

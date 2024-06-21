@@ -28,49 +28,97 @@ jQuery(document).ready(function ($) {
         return $('.reference').text().replace('Référence : ', '').trim();
     }
 
-    // Module de gestion de la popup de contact
-    function toggleContactPopup(event) {
-        event.preventDefault();
-        
-        // Récupérer la référence de la photo
-        const photoReference = getPhotoReference();
-        
-        // Insérer la référence dans le champ "subject" du formulaire de contact
-        const referenceField = $('input[name="reference"]');
-        if (referenceField.length && photoReference) {
-            referenceField.val(photoReference);
-        }
-        
-        // Afficher ou masquer la popup
-        popupOverlay.toggleClass('hidden');
+
+
+
+
+  // Fonction pour basculer l'affichage de la popup de contact
+function toggleContactPopup(event) {
+    event.preventDefault();
+
+    const photoReference = getPhotoReference();
+    const referenceField = $('input[name="reference"]');
+    if (referenceField.length && photoReference) {
+        referenceField.val(photoReference);
     }
 
-    contactMenuLink.on('click', toggleContactPopup);
-    burgerMenuContainer.on('click', function(event) {
-        if ($(event.target).hasClass('open-popup')) {
-            toggleContactPopup(event);
-        }
-    });
+    popupOverlay.toggleClass('hidden visible');
+}
 
-    popupCloseBtn.on('click', function() {
-        popupOverlay.addClass('hidden');
-    });
+// Écouteur de clic sur le lien de contact
+contactMenuLink.on('click', toggleContactPopup);
 
-    popupOverlay.on('click', function(event) {
-        if ($(event.target).is(popupOverlay)) {
-            popupOverlay.addClass('hidden');
-        }
-    });
+// Écouteur de clic sur le burger menu
+burgerMenuContainer.on('click', function(event) {
+    if ($(event.target).hasClass('open-popup')) {
+        toggleContactPopup(event);
+    } else {
+        // Fermer la popup si nécessaire lors du clic sur le burger menu
+        popupOverlay.addClass('hidden').removeClass('visible');
+    }
+});
+
+// Écouteur de clic sur le bouton de fermeture de la popup
+popupCloseBtn.on('click', function() {
+    popupOverlay.addClass('hidden').removeClass('visible');
+});
+
+// Écouteur de clic sur l'overlay de la popup pour la fermer
+popupOverlay.on('click', function(event) {
+    if ($(event.target).is(popupOverlay)) {
+        popupOverlay.addClass('hidden').removeClass('visible');
+    }
+});
+
+    
+// Fonction pour ouvrir/fermer la popup de contact
+function toggleContactPopup() {
+    const popupOverlay = $('.popup-overlay');
+    popupOverlay.toggleClass('hidden'); // Toggle la classe hidden
+}
+
+// Écouteur d'événement pour le clic sur le lien de contact
+$('.contact-menu-link').on('click', function(event) {
+    event.preventDefault();
+    toggleContactPopup();
+});
+
+// Écouteur d'événement pour le clic sur le menu burger
+$('.burger-menu-container').on('click', function(event) {
+    if ($(event.target).hasClass('open-popup')) {
+        toggleContactPopup();
+    } else {
+        // Fermer le popup si nécessaire lors du clic sur une autre partie du burger menu
+        $('.popup-overlay').addClass('hidden');
+    }
+});
+
+// Écouteur d'événement pour le clic sur le bouton de fermeture de la popup
+$('.popup-close-btn').on('click', function() {
+    $('.popup-overlay').addClass('hidden');
+});
+
+// Écouteur d'événement pour fermer la popup en cliquant en dehors de celle-ci
+$('.popup-overlay').on('click', function(event) {
+    if ($(event.target).is('.popup-overlay')) {
+        $('.popup-overlay').addClass('hidden');
+    }
+});
+
+
+
+
+
 
     // Module de chargement des photos
     function loadPhotosBySelection() {
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
-        const dateOrder = $('#date').val();
+        const dateOrder = $('#date').val() || "ASC";
 
         const args = {
             action: 'load_photos_by_selection',
-            date_order: (dateOrder === 'asc') ? 'DESC' : 'ASC'
+            date_order: dateOrder.toUpperCase() 
         };
 
         if (categorieId !== '') {
@@ -98,10 +146,10 @@ jQuery(document).ready(function ($) {
     function loadMorePhotos() {
         const categorieId = $('#categorie_id').val();
         const formatId = $('#format_id').val();
-        const dateOrder = $('#date').val();
+        const dateOrder = $('#date').val() || "ASC";
     
         page++; // Incrémente la page pour charger la suivante
-    
+        console.log(page)
         $.ajax({
             url: ajaxUrl,
             type: 'POST',
@@ -111,12 +159,15 @@ jQuery(document).ready(function ($) {
                 photos_per_page: 8, // Nombre de photos à charger par page
                 categorie_id: categorieId,
                 format_id: formatId,
-                date_order: dateOrder
+                date_order: dateOrder.toUpperCase()
+                    
+                
+        
             },
             success: function (response) {
                 if (response) {
                     $('.photo-grid').append(response);
-                    // Vérifie si le nombre de nouvelles photos chargées est inférieur à 8
+                    // Vérifie si le nombre de nouvelles photos chargées est inférieur à 9
                     if ($(response).find('.photo-item').length < 8) {
                         showEndOfResultsMessage(); // Affiche un message à l'utilisateur
                     }
@@ -157,40 +208,39 @@ jQuery(document).ready(function ($) {
     // Appeler la fonction pour appliquer l'effet de lightbox
     applyLightboxEffect();
 
-    // Module de navigation entre les pages
-    function updatePreviewImage() {
-        const rightArrow = $('.right-arrow');
-        const nextPageUrl = rightArrow.data('next-page-url');
-        const previewImage = $('.next-page-preview .preview-image');
+   // Module de navigation entre les pages
+function updatePreviewImage() {
+    const rightArrow = $('.right-arrow');
+    const nextPageUrl = rightArrow.data('next-page-url');
+    const previewImage = $('.next-page-preview .preview-image');
 
-        if (nextPageUrl) {
-            $.ajax({
-                url: nextPageUrl,
-                method: 'GET',
-                success: function (data) {
-                    const $pageContent = $(data);
-                    const nextImageUrl = $pageContent.find('.photo-display img').attr('src');
-                    if (nextImageUrl) {
-                        previewImage.attr('src', nextImageUrl);
-                    } else {
-                        previewImage.attr('src', '');
-                        console.log("Aucune image trouvée sur la page suivante");
-                    }
-                },
-                error: function (_xhr, status, error) {
-                    console.log("Erreur lors de la récupération de la page suivante: ", status, error);
+    if (nextPageUrl) {
+        $.ajax({
+            url: nextPageUrl,
+            method: 'GET',
+            success: function(data) {
+                const $pageContent = $(data);
+                const nextImageUrl = $pageContent.find('.photo-display img').attr('src');
+                if (nextImageUrl) {
+                    previewImage.attr('src', nextImageUrl);
+                } else {
+                    previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image s'il n'y a pas d'image trouvée
                 }
-            });
-        } else {
-            // Vérifier si l'élément .right-arrow existe
-            if (rightArrow.length > 0) {
-                console.log("Aucune URL de page suivante n'a été trouvée");
-                previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image
-            } else {
-                // Sinon, ne rien faire (dernière page)
+            },
+            error: function(_xhr, _status, _error) {
+                previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image en cas d'erreur
             }
+        });
+    } else {
+        // Si nextPageUrl n'est pas défini, vérifier si rightArrow existe
+        if (rightArrow.length > 0) {
+            previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image
+        } else {
+            // Sinon, ne rien faire (dernière page)
         }
     }
+}
+
 
     $('.left-arrow').on('click', function (event) {
         event.preventDefault();

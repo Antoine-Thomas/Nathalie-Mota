@@ -7,9 +7,9 @@
 
 get_header(); ?>
 
-<div class="main-container">
+
     <div class="single-photo-content">
-        <div class="photo-main">
+     
             <!-- Afficher la photo principale -->
             <div class="photo-display">
                 <?php if (get_field('photo')) : ?>
@@ -72,7 +72,7 @@ get_header(); ?>
             <div class="next-page-preview">
                 <!-- Afficher un aperçu de la page suivante en petit carré -->
                 <div class="page-preview ">
-                    <img src="photo-display" alt="Aperçu de la page suivante" class="preview-image">
+                    <img src="" alt="" class="preview-image">
                 </div>
             </div>
             <!-- Flèches de navigation -->
@@ -150,11 +150,10 @@ get_header(); ?>
                         wp_reset_postdata();
                     endif;
                     ?>
-                </div>
-            </div>
+          
         </section>
     </div> <!-- Fermeture de la div single-photo-content -->
-</div>
+
 
 <?php get_footer(); ?>
 

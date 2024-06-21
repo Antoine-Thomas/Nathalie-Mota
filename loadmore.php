@@ -3,16 +3,18 @@ function nathalie_mota_load_more_photos() {
     if (isset($_POST['page']) && isset($_POST['photos_per_page'])) {
         $page = intval($_POST['page']);
         $photos_per_page = intval($_POST['photos_per_page']);
-        $offset = ($page - 1) * $photos_per_page;
+        $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
+
+
 
         $args = array(
             'post_type'      => 'photo',
             'posts_per_page' => $photos_per_page,
-            'offset'         => $offset,
-            'order'          => 'ASC',
+            'paged'         => $page,
+            'orderby' => 'date',
+            'order' => $date_order,
         );
 
-        // Vérifiez si categorie_id est défini et non vide
         if (!empty($_POST['categorie_id'])) {
             $args['tax_query'][] = array(
                 'taxonomy' => 'categorie',
@@ -21,22 +23,19 @@ function nathalie_mota_load_more_photos() {
             );
         }
 
-        // Vérifiez si format_id est défini et non vide
         if (!empty($_POST['format_id'])) {
+            $format_id = intval($_POST['format_id']);
             $args['meta_query'][] = array(
                 'key'     => 'format',
-                'value'   => intval($_POST['format_id']),
+                'value'   => $format_id,
                 'compare' => '=',
+                'terms'   => intval($_POST['format_id']),
             );
-        }
-
-        // Ajout de débogage
-        error_log('Args: ' . print_r($args, true));
+}  
+           
+       
 
         $photo_query = new WP_Query($args);
-
-        // Ajout de débogage
-        error_log('Found photos count: ' . $photo_query->found_posts);
 
         if ($photo_query->have_posts()) {
             while ($photo_query->have_posts()) {
@@ -76,3 +75,5 @@ function nathalie_mota_load_more_photos() {
 
 add_action('wp_ajax_load_more_photos', 'nathalie_mota_load_more_photos');
 add_action('wp_ajax_nopriv_load_more_photos', 'nathalie_mota_load_more_photos');
+?>
+

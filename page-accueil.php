@@ -82,7 +82,7 @@ get_header();
                 <div class="filter-box filter-box-right" id="filtre-date">
                     <label class="filter-label" for="date"></label>
                     <select name="date" id="date" autocomplete="off">
-                        <option value="desc">TRIER PAR</option>
+                        <option>TRIER PAR</option>
                         <option value="asc">NOUVEAUTES</option>
                         <option value="desc">PLUS ANCIENS</option>
                     </select>
