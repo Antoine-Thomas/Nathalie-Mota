@@ -4,14 +4,13 @@
  *
  * @package Nathalie Mota
  */
-// Récupération des requetes dans les dropboxs
+
 function load_photos_by_selection() {
-    
     // Récupération des paramètres envoyés par la requête AJAX
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
     $format_ids = isset($_POST['format_id']) ? array_map('intval', (array) $_POST['format_id']) : array();
     $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
-    $page = isset($_POST['page']) ? intval($_POST['page']) : 1; // Ajouter cette ligne
+    $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
     $photos_per_page = isset($_POST['photos_per_page']) ? intval($_POST['photos_per_page']) : 8;
 
     error_log('Catégories: ' . implode(', ', $categorie_ids));
@@ -23,11 +22,10 @@ function load_photos_by_selection() {
         'post_type' => 'photo',
         'posts_per_page' => $photos_per_page,
         'offset' => $offset,
-        'orderby' => 'date', // Trier par date 
-        'order' => $date_order, // Ordre de tri (ASC ou DESC)
+        'orderby' => 'date',
+        'order' => $date_order,
     );
-    
-    // Ajout de la tax_query pour les catégories et les formats indépendamment
+
     $tax_query = array('relation' => 'AND');
 
     if (!empty($categorie_ids)) {
@@ -48,42 +46,35 @@ function load_photos_by_selection() {
         );
     }
 
-    // N'ajouter tax_query que s'il y a des conditions
     if (!empty($categorie_ids) || !empty($format_ids)) {
         $args['tax_query'] = $tax_query;
     }
 
     $photos_query = new WP_Query($args);
 
-    // Génération de la sortie
     ob_start();
     if ($photos_query->have_posts()) {
-        echo '<div class="photo-grid">'; // Ajout de la classe photo-grid pour le style en grille
+        echo '<div class="photo-grid">';
         while ($photos_query->have_posts()) {
             $photos_query->the_post();
-
-            // Récupération des champs ACF
             $photo = get_field('photo');
-            $numero_reference = get_field('reference'); // Récupérer le champ ACF pour le numéro de référence
+            $numero_reference = get_field('reference');
 
-            // Modèle photo
             echo '<div class="photo-item">';
             if ($photo) {
-                $image = wp_get_attachment_image_src($photo['ID'], 'full'); // Utiliser la taille 'full' pour les images complètes
+                $image = wp_get_attachment_image_src($photo['ID'], 'full');
                 echo '<div class="photo-thumbnail ' . ($image[2] > $image[1] ? 'portrait' : 'landscape') . '">';
                 echo '<img src="' . esc_url($image[0]) . '" alt="' . esc_attr(get_the_title()) . '" />';
                 echo '<div class="lightbox" style="display: none;">';
                 echo '<div class="lightbox-content">';
                 
-                // Afficher le numéro de référence à la place du titre
                 if ($numero_reference) {
                     echo '<div class="lightbox-title">' . esc_html($numero_reference) . '</div>';
                 }
                 
                 echo '<a href="' . get_permalink() . '" class="lightbox-icon eye-icon" title="Voir le détail de la photo"></a>';
                 echo '<a href="#" class="lightbox-icon fullscreen-icon" data-id="1" title="Afficher en plein écran"></a>';
-                
-                // Récupération des termes de la taxonomie 'categorie'
+
                 $categories = get_the_terms(get_the_ID(), 'categorie');
                 if ($categories && !is_wp_error($categories)) {
                     $category_list = array();
@@ -97,7 +88,7 @@ function load_photos_by_selection() {
             }
             echo '</div>';
         }
-        echo '</div>'; // Fermeture de la div photo-grid
+        echo '</div>';
     } else {
         echo '<p>No photos found</p>';
     }

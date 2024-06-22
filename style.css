@@ -1189,43 +1189,26 @@ label {
 
 #fullscreen-overlay {
     display: none; /* Caché par défaut */
-
     position: fixed;
-
     top: 0;
-
     left: 0;
-
     width: 100%;
-
     height: 100%;
-
     background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
-
     z-index: 999; /* Juste en dessous du conteneur plein écran */
 }
 
+
 .fullscreen-container {
     position: fixed;
-
-    top: 50%; /* Centrer verticalement */
-
-    left: 50%; /* Centrer horizontalement */
-
-    transform: translate(-50%, -50%); /* Centrer exactement au milieu */
-
-    width: 978px; /* Largeur fixe */
-
-    height: 857px; /* Hauteur fixe */
-
+    top: 0; /* Réglé sur 0 pour occuper tout l'écran */
+    left: 0; /* Réglé sur 0 pour occuper tout l'écran */
+    width: 100%; /* 100% de la largeur de l'écran */
+    height: 100%; /* 100% de la hauteur de l'écran */
     background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
-
     z-index: 1000; /* Assurez-vous que le conteneur est au-dessus de tout le reste */
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
 }
 
@@ -1270,11 +1253,11 @@ label {
 }
 
 .fullscreen-title {
-    position: absolute;
+    position: relative;
 
-    bottom: 120px;
+    bottom: -280px;
 
-    left: 710px;
+    right:520px;
 
     color: #fff;
 
@@ -1282,11 +1265,11 @@ label {
 }
 
 .fullscreen-category {
-    position: absolute;
+    position: relative;
 
-    bottom: 120px;
+    bottom:-250px;
 
-    right: 680px;
+    right: 180px;
 
     color: #fff !important;
 
@@ -1302,20 +1285,20 @@ label {
 }
 
 .fullscreen-arrow {
-    position: absolute;
-    top: 50%;
+    position: relative;
+    top: 0%;
     transform: translateY(-50%);
     cursor: pointer;
-    width: 10%; /* Largeur souhaitée */
+    width: 3%; /* Largeur souhaitée */
     height: auto; /* Hauteur ajustée automatiquement en conservant les proportions */
 }
 
 .left-arrow {
-    left: 20px; /* Ajuster la position de la flèche gauche */
+    left: -50px; /* Ajuster la position de la flèche gauche */
 }
 
 .right-arrow {
-    right: 20px; /* Ajuster la position de la flèche droite */
+    right: -50px; /* Ajuster la position de la flèche droite */
 }
 
 .close-button {
@@ -1331,7 +1314,7 @@ label {
 
     color: #fff;
 
-    z-index: 1100; /* Assurez-vous que la croix est au-dessus du contenu du fullscreen */
+    z-index: 100; /* Assurez-vous que la croix est au-dessus du contenu du fullscreen */
 }
 
 .close-button:hover {
@@ -1416,7 +1399,7 @@ label {
 
     left: 160px;
 
-    top: 500px;
+    top: 440px;
 }
 
 .frame-33 p {
@@ -1462,7 +1445,7 @@ label {
     top:-100px;
 
     right: 130px;
-    z-index: 999;
+    z-index: 1;
 }
 
 
@@ -1472,7 +1455,7 @@ label {
 .line-4 {
     position: relative;
 
-    width: 1148px;
+    width: 80%;
 
     height: 0px;
 

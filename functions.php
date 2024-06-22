@@ -62,7 +62,7 @@ require_once get_template_directory() . '/dropbox.php';
 require_once get_template_directory() . '/loadmore.php';
 require_once get_template_directory() . '/carrousel.php';
 require_once get_template_directory() . '/banner.php';
-//require_once get_template_directory() . '/loadphotoselection.php';//
+
 
 
 ?>

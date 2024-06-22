@@ -28,170 +28,193 @@ jQuery(document).ready(function ($) {
         return $('.reference').text().replace('Référence : ', '').trim();
     }
 
+    // Fonction pour basculer l'affichage de la popup de contact
+    function toggleContactPopup(event) {
+        event.preventDefault();
 
+        const photoReference = getPhotoReference();
+        const referenceField = $('input[name="reference"]');
+        if (referenceField.length && photoReference) {
+            referenceField.val(photoReference);
+        }
 
-
-
-  // Fonction pour basculer l'affichage de la popup de contact
-function toggleContactPopup(event) {
-    event.preventDefault();
-
-    const photoReference = getPhotoReference();
-    const referenceField = $('input[name="reference"]');
-    if (referenceField.length && photoReference) {
-        referenceField.val(photoReference);
+        popupOverlay.toggleClass('hidden visible');
     }
 
-    popupOverlay.toggleClass('hidden visible');
-}
+    // Écouteur de clic sur le lien de contact
+    contactMenuLink.on('click', toggleContactPopup);
 
-// Écouteur de clic sur le lien de contact
-contactMenuLink.on('click', toggleContactPopup);
+    // Écouteur de clic sur le burger menu
+    burgerMenuContainer.on('click', function(event) {
+        if ($(event.target).hasClass('open-popup')) {
+            toggleContactPopup(event);
+        } else {
+            // Fermer la popup si nécessaire lors du clic sur le burger menu
+            popupOverlay.addClass('hidden').removeClass('visible');
+        }
+    });
 
-// Écouteur de clic sur le burger menu
-burgerMenuContainer.on('click', function(event) {
-    if ($(event.target).hasClass('open-popup')) {
-        toggleContactPopup(event);
-    } else {
-        // Fermer la popup si nécessaire lors du clic sur le burger menu
+    // Écouteur de clic sur le bouton de fermeture de la popup
+    popupCloseBtn.on('click', function() {
         popupOverlay.addClass('hidden').removeClass('visible');
+    });
+
+    // Écouteur de clic sur l'overlay de la popup pour la fermer
+    popupOverlay.on('click', function(event) {
+        if ($(event.target).is(popupOverlay)) {
+            popupOverlay.addClass('hidden').removeClass('visible');
+        }
+    });
+
+    // Fonction pour ouvrir/fermer la popup de contact
+    function toggleContactPopup() {
+        const popupOverlay = $('.popup-overlay');
+        popupOverlay.toggleClass('hidden'); // Toggle la classe hidden
     }
-});
 
-// Écouteur de clic sur le bouton de fermeture de la popup
-popupCloseBtn.on('click', function() {
-    popupOverlay.addClass('hidden').removeClass('visible');
-});
-
-// Écouteur de clic sur l'overlay de la popup pour la fermer
-popupOverlay.on('click', function(event) {
-    if ($(event.target).is(popupOverlay)) {
-        popupOverlay.addClass('hidden').removeClass('visible');
-    }
-});
-
-    
-// Fonction pour ouvrir/fermer la popup de contact
-function toggleContactPopup() {
-    const popupOverlay = $('.popup-overlay');
-    popupOverlay.toggleClass('hidden'); // Toggle la classe hidden
-}
-
-// Écouteur d'événement pour le clic sur le lien de contact
-$('.contact-menu-link').on('click', function(event) {
-    event.preventDefault();
-    toggleContactPopup();
-});
-
-// Écouteur d'événement pour le clic sur le menu burger
-$('.burger-menu-container').on('click', function(event) {
-    if ($(event.target).hasClass('open-popup')) {
+    // Écouteur d'événement pour le clic sur le lien de contact
+    $('.contact-menu-link').on('click', function(event) {
+        event.preventDefault();
         toggleContactPopup();
-    } else {
-        // Fermer le popup si nécessaire lors du clic sur une autre partie du burger menu
-        $('.popup-overlay').addClass('hidden');
-    }
-});
+    });
 
-// Écouteur d'événement pour le clic sur le bouton de fermeture de la popup
-$('.popup-close-btn').on('click', function() {
-    $('.popup-overlay').addClass('hidden');
-});
-
-// Écouteur d'événement pour fermer la popup en cliquant en dehors de celle-ci
-$('.popup-overlay').on('click', function(event) {
-    if ($(event.target).is('.popup-overlay')) {
-        $('.popup-overlay').addClass('hidden');
-    }
-});
-
-
-
-
-
-
-    // Module de chargement des photos
-    function loadPhotosBySelection() {
-        const categorieId = $('#categorie_id').val();
-        const formatId = $('#format_id').val();
-        const dateOrder = $('#date').val() || "ASC";
-
-        const args = {
-            action: 'load_photos_by_selection',
-            date_order: dateOrder.toUpperCase() 
-        };
-
-        if (categorieId !== '') {
-            args.categorie_id = categorieId;
+    // Écouteur d'événement pour le clic sur le menu burger
+    $('.burger-menu-container').on('click', function(event) {
+        if ($(event.target).hasClass('open-popup')) {
+            toggleContactPopup();
+        } else {
+            // Fermer le popup si nécessaire lors du clic sur une autre partie du burger menu
+            $('.popup-overlay').addClass('hidden');
         }
+    });
 
-        if (formatId !== '') {
-            args.format_id = formatId;
+    // Écouteur d'événement pour le clic sur le bouton de fermeture de la popup
+    $('.popup-close-btn').on('click', function() {
+        $('.popup-overlay').addClass('hidden');
+    });
+
+    // Écouteur d'événement pour fermer la popup en cliquant en dehors de celle-ci
+    $('.popup-overlay').on('click', function(event) {
+        if ($(event.target).is('.popup-overlay')) {
+            $('.popup-overlay').addClass('hidden');
         }
+    });
 
-        $.ajax({
-            type: 'POST',
-            url: ajaxUrl,
-            data: args,
-            success: function (response) {
-                $('.photo-grid-container').html(response);
-                applyLightboxEffect();
-            },
-            error: function (response) {
-                console.error('Erreur:', response);
+    $(document).ready(function() {
+        let page = 1;
+        const photosPerPage = 8;
+
+        // Fonction pour charger les photos en fonction de la sélection
+        function loadPhotosBySelection() {
+            page = 1; // Réinitialiser la page à 1 lors de la sélection des filtres
+            const categorieId = $('#categorie_id').val();
+            const formatId = $('#format_id').val();
+            const dateOrder = $('#date').val() || "ASC";
+
+            const args = {
+                action: 'load_photos_by_selection',
+                date_order: dateOrder.toUpperCase(),
+                page: page,
+                photos_per_page: photosPerPage
+            };
+
+            if (categorieId) {
+                args.categorie_id = categorieId;
             }
-        });
-    }
 
-    function loadMorePhotos() {
-        const categorieId = $('#categorie_id').val();
-        const formatId = $('#format_id').val();
-        const dateOrder = $('#date').val() || "ASC";
-    
-        page++; // Incrémente la page pour charger la suivante
-        console.log(page)
-        $.ajax({
-            url: ajaxUrl,
-            type: 'POST',
-            data: {
+            if (formatId) {
+                args.format_id = formatId;
+            }
+
+            $.ajax({
+                type: 'POST',
+                url: ajaxUrl,
+                data: args,
+                success: function(response) {
+                    $('.photo-grid-container').html(response);
+                    applyLightboxEffect(); // Appliquer l'effet de lightbox après le chargement
+                    initializeFeatures(); // Réinitialiser les fonctionnalités après chargement
+                },
+                error: function(response) {
+                    console.error('Erreur:', response);
+                }
+            });
+        }
+
+        // Fonction pour charger plus de photos
+        function loadMorePhotos() {
+            const categorieId = $('#categorie_id').val();
+            const formatId = $('#format_id').val();
+            const dateOrder = $('#date').val() || "ASC";
+
+            page++; // Incrémente la page pour charger la suivante
+
+            const args = {
                 action: 'load_more_photos',
                 page: page,
-                photos_per_page: 8, // Nombre de photos à charger par page
-                categorie_id: categorieId,
-                format_id: formatId,
+                photos_per_page: photosPerPage,
                 date_order: dateOrder.toUpperCase()
-                    
-                
-        
-            },
-            success: function (response) {
-                if (response) {
-                    $('.photo-grid').append(response);
-                    // Vérifie si le nombre de nouvelles photos chargées est inférieur à 9
-                    if ($(response).find('.photo-item').length < 8) {
-                        showEndOfResultsMessage(); // Affiche un message à l'utilisateur
-                    }
-                } else {
-                    showEndOfResultsMessage(); // Affiche un message à l'utilisateur
-                }
-            },
-            error: function (xhr, status, error) {
-                console.error('AJAX Error:', status, error);
-                console.log(xhr.responseText);
+            };
+
+            if (categorieId) {
+                args.categorie_id = categorieId;
             }
-        });
-    }
-    
 
-    function showEndOfResultsMessage() {
-        $('#load-more')
-            .prop('disabled', true)
-            .text('Vous avez atteint la fin des résultats');
-    }
+            if (formatId) {
+                args.format_id = formatId;
+            }
 
-    $('#load-more').on('click', loadMorePhotos);
-    $('#categorie_id, #format_id, #date').on('change', loadPhotosBySelection);
-    loadPhotosBySelection(); // Charge les photos initiales
+            $.ajax({
+                url: ajaxUrl,
+                type: 'POST',
+                data: args,
+                success: function(response) {
+                    if (response.trim() !== '') {
+                        $('.photo-grid').append(response);
+                        applyLightboxEffect(); // Appliquer l'effet de lightbox pour les nouvelles photos
+
+                        if ($(response).find('.photo-item').length < photosPerPage) {
+                            showEndOfResultsMessage();
+                        }
+                    } else {
+                        showEndOfResultsMessage();
+                    }
+                },
+                error: function(xhr, status, error) {
+                    console.error('AJAX Error:', status, error);
+                    console.log(xhr.responseText);
+                }
+            });
+        }
+
+        // Fonction pour afficher un message de fin des résultats
+        function showEndOfResultsMessage() {
+            $('#load-more')
+                .prop('disabled', true)
+                .text('Vous avez atteint la fin des résultats');
+        }
+
+        // Fonction pour initialiser les fonctionnalités
+        function initializeFeatures() {
+            // Réinitialiser les événements de clic pour les lightboxes
+            $('.lightbox-icon.fullscreen-icon').off('click').on('click', function(e) {
+                e.preventDefault();
+                // Code pour afficher l'image en plein écran
+            });
+
+            // Réinitialiser les événements des dropboxes
+            $('#categorie_id').off('change').on('change', loadPhotosBySelection);
+            $('#format_id').off('change').on('change', loadPhotosBySelection);
+            $('#date').off('change').on('change', loadPhotosBySelection);
+
+            // Réinitialiser le bouton Load More
+            $('#load-more').off('click').on('click', loadMorePhotos).prop('disabled', false).text('Charger plus');
+        }
+
+        // Initialiser les événements des dropboxes et charger les photos initiales
+        initializeFeatures();
+        loadPhotosBySelection(); // Charger les photos initiales
+    });
 
     // Module de gestion de l'effet de lightbox
     function applyLightboxEffect() {
@@ -208,39 +231,38 @@ $('.popup-overlay').on('click', function(event) {
     // Appeler la fonction pour appliquer l'effet de lightbox
     applyLightboxEffect();
 
-   // Module de navigation entre les pages
-function updatePreviewImage() {
-    const rightArrow = $('.right-arrow');
-    const nextPageUrl = rightArrow.data('next-page-url');
-    const previewImage = $('.next-page-preview .preview-image');
+    // Module de navigation entre les pages
+    function updatePreviewImage() {
+        const rightArrow = $('.right-arrow');
+        const nextPageUrl = rightArrow.data('next-page-url');
+        const previewImage = $('.next-page-preview .preview-image');
 
-    if (nextPageUrl) {
-        $.ajax({
-            url: nextPageUrl,
-            method: 'GET',
-            success: function(data) {
-                const $pageContent = $(data);
-                const nextImageUrl = $pageContent.find('.photo-display img').attr('src');
-                if (nextImageUrl) {
-                    previewImage.attr('src', nextImageUrl);
-                } else {
-                    previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image s'il n'y a pas d'image trouvée
+        if (nextPageUrl) {
+            $.ajax({
+                url: nextPageUrl,
+                method: 'GET',
+                success: function(data) {
+                    const $pageContent = $(data);
+                    const nextImageUrl = $pageContent.find('.photo-display img').attr('src');
+                    if (nextImageUrl) {
+                        previewImage.attr('src', nextImageUrl);
+                    } else {
+                        previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image s'il n'y a pas d'image trouvée
+                    }
+                },
+                error: function(_xhr, _status, _error) {
+                    previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image en cas d'erreur
                 }
-            },
-            error: function(_xhr, _status, _error) {
-                previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image en cas d'erreur
-            }
-        });
-    } else {
-        // Si nextPageUrl n'est pas défini, vérifier si rightArrow existe
-        if (rightArrow.length > 0) {
-            previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image
+            });
         } else {
-            // Sinon, ne rien faire (dernière page)
+            // Si nextPageUrl n'est pas défini, vérifier si rightArrow existe
+            if (rightArrow.length > 0) {
+                previewImage.attr('src', ''); // Réinitialiser l'aperçu de l'image
+            } else {
+                // Sinon, ne rien faire (dernière page)
+            }
         }
     }
-}
-
 
     $('.left-arrow').on('click', function (event) {
         event.preventDefault();
@@ -263,6 +285,7 @@ function updatePreviewImage() {
     // Ajout de l'écouteur d'événement passif
     document.addEventListener('touchstart', function() {}, { passive: true });
 });
+
 
 
 

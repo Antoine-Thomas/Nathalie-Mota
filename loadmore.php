@@ -5,14 +5,12 @@ function nathalie_mota_load_more_photos() {
         $photos_per_page = intval($_POST['photos_per_page']);
         $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
 
-
-
         $args = array(
             'post_type'      => 'photo',
             'posts_per_page' => $photos_per_page,
-            'paged'         => $page,
-            'orderby' => 'date',
-            'order' => $date_order,
+            'paged'          => $page,
+            'orderby'        => 'date',
+            'order'          => $date_order,
         );
 
         if (!empty($_POST['categorie_id'])) {
@@ -25,21 +23,20 @@ function nathalie_mota_load_more_photos() {
 
         if (!empty($_POST['format_id'])) {
             $format_id = intval($_POST['format_id']);
-            $args['meta_query'][] = array(
-                'key'     => 'format',
-                'value'   => $format_id,
-                'compare' => '=',
-                'terms'   => intval($_POST['format_id']),
+            $args['tax_query'][] = array(
+                'taxonomy' => 'format',
+                'field'    => 'term_id',
+                'terms'    => $format_id,
             );
-}  
-           
-       
+        }
 
         $photo_query = new WP_Query($args);
 
         if ($photo_query->have_posts()) {
             while ($photo_query->have_posts()) {
                 $photo_query->the_post(); ?>
+
+   
 
                 <div class="photo-item">
                     <?php if (get_field('photo')) : ?>
