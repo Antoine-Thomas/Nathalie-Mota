@@ -10,85 +10,89 @@ get_header();
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
         <section class="hero">
-            <!-- Banner -->
             <div class="banner">
                 <div class="banner-content">
                     <?php 
-                    $photos = get_banner_images(); // Récupérer les images de la bannière
-                    
-                    if (!empty($photos)) : ?>
-                        <?php 
-                        $random_index = array_rand($photos); // Choisir un index aléatoire
-                        $random_photo = $photos[$random_index]['photo']; // Récupérer l'URL de l'image aléatoire
-                        ?>
-                        <div class="photo-banner" style="background-image: url('<?php echo esc_url($random_photo); ?>');">
-                            <!-- Contenu de la photo -->
-                            <div class="banner-content">
-                                <div class="title-hero">
-                                   PHOTOGRAPHE EVENT
-                                </div>
-                            </div>
+                    $photos = get_banner_images();
+                    if (!empty($photos)) : 
+                        $random_index = array_rand($photos);
+                        $random_photo = $photos[$random_index]['photo'];
+                    ?>
+                    <div class="photo-banner" style="background-image: url('<?php echo esc_url($random_photo); ?>');">
+                        <div class="title-hero">
+                            PHOTOGRAPHE EVENT
                         </div>
+                    </div>
                     <?php else : ?>
                         <p>Aucune image de bannière trouvée.</p>
                     <?php endif; ?>
                 </div>
             </div>
         </section>
+
    
+<!-- Dropdown Filters -->
+<section class="filter-area">
+    <form method="post">
+        <!-- Dropdown box for Categories -->
+        <div class="filter-box filter-box-left custom-dropdown">
+            <div class="title_filter_box">
+                <span class="selected-value">CATEGORIES</span>
+                <span class="span_icon_filter">&#8964;</span>
+            </div>
+            <ul class="list_items_filter">
+                <li class="list_item" data-value="categories">CATEGORIES</li>
+                <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'categorie',
+                    'hide_empty' => false,
+                ));
+                foreach ($terms as $term) {
+                    echo '<li class="list_item" data-value="' . $term->term_id . '">' . $term->name . '</li>';
+                }
+                ?>
+            </ul>
+            <input type="hidden" name="categorie_id" id="categorie_id" value="">
+        </div>
+
+        <!-- Dropdown box for Formats -->
+        <div class="filter-box filter-box-center custom-dropdown">
+            <div class="title_filter_box">
+                <span class="selected-value">FORMATS</span>
+                <span class="span_icon_filter">&#8964;</span>
+            </div>
+            <ul class="list_items_filter">
+                <li class="list_item" data-value="formats">FORMATS</li>
+                <?php
+                $terms = get_terms(array(
+                    'taxonomy' => 'format',
+                    'hide_empty' => false,
+                ));
+                foreach ($terms as $term) {
+                    echo '<li class="list_item" data-value="' . $term->term_id . '">' . $term->name . '</li>';
+                }
+                ?>
+            </ul>
+            <input type="hidden" name="format_id" id="format_id" value="">
+        </div>
+
+        <!-- Dropdown box for Date Order -->
+        <div class="filter-box filter-box-right custom-dropdown">
+            <div class="title_filter_box">
+                <span class="selected-value">TRIER PAR</span>
+                <span class="span_icon_filter">&#8964;</span>
+            </div>
+            <ul class="list_items_filter">
+                <li class="list_item" data-value="trier_par">TRIER PAR</li>
+                <li class="list_item" data-value="desc">NOUVEAUTES</li>
+                <li class="list_item" data-value="asc">PLUS ANCIENS</li>
+            </ul>
+            <input type="hidden" name="date" id="date" value="">
+        </div>
+    </form>
+</section>
 
 
-
-       
-
-        <!-- Dropdown Filters -->
-        <section class="filter-area">
-            <form method="post">
-                <!-- Dropdown box for Categories -->
-                <div class="filter-box filter-box-left" id="filtre-categorie">
-                    <label class="filter-label" for="categorie_id"></label>
-                    <select name="categorie_id" id="categorie_id" autocomplete="categorie">
-                        <option value="">CATEGORIES</option>
-                        <?php
-                        $terms = get_terms(array(
-                            'taxonomy' => 'categorie',
-                            'hide_empty' => false,
-                        ));
-                        foreach ($terms as $term) {
-                            echo '<option value="' . $term->term_id . '">' . $term->name . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <!-- Dropdown box for Formats -->
-                <div class="filter-box filter-box-center" id="filtre-format">
-                    <label class="filter-label" for="format_id"></label>
-                    <select name="format_id" id="format_id" autocomplete="format">
-                        <option value="">FORMATS</option>
-                        <?php
-                        $terms = get_terms(array(
-                            'taxonomy' => 'format',
-                            'hide_empty' => false,
-                        ));
-                        foreach ($terms as $term) {
-                            echo '<option value="' . $term->term_id . '">' . $term->name . '</option>';
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <!-- Dropdown box for Date Order -->
-                <div class="filter-box filter-box-right" id="filtre-date">
-                    <label class="filter-label" for="date"></label>
-                    <select name="date" id="date" autocomplete="off">
-                        <option>TRIER PAR</option>
-                        <option value="desc">NOUVEAUTES</option>
-                        <option value="asc">PLUS ANCIENS</option>
-                    </select>
-                </div>
-            </form>
-        </section>
 
         <div class="photo-grid-container"></div> <!-- Conteneur pour les photos -->
 

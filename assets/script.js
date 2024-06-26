@@ -6,8 +6,8 @@ jQuery(document).ready(function ($) {
     const popupOverlay = $('.popup-overlay');
     const contactMenuLink = $('.open-popup');
     const popupCloseBtn = $('.close-popup');
+    const dropdowns = document.querySelectorAll('.custom-dropdown');
     const ajaxUrl = nmAjax.ajaxUrl;
-    let page = 1;
 
     // Module de gestion du menu burger
     function toggleBurgerMenu() {
@@ -103,29 +103,33 @@ jQuery(document).ready(function ($) {
     $(document).ready(function() {
         let page = 1;
         const photosPerPage = 8;
-
+    
         // Fonction pour charger les photos en fonction de la sélection
         function loadPhotosBySelection() {
             page = 1; // Réinitialiser la page à 1 lors de la sélection des filtres
             const categorieId = $('#categorie_id').val();
             const formatId = $('#format_id').val();
             const dateOrder = $('#date').val() || "ASC";
-
+    
             const args = {
                 action: 'load_photos_by_selection',
                 date_order: dateOrder.toUpperCase(),
                 page: page,
                 photos_per_page: photosPerPage
             };
-
-            if (categorieId) {
+    
+            if (categorieId && categorieId !== 'categories') {
                 args.categorie_id = categorieId;
             }
-
-            if (formatId) {
+    
+            if (formatId && formatId !== 'formats') {
                 args.format_id = formatId;
             }
-
+    
+            if (dateOrder !== 'trier_par') {
+                args.date_order = dateOrder.toUpperCase();
+            }
+    
             $.ajax({
                 type: 'POST',
                 url: ajaxUrl,
@@ -140,30 +144,30 @@ jQuery(document).ready(function ($) {
                 }
             });
         }
-
+    
         // Fonction pour charger plus de photos
         function loadMorePhotos() {
             const categorieId = $('#categorie_id').val();
             const formatId = $('#format_id').val();
             const dateOrder = $('#date').val() || "ASC";
-
+    
             page++; // Incrémente la page pour charger la suivante
-
+    
             const args = {
                 action: 'load_more_photos',
                 page: page,
                 photos_per_page: photosPerPage,
                 date_order: dateOrder.toUpperCase()
             };
-
-            if (categorieId) {
+    
+            if (categorieId && categorieId !== 'categories') {
                 args.categorie_id = categorieId;
             }
-
-            if (formatId) {
+    
+            if (formatId && formatId !== 'formats') {
                 args.format_id = formatId;
             }
-
+    
             $.ajax({
                 url: ajaxUrl,
                 type: 'POST',
@@ -172,7 +176,7 @@ jQuery(document).ready(function ($) {
                     if (response.trim() !== '') {
                         $('.photo-grid').append(response);
                         applyLightboxEffect(); // Appliquer l'effet de lightbox pour les nouvelles photos
-
+    
                         if ($(response).find('.photo-item').length < photosPerPage) {
                             showEndOfResultsMessage();
                         }
@@ -186,14 +190,14 @@ jQuery(document).ready(function ($) {
                 }
             });
         }
-
+    
         // Fonction pour afficher un message de fin des résultats
         function showEndOfResultsMessage() {
             $('#load-more')
                 .prop('disabled', true)
                 .text('Vous avez atteint la fin des résultats');
         }
-
+    
         // Fonction pour initialiser les fonctionnalités
         function initializeFeatures() {
             // Réinitialiser les événements de clic pour les lightboxes
@@ -201,21 +205,28 @@ jQuery(document).ready(function ($) {
                 e.preventDefault();
                 // Code pour afficher l'image en plein écran
             });
-
+    
             // Réinitialiser les événements des dropboxes
-            $('#categorie_id').off('change').on('change', loadPhotosBySelection);
-            $('#format_id').off('change').on('change', loadPhotosBySelection);
-            $('#date').off('change').on('change', loadPhotosBySelection);
-
+            $('.custom-dropdown .list_items_filter .list_item').off('click').on('click', function() {
+                const $dropdown = $(this).closest('.custom-dropdown');
+                const $selectedValue = $dropdown.find('.selected-value');
+                const $hiddenInput = $dropdown.find('input[type="hidden"]');
+    
+                const selectedValue = $(this).data('value');
+                $selectedValue.text($(this).text());
+                $hiddenInput.val(selectedValue);
+    
+                loadPhotosBySelection();
+            });
+    
             // Réinitialiser le bouton Load More
             $('#load-more').off('click').on('click', loadMorePhotos).prop('disabled', false).text('Charger plus');
         }
-
+    
         // Initialiser les événements des dropboxes et charger les photos initiales
         initializeFeatures();
         loadPhotosBySelection(); // Charger les photos initiales
     });
-
     // Module de gestion de l'effet de lightbox
     function applyLightboxEffect() {
         $('.photo-thumbnail').hover(
@@ -282,7 +293,46 @@ jQuery(document).ready(function ($) {
 
     updatePreviewImage();
 
-    // Ajout de l'écouteur d'événement passif
+
+
+
+
+
+
+dropdowns.forEach(function(dropdown) {
+    const titleBox = dropdown.querySelector('.title_filter_box');
+    const optionsList = dropdown.querySelector('.list_items_filter');
+    const iconSpan = titleBox.querySelector('.span_icon_filter');
+    const hiddenInput = dropdown.querySelector('input[type="hidden"]');
+
+    // Gestion de l'ouverture/fermeture de la liste au clic
+    titleBox.addEventListener('click', function() {
+        optionsList.classList.toggle('menu_open');
+        iconSpan.classList.toggle('span_icon_filter_rotate');
+    });
+
+    // Gestion de la sélection d'une option
+    const listItems = optionsList.querySelectorAll('.list_item');
+    listItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+            const selectedValue = item.textContent;
+            const selectedDataValue = item.getAttribute('data-value');
+
+            // Mettre à jour la valeur sélectionnée dans le titre
+            titleBox.querySelector('.selected-value').textContent = selectedValue;
+
+            // Mettre à jour la valeur du champ caché avec l'ID sélectionné
+            hiddenInput.value = selectedDataValue;
+
+            // Fermer la liste déroulante après la sélection
+            optionsList.classList.remove('menu_open');
+            iconSpan.classList.remove('span_icon_filter_rotate');
+
+        });
+    });
+});
+
+// Ajout de l'écouteur d'événement passif
     document.addEventListener('touchstart', function() {}, { passive: true });
 });
 
