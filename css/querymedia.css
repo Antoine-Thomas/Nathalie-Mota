@@ -1,0 +1,832 @@
+/*
+
+Theme Name: Nathalie Mota
+
+Theme URI: https://www.searching-murphy.com/nathalie-mota
+
+Description: Thème personnalisé pour le site de photographie de Nathalie Mota.
+
+Version: 1.0
+
+Author: 7om
+
+Author URI: https://www.searching-murphy.com/
+
+*/
+
+
+@media screen and (max-width: 1440px) {
+    .photo-thumbnail.landscape img {
+        position: relative;
+        width: 564px;
+        height: 495px;
+    }
+    .photo-thumbnail.portrait img {
+        width: 580px;
+        height: auto;
+    }
+
+    .photo-grid {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: 1fr; /* ou grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); si vous voulez plusieurs colonnes */
+       
+    }
+
+    .filter-area {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: -100px;
+        top:-0px
+    }
+    
+  
+    
+
+    .filter-box {
+        flex: 1 1 30%;
+        margin: 10px;
+        min-width: 250px;
+        position: static;
+    }
+
+    .filter-box label {
+        position: relative;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .filter-box select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    /* Nouvelle règle pour décaler le dropdown des formats sur les petits écrans */
+    #format_id {
+        position: relative;
+        left: 125px;
+    }
+}
+
+
+
+
+
+@media (min-width: 565px) and (max-width: 920px) {
+
+    .banner-content .title-hero {
+        font-size: 96px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
+        top: 100px;
+    }
+    
+    .filter-area {
+        display: grid;
+        justify-items: center;
+        display: flex;
+        justify-content: center;
+        position: relative; /* Ajouter cette ligne */
+        top: -240px;
+    }
+    
+   .filter-box-center {
+        position: relative;
+        left:46%;
+        transform: translateX(-50%);
+        top: 0px;
+        z-index: 1;
+    }
+    
+    .photo-grid-container {
+        position: relative;
+        top: -200px;
+    }
+
+    .photo-banner {
+        position: relative;
+        left: 0;
+        right: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top; /* Ajouté pour justifier l'image en haut */
+        height: 920px;
+        width: 100%;
+        max-width: 1440px;
+    }
+}
+@media (min-width: 320px) and (max-width: 726px) {
+
+    .banner-content .title-hero {
+        display: flex;
+        flex-direction: column;
+        font-size: 42px;
+        top: 20%;
+        align-items: center; /* Centrer le texte horizontalement */
+        justify-content: center; /* Centrer le texte verticalement */
+        text-align: center; /* Centrer le texte */
+    }
+
+}
+@media (min-width: 320px) and (max-width: 564px) {
+ 
+
+    .photo-thumbnail.landscape img {
+        width: 100%;
+        height: 100%;
+    }
+    .photo-thumbnail.portrait img {
+        width: 100%;
+        height: 100%;
+    }
+    .photo-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 320px;
+        gap: 20px 0 !important;
+        top: -100px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    
+    .photo-grid-container {
+        position: relative;
+        top: 0px;
+    }
+    .photo-grid2 {
+        position: relative;
+    
+        display: grid;
+    
+        grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+    
+        grid-gap: 20px !important; /* Espacement de 20px entre les photos */
+    
+        justify-content: center; /* Centrer horizontalement */
+    
+        margin: 0 auto; /* Centrer la grille horizontalement */
+    
+        max-width: 1148px; /* Limiter la largeur de la grille */
+    
+        padding: 20px 0; /* Espacement en haut et en bas de la grille */
+    
+        top: -80px;
+        padding-left: 25px;
+        padding-right: 10px;
+    }
+    
+    .lightbox-content {
+        position: relative;
+        width: 320px;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: -20px;
+        box-sizing: border-box;
+    }
+
+    .photo-item {
+        width: 100%;
+        max-width: 564px;
+        height: 320px;
+    }
+    .filter-area {
+        display: flex;
+        justify-content: center;
+        margin: 0px 0;
+        position: relative; /* Ajouter cette ligne */
+        right: 20px;
+        top: 0px;
+        
+    }
+
+    .filter-box-center {
+        position: relative;
+        left:46%;
+        transform: translateX(-50%);
+        top: 0px;
+        z-index: 1;
+    }
+
+    .lightbox {
+        overflow-y: auto; /* Ajouter un défilement vertical si nécessaire */
+       
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .photo-banner {
+        position: relative;
+        left: 0;
+        right: 0;
+        background-size: cover; /* Utilisez cover pour que l'image prenne toute la place */
+        background-repeat: no-repeat;
+        background-position: top; /* Centrez l'image dans le conteneur */
+        height: 320px;
+        width: 100%;
+        max-width: 1440px;
+    }
+    .load-more {
+        position: relative;
+  
+    right: 10px;
+    }
+    
+/*fullscreen 360*/
+
+.fullscreen-container {
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto; /* Centre le container horizontalement */
+    overflow-x: hidden; /* Évite le défilement horizontal */
+    left: 0px;
+}
+
+/* Styles pour toutes les images en plein écran */
+.fullscreen-image {
+    position: relative !important;
+   
+    object-fit: cover; /* Recadre les images en carré */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 5px solid white;
+}
+
+/* Styles pour les flèches gauche et droite */
+.left-arrow {
+    left: 160px; /* Ajustez la position pour les paysages */
+}
+
+.fullscreen-arrow {
+    position: relative;
+    top: 320px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    right: 60px;
+}
+
+/* Styles pour les titres et catégories */
+.fullscreen-title {
+    top: 280px; /* Ajustez la position pour les paysages */
+    font-size: 16px;
+    right: 340px; /* Ajustez la position pour les paysages */
+}
+
+.fullscreen-category {
+    top: 250px; /* Ajustez la position pour les paysages */
+    font-size: 16px;
+    right: 150px; /* Ajustez la position pour les paysages */
+}
+
+.close-button {
+    font-size: 40px; /* Ajuster la taille du bouton de fermeture pour les petits écrans */
+}
+    .container-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 50%;
+        max-width: 1440px;
+        padding: 0 80px;
+    }
+    
+}
+
+@media (min-width: 565px) and (max-width: 886px) {
+
+/* Styles pour les flèches gauche et droite */
+.left-arrow {
+    left: 160px; /* Ajustez la position pour les paysages */
+}
+
+.fullscreen-arrow {
+    position: relative;
+    top: 320px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    right: 60px;
+}
+
+
+
+}
+
+
+/*page single-photo*/
+
+@media (min-width: 320px) and (max-width: 1440px) {
+
+/* .single-photo-content */
+.single-photo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 150px;
+    top: 20px;
+}
+
+/* .main-container */
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 320px;
+    box-sizing: border-box;
+}
+
+/* Photo class */
+.photo-display {
+    position: relative;
+    width: 280px; /* Ajusté pour l'écran 320px */
+    height: 420px; /* Ajusté pour l'écran 320px */
+    left: 20px; /* Ajusté pour centrer */
+    top: 20px;
+}
+
+.photo-display img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+
+/* Frame 33 */
+.frame-33 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+    width: 280px; /* Ajusté pour l'écran 320px */
+    height: auto; /* Hauteur ajustable */
+    left: 20px; /* Ajusté pour centrer */
+    top: -20px; /* Ajusté pour espacement */
+}
+
+.frame-33 p {
+    font-family: "Space Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px; /* Réduit pour mobile */
+    line-height: 18px; /* Réduit pour mobile */
+    text-transform: uppercase;
+    color: #000000;
+}
+
+/* .load-more2 */
+.load-more2 {
+    position: relative;
+    display: block;
+    width: 272px;
+    height: 50px;
+    margin: 20px auto; /* Pour centrer le bouton horizontalement */
+    text-align: center;
+    background: #d8d8d8;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid #ffffff;
+    top: -100px;
+    left: 0;
+    z-index: 1;
+}
+
+/* .line-4 */
+.line-4 {
+    position: relative;
+    width: 100%;
+    height: 0px;
+    left: auto; /* Ajusté pour centrer */
+    top: -100px;
+    border: 1px solid #000000;
+}
+
+/* .line-3 */
+.line-3 {
+    position: relative;
+    width:100%; /* Ajusté pour l'écran 320px */
+    height: 0px;
+    left: auto; /* Ajusté pour centrer */
+    top: -110px;
+    border: 1px solid #000000;
+}
+
+/* .photo-details p.title */
+.photo-details p.title {
+    font-family: Space Mono !important;
+    font-size: 24px !important; /* Réduit pour mobile */
+    font-style: italic !important;
+    font-weight: 400 !important;
+    line-height: 32px !important; /* Réduit pour mobile */
+    text-align: left !important;
+}
+
+/* .photo-details p */
+.photo-details p {
+    font-family: Space Mono;
+    font-size: 12px; /* Réduit pour mobile */
+    font-weight: 400;
+    line-height: 18px; /* Réduit pour mobile */
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+/* .cette-photo */
+.cette-photo {
+    position: relative;
+    width: 197px;
+    height: 21px;
+    left: 20px; /* Ajusté pour centrer */
+    top: -100px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px; /* Réduit pour mobile */
+    line-height: 18px; /* Réduit pour mobile */
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+}
+
+/* .aussi */
+.aussi {
+    position: relative;
+    width: 200px; /* Ajusté pour mobile */
+    height: 21px; /* Ajusté pour mobile */
+    left: 20px; /* Ajusté pour centrer */
+    top: -80px;
+    font-family: Space Mono;
+    font-size: 14px; /* Réduit pour mobile */
+    font-weight: 400;
+    line-height: 18px; /* Réduit pour mobile */
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+}
+
+/* .photo */
+.photo {
+    position: relative; /* Changé de absolute à relative pour mobile */
+    width: 280px; /* Ajusté pour mobile */
+    height: 250px; /* Ajusté pour mobile */
+    margin: 20px auto; /* Centré avec marge */
+}
+
+/* .photo:nth-child(1) */
+.photo:nth-child(1) {
+    top: 20px; /* Ajusté pour espacement */
+}
+
+/* .photo:nth-child(2) */
+.photo:nth-child(2) {
+    top: 40px; /* Ajusté pour espacement */
+}
+
+/* .navigation-container */
+.navigation-container {
+    display: none !important; /* Caché */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centré */
+    margin-top: 20px; /* Ajusté pour mobile */
+}
+
+/* .preview-image */
+.preview-image {
+    width: 81px;
+    height: 71px;
+    top: 1461px;
+    left: 20px; /* Ajusté pour mobile */
+    gap: 0px;
+    opacity: 0px;
+}
+
+/* .page-preview img */
+.page-preview img {
+    width: 81px;
+    height: 71px;
+}
+
+/* .next-page-preview */
+.next-page-preview {
+    position: relative;
+    width: 81px;
+    height: 71px;
+    cursor: pointer; /* Ajouter un curseur pour indiquer que c'est cliquable */
+    margin-bottom: 10px; /* Espace entre le carré et les flèches */
+}
+
+/* .navigation-arrows */
+.navigation-arrows {
+    display: flex;
+    justify-content: space-between;
+    width: 50%; /* Ajusté pour mobile */
+}
+
+/* .navigation-arrow */
+.navigation-arrow {
+    display: block;
+    width: 25px; /* Ajuster la taille selon vos besoins */
+    height: 25px; /* Ajuster la taille selon vos besoins */
+    z-index: 9999;
+}
+
+/* .navigation-arrow img */
+.navigation-arrow img {
+    width: 100%;
+    height: auto;
+}
+
+.menu-toggle {
+    width: 40px;
+    height: 40px;
+    margin-left: 25px;
+}
+
+    .photo-grid2 {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin: 0 auto;
+        max-width: 1148px;
+        align-content: center;
+        align-items: center;
+        justify-items: stretch;
+        flex-wrap: wrap; /* Permettre à align-content de fonctionner */
+        margin-right: 20px;
+    }
+
+
+.popup-contact {
+    background: #ffffff;
+
+    border: 5px solid #000000;
+
+    box-sizing: border-box;
+
+    width: 597px;
+
+    height: 769px;
+
+    padding: 20px;
+
+    position: relative;
+
+    overflow: hidden; /* Pour cacher les débordements */
+
+    z-index: 2;
+}
+
+.popup-title__container {
+    display: flex;
+
+    flex-wrap: wrap; /* Pour permettre le wrap des images */
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    width: 800px;
+
+    left: -141.49px;
+
+    gap: 0px;
+
+    position: relative;
+
+    overflow: hidden; /* Pour cacher les débordements horizontaux */
+}
+
+.popup-decor {
+    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
+
+    height: auto;
+
+    margin: 5px; /* Espace entre les images */
+
+    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
+}
+
+.popup-decor:nth-child(n + 4) {
+    position: relative;
+
+    right: 50px;
+}
+
+.popup-title {
+    color: #ffffff;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin: 10px;
+}
+
+.popup-decor {
+    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
+
+    height: 25px;
+
+    margin: 1px; /* Espace entre les images */
+
+    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
+}
+
+.close-popup {
+    cursor: pointer;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    position: relative;
+
+    top: 10px;
+
+    right: 10px;
+}
+
+#ff_3_message {
+    width: 263px; /* Largeur fixe */
+
+    height: 210px; /* Hauteur fixe */
+
+    padding: 8px 15px; /* Espacement intérieur */
+
+    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
+
+    border: 1px solid #b8bbc2; /* Bordure */
+
+    resize: none; /* Empêcher le redimensionnement */
+
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+
+    margin: auto; /* Centrer horizontalement */
+
+    display: block; /* Afficher en tant que bloc */
+}
+
+.ff-el-form-control {
+    width: 263px !important; /* Largeur fixe */
+
+    height: 50px; /* Hauteur fixe */
+
+    padding: 8px 15px; /* Espacement intérieur */
+
+    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
+
+    border: 1px solid #b8bbc2; /* Bordure */
+
+    resize: none; /* Empêcher le redimensionnement */
+
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+
+    margin: auto; /* Centrer horizontalement */
+
+    display: block; /* Afficher en tant que bloc */
+}
+
+/* .popup-contact */
+.popup-contact {
+    background: #ffffff;
+    border: 5px solid #000000;
+    box-sizing: border-box;
+    width: 286px; /* Largeur ajustée pour mobile */
+    height: 583px; /* Hauteur ajustée pour mobile */
+    padding: 0px;
+    position: relative;
+    overflow: hidden; /* Pour cacher les débordements */
+    z-index: 2;
+}
+.fluentform .ff-el-group {
+    margin-bottom: 0px !important;
+}
+/* .popup-title__container */
+
+
+.popup-title__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 350px;
+    left: 1px;
+    gap: 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* .popup-decor:nth-child(n + 4) */
+.popup-decor:nth-child(n + 4) {
+    position: relative;
+    right: 20px; /* Ajusté pour mobile */
+}
+
+/* .popup-title */
+.popup-title {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight:700px;
+    margin: 10px;
+}
+
+/* .close-popup */
+.close-popup {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* #ff_3_message */
+#ff_3_message {
+    width: 190px; /* Largeur ajustée pour mobile */
+    height: 63px; /* Hauteur ajustée pour mobile */
+    padding: 8px 15px; /* Espacement intérieur */
+    border-radius: 8px; /* Bordure arrondie */
+    border: 1px solid #b8bbc2; /* Bordure */
+    resize: none; /* Empêcher le redimensionnement */
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+    margin: 10px auto; /* Centrer horizontalement */
+    display: block; /* Afficher en tant que bloc */
+}
+
+/* .ff-el-form-control */
+.ff-el-form-control {
+    width: 190px !important; /* Largeur ajustée pour mobile */
+    height: 50px; /* Hauteur ajustée pour mobile */
+    padding: 8px 15px; /* Espacement intérieur */
+    border-radius: 8px; /* Bordure arrondie */
+    border: 1px solid #b8bbc2; /* Bordure */
+    resize: none; /* Empêcher le redimensionnement */
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+    margin: 10px auto; /* Centrer horizontalement */
+    display: block; /* Afficher en tant que bloc */
+}
+
+.fluentform .ff-text-center {
+    width: 190px;
+    height: 50px;
+    background: #d8d8d8;
+    color: #000;
+    border: none;
+    text-align: center;
+    border-radius: 0;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    margin: auto;
+    align-items: center;
+    font-family: Space Mono !important;
+}
+element.style {
+    position: relative;
+    border: none !important;
+    margin: 0 !important;
+    padding: -200px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    min-inline-size: 100%;
+    top: -40px !important;
+}
+
+
+.filter-box-center {
+    position: relative;
+    left:46%;
+    transform: translateX(-50%);
+    top: 0px;
+    z-index: 1;
+}
+}
