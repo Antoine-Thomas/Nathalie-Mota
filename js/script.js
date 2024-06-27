@@ -1,3 +1,4 @@
+
 jQuery(document).ready(function ($) {
     const menuToggle = $('.menu-toggle');
     const burgerMenuContainer = $('.burger-menu-container');

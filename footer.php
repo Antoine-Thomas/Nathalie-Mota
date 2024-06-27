@@ -3,7 +3,7 @@
         <div class="menu-footer-menu-container">
             <ul id="menu-footer-menu" class="menu">
                 <li class="privacy-policy">
-                    <a rel="privacy-policy" href="<?php echo esc_url( home_url( 'mentions-legales/' ) ); ?>">Mentions Légales</a>
+                    <a  rel="privacy-policy" href="<?php echo esc_url( home_url( 'mentions-legales/' ) ); ?>">Mentions Légales</a>
                 </li>
             </ul>
         </div>

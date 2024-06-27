@@ -21,6 +21,7 @@ Author URI: https://www.searching-murphy.com/
         width: 564px;
         height: 495px;
     }
+
     .photo-thumbnail.portrait img {
         width: 580px;
         height: auto;
@@ -287,12 +288,14 @@ Author URI: https://www.searching-murphy.com/
     top: 280px; /* Ajustez la position pour les paysages */
     font-size: 16px;
     right: 340px; /* Ajustez la position pour les paysages */
+    
 }
 
 .fullscreen-category {
     top: 250px; /* Ajustez la position pour les paysages */
     font-size: 16px;
     right: 150px; /* Ajustez la position pour les paysages */
+   
 }
 
 .close-button {
@@ -357,20 +360,36 @@ Author URI: https://www.searching-murphy.com/
     box-sizing: border-box;
 }
 
-/* Photo class */
+.photo-container {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center;    /* Centre verticalement */
+    width: 100%;
+    height: 100vh; /* Prend toute la hauteur de la fenêtre, ajustez selon vos besoins */
+    box-sizing: border-box; /* Inclut les marges et les bordures dans la taille totale */
+}
+
 .photo-display {
     position: relative;
-    width: 280px; /* Ajusté pour l'écran 320px */
-    height: 420px; /* Ajusté pour l'écran 320px */
-    left: 20px; /* Ajusté pour centrer */
-    top: 20px;
+    width: calc(100% - 40px); /* Réduit la largeur totale pour inclure les marges */
+    height: auto;
+    max-width: 100%; /* Assurez-vous que l'image ne dépasse pas la largeur du conteneur */
+    top: 0; /* Ajustez la position verticale */
+    left: 0; /* Ajustez la position horizontale */
+    margin-left: 20px; /* Marge à gauche */
+    margin-right: 20px; /* Marge à droite */
+    display: flex;
+    justify-content: center; /* Centre l'image horizontalement */
+    align-items: center; /* Centre l'image verticalement */
 }
 
 .photo-display img {
-    width: 80%;
-    height: 80%;
+    width: 85%; /* Ajustez selon vos besoins */
+    height: auto; /* Conserver les proportions de l'image */
     object-fit: cover;
 }
+
+
 
 /* Frame 33 */
 .frame-33 {
@@ -461,8 +480,8 @@ Author URI: https://www.searching-murphy.com/
     left: 20px; /* Ajusté pour centrer */
     top: -100px;
     font-family: "Poppins";
-    font-style: normal;
-    font-weight: 300;
+    
+  
     font-size: 12px; /* Réduit pour mobile */
     line-height: 18px; /* Réduit pour mobile */
     display: flex;
@@ -489,23 +508,8 @@ Author URI: https://www.searching-murphy.com/
     color: #000000;
 }
 
-/* .photo */
-.photo {
-    position: relative; /* Changé de absolute à relative pour mobile */
-    width: 280px; /* Ajusté pour mobile */
-    height: 250px; /* Ajusté pour mobile */
-    margin: 20px auto; /* Centré avec marge */
-}
 
-/* .photo:nth-child(1) */
-.photo:nth-child(1) {
-    top: 20px; /* Ajusté pour espacement */
-}
 
-/* .photo:nth-child(2) */
-.photo:nth-child(2) {
-    top: 40px; /* Ajusté pour espacement */
-}
 
 /* .navigation-container */
 .navigation-container {
@@ -584,136 +588,25 @@ Author URI: https://www.searching-murphy.com/
     }
 
 
-.popup-contact {
-    background: #ffffff;
 
-    border: 5px solid #000000;
 
-    box-sizing: border-box;
 
-    width: 597px;
 
-    height: 769px;
 
-    padding: 20px;
-
+/*filter*/
+.filter-box-center {
     position: relative;
-
-    overflow: hidden; /* Pour cacher les débordements */
-
-    z-index: 2;
+    left:46%;
+    transform: translateX(-50%);
+    top: 0px;
+    z-index: 1;
 }
 
-.popup-title__container {
-    display: flex;
 
-    flex-wrap: wrap; /* Pour permettre le wrap des images */
 
-    align-items: center;
-
-    margin-bottom: 20px;
-
-    width: 800px;
-
-    left: -141.49px;
-
-    gap: 0px;
-
-    position: relative;
-
-    overflow: hidden; /* Pour cacher les débordements horizontaux */
 }
 
-.popup-decor {
-    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
-
-    height: auto;
-
-    margin: 5px; /* Espace entre les images */
-
-    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
-}
-
-.popup-decor:nth-child(n + 4) {
-    position: relative;
-
-    right: 50px;
-}
-
-.popup-title {
-    color: #ffffff;
-
-    font-size: 24px;
-
-    font-weight: bold;
-
-    margin: 10px;
-}
-
-.popup-decor {
-    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
-
-    height: 25px;
-
-    margin: 1px; /* Espace entre les images */
-
-    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
-}
-
-.close-popup {
-    cursor: pointer;
-
-    font-size: 24px;
-
-    font-weight: bold;
-
-    position: relative;
-
-    top: 10px;
-
-    right: 10px;
-}
-
-#ff_3_message {
-    width: 263px; /* Largeur fixe */
-
-    height: 210px; /* Hauteur fixe */
-
-    padding: 8px 15px; /* Espacement intérieur */
-
-    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
-
-    border: 1px solid #b8bbc2; /* Bordure */
-
-    resize: none; /* Empêcher le redimensionnement */
-
-    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
-
-    margin: auto; /* Centrer horizontalement */
-
-    display: block; /* Afficher en tant que bloc */
-}
-
-.ff-el-form-control {
-    width: 263px !important; /* Largeur fixe */
-
-    height: 50px; /* Hauteur fixe */
-
-    padding: 8px 15px; /* Espacement intérieur */
-
-    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
-
-    border: 1px solid #b8bbc2; /* Bordure */
-
-    resize: none; /* Empêcher le redimensionnement */
-
-    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
-
-    margin: auto; /* Centrer horizontalement */
-
-    display: block; /* Afficher en tant que bloc */
-}
-
+@media (min-width: 320px) and (max-width: 666px) {
 /* .popup-contact */
 .popup-contact {
     background: #ffffff;
@@ -767,11 +660,18 @@ Author URI: https://www.searching-murphy.com/
     top: 10px;
     right: 10px;
 }
+/* Resserre le groupe de champs */
+.fluentform .ff-el-group {
+    position: relative;
+    margin-bottom: 0px !important;
+   bottom: 20px;
+}
 
-/* #ff_3_message */
+
+/* Agrandissez la zone de message */
 #ff_3_message {
-    width: 190px; /* Largeur ajustée pour mobile */
-    height: 63px; /* Hauteur ajustée pour mobile */
+    width: 230px; /* Largeur ajustée */
+    height: 100px; /* Hauteur ajustée */
     padding: 8px 15px; /* Espacement intérieur */
     border-radius: 8px; /* Bordure arrondie */
     border: 1px solid #b8bbc2; /* Bordure */
@@ -794,6 +694,7 @@ Author URI: https://www.searching-murphy.com/
     display: block; /* Afficher en tant que bloc */
 }
 
+/* .ff-text-center */
 .fluentform .ff-text-center {
     width: 190px;
     height: 50px;
@@ -807,7 +708,7 @@ Author URI: https://www.searching-murphy.com/
     font-size: 16px;
     margin: auto;
     align-items: center;
-    font-family: Space Mono !important;
+    font-family: 'Space Mono', monospace !important; /* Corrigé pour s'assurer que Space Mono est utilisé */
 }
 element.style {
     position: relative;
@@ -821,12 +722,9 @@ element.style {
     top: -40px !important;
 }
 
-
-.filter-box-center {
-    position: relative;
-    left:46%;
-    transform: translateX(-50%);
-    top: 0px;
-    z-index: 1;
+label {
+    left: 40px !important;
+    font-size: 12px;
 }
+
 }

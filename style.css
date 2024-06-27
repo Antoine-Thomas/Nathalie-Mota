@@ -14,93 +14,72 @@ Author URI: https://www.searching-murphy.com/
 
 */
 
-@font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 400; /* Cette valeur correspond au style "Regular" */
-    src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
-}
-/* Intégrer la police Poppins localement */
-@font-face {
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 100;
-    src: url('assets/fonts/Poppins-Thin.ttf') format('truetype');
-}
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+
+/* Intégration de la police Space Mono */
 
 @font-face {
-    font-family: 'Poppins';
-    font-style: italic;
-    font-weight: 100;
-    src: url('assets/fonts/Poppins-ThinItalic.ttf') format('truetype');
+    font-family: "Space Mono";
+
+    src: url("assets/fonts/Poppins-Regular.ttf") format("truetype");
+
+    font-weight: normal;
+
+    font-style: normal;
 }
 
-/* Inclure toutes les variantes de poids et de style de la police Poppins */
-/* ... */
-
-/* Intégrer la police Space Mono localement */
 @font-face {
-    font-family: 'Space Mono';
+    font-family: "Space Mono";
+
+    src: url("assets/fonts/SpaceMono-Bold.ttf") format("truetype");
+
+    font-weight: bold;
+
     font-style: normal;
+}
+
+/* Intégrer les polices Poppins localement */
+
+@font-face {
+    font-family: "Poppins";
+
+    font-style: normal;
+
     font-weight: 400;
-    src: url('assets/fonts/SpaceMono-Regular.ttf') format('truetype');
+
+    src: url("assets/fonts/Poppins-Regular.ttf") format("truetype");
 }
-/* Intégrer la police Space Mono localement */
+
 @font-face {
-    font-family: 'Space Mono';
+    font-family: "Poppins";
+
     font-style: normal;
+
     font-weight: 700;
-    src: url('assets/fonts/SpaceMono-Regular.ttf') format('truetype');
+
+    src: url("assets/fonts/Poppins-Bold.ttf") format("truetype");
 }
 
+/* Autres variantes de poids et styles de la police Poppins */
 
+/* Utilisation de la police Space Mono */
 
+/* {
+    box-sizing: border-box;
 
-@font-face {
-    font-family: 'Space Mono';
-    font-style: italic;
-    font-weight: 700;
-    src: url('assets/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
-}
-/* Intégrer la police Space Mono localement */
-@font-face {
-    font-family: 'Space Mono';
-    font-style: normal;
-    font-weight: 400;
-    src: url('../assets/fonts/SpaceMono-Regular.ttf') format('truetype');
-}
+    margin: 0;
 
-@font-face {
-    font-family: 'Space Mono';
-    font-style: italic;
-    font-weight: 400;
-    src: url('../assets/fonts/SpaceMono-Italic.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: normal;
-    font-weight: 700;
-    src: url('../assets/fonts/SpaceMono-Bold.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: italic;
-    font-weight: 700;
-    src: url('../assets/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
-}
-
-code, pre {
-    font-family: 'Space Mono', monospace;
-}
+    padding: 0;
+}*/
 
 body {
     background: #ffffff;
 
     color: #23282d;
 
-    font-family: 'Poppins', sans-serif;
+    font-family: "Poppins", sans-serif;
 
     font-family: "Space Mono", monospace;
 
@@ -241,17 +220,16 @@ ul li {
     position: relative;
     left: 0;
     right: 0;
-    background-size: cover; /* Changement de contain à cover */
+    background-size: contain;
     background-repeat: no-repeat;
-    background-position: center; /* Changement de top à center */
-    height: 820px; /* Hauteur de votre bannière */
+    background-position: top; /* Ajouté pour justifier l'image en haut */
+    height: 962px; /* Hauteur de votre bannière */
     width: 100%;
 }
 
-
 .title-hero {
     position: relative;
-   top: 40%;
+    top: 400px;
     left:0px;
     width: 100%;
     font-weight: 700;
@@ -329,61 +307,73 @@ ul li {
 
 
 @media screen and (max-width: 768px) {
-    /* Style général du footer */
-#footer {
-    height: auto;
-    border-top: 1px solid #000000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 20px 0;
-}
+    #footer {
+        height: auto;
 
-/* Conteneur principal du footer */
-.footer-container {
-    width: 320px;
-    padding: 0;
-    max-width: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        border-top: 1px solid #000000;
 
-/* Style des éléments du footer */
-.menu-footer-menu-container,
-.footer-center,
-#widget-area {
-    flex-grow: 0;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 10px;
-}
-.privacy-policy{ 
-position: relative;
-right:30px;
-}
-/* Style des liens */
-#footer a {
-    display: block;
-    margin: 0;
-    width: auto;
-    height: auto;
-}
+        display: flex;
 
-/* Ordre des éléments */
-.menu-footer-menu-container {
-    order: 1; /* "Mentions légales" en haut */
-}
+        flex-direction: column;
 
-.footer-center {
-    order: 2; /* "Vie privée" au milieu */
-}
+        justify-content: center;
 
-#widget-area {
-    order: 3; /* "TOUS DROITS RÉSERVÉS" en bas */
-}
+        align-items: center;
+
+        width: 100%;
+
+        padding: 20px 0; /* Ajouter un espace intérieur */
+    }
+
+    .footer-container {
+        width: 320px;
+
+        padding: 0;
+
+        max-width: none;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+    .menu-footer-menu-container,
+    .footer-center,
+    #widget-area {
+        flex-grow: 0;
+
+        text-align: center;
+
+        width: 100%;
+
+        margin-bottom: 10px;
+    }
+
+    #footer a {
+        display: block;
+
+        margin: 0;
+
+        width: auto;
+
+        height: auto;
+    }
+
+    /* Ordre des éléments */
+
+    .menu-footer-menu-container {
+        order: 1; /* "Mentions légales" en haut */
+    }
+
+    .footer-center {
+        order: 2; /* "Vie privée" au milieu */
+    }
+
+    #widget-area {
+        order: 3; /* "TOUS DROITS RÉSERVÉS" en bas */
+    }
 }
 
 /* Media query pour le menu burger */
@@ -781,11 +771,11 @@ label {
 
 /* Les labels restent centrés pour les écrans entre 320px et 433px */
 
-/*@media (max-width: 433px) and (min-width: 0px) {
+@media (max-width: 433px) and (min-width: 0px) {
     label {
-        left: 40px !important;
+        left: 20px !important;
     }
-}*/
+}
 
 .fluentform .ff-text-center {
     width: 263px; /* Rend le bouton aussi large que le conteneur parent */
@@ -836,7 +826,7 @@ label {
 
     max-width: 1148px;
 
-    margin-top: 110px;
+    margin-top: 120px;
 }
 
 .photo-grid2 {
@@ -906,155 +896,104 @@ label {
 /* règle pour décaler le dropdown des formats */
 
 .filter-area {
- display: flex;
- justify-content: center;
- position: relative; /* Ajouter cette ligne */
+    display: flex;
+
+    justify-content: center;
+
+    margin: 0px 0;
+
+    position: relative; /* Ajouter cette ligne */
 }
 
 .filter-box {
     flex: 1 1 30%;
-    margin: 0px;
-    min-width: 220px;
-   
+
+    margin: 10px;
+
+    min-width: 250px;
 
     position: absolute; /* Ajouter cette ligne */
+
     border-radius: 4px;
 }
 
 .filter-box-left {
     left: 140px; /* Remplacer right: 450px par left: 10px */
+
     top: 30px;
 }
 
 .filter-box-center {
-    left: 39%;
+    left: 40%;
+
     transform: translateX(-50%);
+
     top: 30px;
-    z-index: 1;
 }
 
 .filter-box-right {
-    right: 190px; /* Remplacer margin-left: auto par right: 10px */
-   top: 30px;
+    right: 140px; /* Remplacer margin-left: auto par right: 10px */
+
+    top: 30px;
 }
 
+.filter-box label {
+    position: relative;
 
-/* Styles généraux */
-.custom-dropdown {
-    height: 52px;
-    margin: 0 auto;
-}
-
-.title_filter_box {
-    width: 100%;
-    height: 100%;
-    margin-bottom: -20px;
-    padding: 0 20px;
-    border: 1px solid #b8bbc2;
-    border-radius: 8px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
-}
-
-.selected-value {
-    font-size: 14px;
-    font-weight: 500;
-    font-family: "Poppins";
-    text-transform: uppercase;
-    color: black;
-}
-
-.span_icon_filter {
-    width: 30px;
-    height: 30px;
-    font-size: 24px;
-    line-height: 15px;
-    display: flex;
-    justify-content: center;
-    transition: all 300ms ease-in;
-    color: black;
-}
-
-.list_items_filter {
-    width: calc(100% + 40px); /* Augmentez la largeur de l'élément de la liste pour le hover */
-    background-color: #fff;
-    border-radius: 0 0 8px 8px;
-    position: absolute;
-    display: none;
-    z-index: 1;
-}
-
-.list_item {
-    font-size: 14px;
-    font-weight: 500;
-    font-family: "Poppins";
-    color: #313144;
-    padding: 24px 0 24px 20px;
-    width: calc(100% + 40px); /* Augmentez la largeur de l'élément de la liste pour le hover */
-    margin-left: -40px; /* Ajustez le décalage à gauche pour compenser la largeur augmentée */
-    box-sizing: border-box; /* Assurez-vous que le padding est inclus dans la largeur totale */
-    border-radius: 0 0 8px 8px;
-}
-
-.list_item:hover {
-    background: #ffd6d6;
-    cursor: pointer;
-}
-
-.list_item:active {
-    background: #fe5858;
-}
-
-.list_item_selected {
-    background-color: #e00000;
-    color: #fff !important;
-}
-
-.span_icon_filter_rotate {
-    transform: rotate(180deg);
-    transition: all 300ms ease-in;
-}
-
-.menu_open {
     display: block;
-    animation: fadeIn_open_list_items 0.3s ease-in-out;
+
+    font-weight: bold;
+
+    margin-bottom: 5px;
+
+    left: 0px !important;
 }
-.list_item_selected {
+
+.filter-box select {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ccc;
+
+    border-radius: 4px;
+
+    background-color: #fff;
+
+    color: #333;
+
+    font-size: 16px;
+}
+
+.filter-box select option:hover {
+    background-color: #ffd6d6;
+}
+
+.filter-box select option:active {
+    background-color: #fe5858;
+}
+
+.filter-box select option:checked {
     background-color: #e00000;
-    color: inherit; /* Pour conserver la couleur du texte d'origine */
-}
-@keyframes fadeIn_open_list_items {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+
+    color: #fff;
 }
 
-@keyframes fadeIn_close_list_items {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+/* Custom arrow for dropdown */
+
+.filter-box select {
+    background-repeat: no-repeat;
+
+    background-position: right 10px center;
+
+    background-size: 10px 10px;
 }
-
-
-
 
 /*lightbox*/
 
 .photo-thumbnail {
     position: relative;
+
     overflow: hidden;
 }
 
@@ -1068,15 +1007,25 @@ label {
 
 .lightbox {
     position: absolute;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
+
     height: 100%;
+
     background: rgba(0, 0, 0, 0.6);
+
     opacity: 0;
+
     transition: opacity 0.3s ease;
+
     display: flex;
+
     align-items: center;
+
     justify-content: center;
 }
 
@@ -1086,44 +1035,69 @@ label {
 
 .lightbox-content {
     position: relative;
+
     width: 564px;
+
     height: 495px;
+
     display: flex;
+
     flex-direction: column;
+
     justify-content: space-between;
+
     padding: 20px;
+
     box-sizing: border-box;
+
     font-family: 'Space Mono';
-    z-index: 999;
 }
 
 .lightbox-title {
     position: absolute;
+
     bottom: 10px;
+
     left: 10px;
+
     color: #fff;
+
     font-size: 18px;
 }
 
 .lightbox-category {
     position: absolute;
+
     bottom: 10px;
+
     right: 10px;
+
     color: #fff !important;
+
     font-size: 18px;
+
     pointer-events: none;
+
     cursor: default;
+
     text-decoration: none;
+
     color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
 }
 
 /* Style spécifique pour les liens dans .lightbox-category */
+
 .lightbox-category a {
     color: #fff !important;
+
     text-decoration: none;
+
     pointer-events: none;
+
     cursor: default;
+
     text-decoration: none;
+
     color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
 }
 
@@ -1133,26 +1107,41 @@ label {
 
 .lightbox-icon {
     position: absolute;
+
     display: block;
+
     width: 32px;
+
     height: 32px;
+
     background-size: contain;
+
     background-repeat: no-repeat;
-    z-index: 1000; /* S'assurer que les icônes sont au-dessus des autres éléments */
 }
 
 .eye-icon {
-    background-image: url("../images/icon/Icon_eye-1.png");
+    background-image: url("images/icon/Icon_eye-1.png");
+
     top: 50%;
+
     left: 50%;
+
     transform: translate(-50%, -50%);
+
+    z-index: 1000;
 }
 
+/*en fullscreen */
+
 .fullscreen-icon {
-    background-image: url("../images/icon/Icon_fullscreen-1.png");
+    background-image: url("images/icon/Icon_fullscreen-1.png");
+
     top: 10px;
+
     right: 10px;
 }
+
+/* fullscreen Overlay */
 
 #fullscreen-overlay {
     display: none; /* Caché par défaut */
@@ -1183,7 +1172,11 @@ label {
     position: relative;
     display: grid;
 
-   max-width: 564px;
+   
+
+  
+
+    max-width: 564px;
 
     max-height: 495px;
 
@@ -1214,7 +1207,7 @@ label {
 
 .fullscreen-image.portrait {
     position: relative;
-    left: 35px;
+    left: 40px;
     width:100%;
     height: 100%;
 }
@@ -1225,12 +1218,13 @@ label {
 
     bottom: -280px;
 
-    right:580px;
+    right:520px;
 
     color: #fff;
 
     font-size: 18px;
-   
+    width: auto;
+    height: auto;
 }
 
 .fullscreen-category {
@@ -1251,7 +1245,8 @@ label {
     text-decoration: none;
 
     color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
-   
+    width: auto;
+    height: auto;
 }
 
 .fullscreen-arrow {
@@ -1495,11 +1490,11 @@ label {
 
     top: -40px;
 
-    font-family: "Poppins"!important;
+    font-family: "Poppins";
 
- 
+    font-style: normal;
 
-   
+    font-weight: 300;
 
     font-size: 14px;
 
@@ -1519,7 +1514,7 @@ label {
 .aussi {
     position: relative;
 
-    width: 100%;
+    width: 229px;
 
     height: 27px;
 
@@ -1572,7 +1567,6 @@ label {
     top: 1237px;
 }
 
-
 /*micro nav*/
 
 .navigation-container {
@@ -1602,7 +1596,7 @@ label {
 
     gap: 0px;
 
-    opacity: 1;
+    opacity: 0px;
 }
 
 .page-preview img {
@@ -1658,14 +1652,12 @@ label {
 }
 
 
-
 /* Styles pour le bouton */
 .load-more {
     display: block;
     width: 272px;
     height: 50px;
     margin: 20px auto;
-    margin-top: 60px;
     text-align: center;
     line-height: 50px;
     background: #d8d8d8;
@@ -1682,3 +1674,754 @@ label {
     color: #ffffff; /* Changement de couleur du texte au survol */
 }
 
+@media screen and (max-width: 1440px) {
+    .photo-thumbnail.landscape img {
+        position: relative;
+        width: 564px;
+        height: 495px;
+    }
+    .photo-thumbnail.portrait img {
+        width: 580px;
+        height: auto;
+    }
+
+    .photo-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr; /* ou grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); si vous voulez plusieurs colonnes */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 320px;
+        gap: 80px 0; /* Réduisez l'écart vertical entre les éléments */
+    }
+
+    .filter-area {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+       
+        margin-bottom: -100px;
+    }
+
+    .filter-box {
+        flex: 1 1 30%;
+        margin: 10px;
+        min-width: 250px;
+        position: static;
+    }
+
+    .filter-box label {
+        position: relative;
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+
+    .filter-box select {
+        width: 100%;
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    /* Nouvelle règle pour décaler le dropdown des formats sur les petits écrans */
+    #format_id {
+        position: relative;
+        left: 125px;
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    .banner-content .title-hero {
+        font-size: 96px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
+        top: 60px;
+    }
+}
+
+
+
+@media (min-width: 565px) and (max-width: 920px) {
+    .banner-content .title-hero {
+        font-size: 96px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
+        top: 100px;
+    }
+    
+    .filter-area {
+        display: flex;
+        justify-content: center;
+        position: relative; /* Ajouter cette ligne */
+        top: -180px;
+    }
+    
+
+    
+    .photo-grid-container {
+        position: relative;
+        top: -200px;
+    }
+
+    .photo-banner {
+        position: relative;
+        left: 0;
+        right: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top; /* Ajouté pour justifier l'image en haut */
+        height: 920px;
+        width: 100%;
+        max-width: 1440px;
+    }
+}
+@media (min-width: 320px) and (max-width: 726px) {
+
+    .banner-content .title-hero {
+        font-size: 42px;
+        top: px;
+    }
+
+}
+@media (min-width: 320px) and (max-width: 564px) {
+ 
+
+    .photo-thumbnail.landscape img {
+        width: 100%;
+        height: 100%;
+    }
+    .photo-thumbnail.portrait img {
+        width: 100%;
+        height: 100%;
+    }
+    .photo-grid {
+        position: relative;
+        display: grid;
+        grid-template-columns: 1fr; /* ou grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); si vous voulez plusieurs colonnes */
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 320px;
+        gap: 20px 0 !important; /* Réduisez l'écart vertical entre les éléments */
+        top: -40px;
+        padding-left: 10px; /* Ajoute un espace à gauche */
+        padding-right: 10px; /* Ajoute un espace à droite */
+    }
+    
+    .photo-grid-container {
+        position: relative;
+        top: 0px;
+    }
+
+    .lightbox-content {
+        position: relative;
+        width: 320px;
+        height: 320px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: -20px;
+        box-sizing: border-box;
+    }
+
+    .photo-item {
+        width: 100%;
+        max-width: 564px;
+        height: 320px;
+    }
+    .filter-area {
+        display: flex;
+        justify-content: center;
+        margin: 0px 0;
+        position: relative; /* Ajouter cette ligne */
+    }
+
+    .lightbox {
+        overflow-y: auto; /* Ajouter un défilement vertical si nécessaire */
+       
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.6);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .photo-banner {
+        position: relative;
+        left: 0;
+        right: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: top; /* Ajouté pour justifier l'image en haut */
+        height: 320px;
+        width: 100%;
+        max-width: 1440px;
+    }
+
+    
+/*fullscreen 360*/
+
+.fullscreen-container {
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto; /* Centre le container horizontalement */
+    overflow-x: hidden; /* Évite le défilement horizontal */
+    left: 0px;
+}
+
+
+.fullscreen-title {
+    top: 200px;
+    font-size: 16px;
+    right: 280px;
+}
+
+.fullscreen-category {
+    top: 175px;
+    font-size: 16px; /* Ajuster la taille de la police pour les petits écrans */
+   right : 150px;
+}
+.fullscreen-image.portrait {
+    position: relative;
+    left: 35px;
+    width: 100%;
+    height: 100%;
+}
+.fullscreen-image.portrait {
+    position: relative;
+    left: 35px;
+    width: 100%;
+    height: 100%;
+}
+.fullscreen-image {
+    position: relative !important;
+    max-width: 320px;
+    max-height: 320px;
+    object-fit: cover;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 5px solid white;
+}
+
+.left-arrow {
+    left: 140px;
+}
+
+.fullscreen-arrow {
+    position: relative;
+    top: 320px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width: auto;
+    height: auto;
+    right: 50px;
+    
+}
+
+.close-button {
+    font-size: 40px; /* Ajuster la taille du bouton de fermeture pour les petits écrans */
+}
+    .container-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 50%;
+        max-width: 1440px;
+        padding: 0 80px;
+    }
+    
+}
+
+
+
+
+/*page single-photo*/
+
+@media (min-width: 320px) and (max-width: 1440px) {
+
+/* .single-photo-content */
+.single-photo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    padding-bottom: 150px;
+    top: 20px;
+}
+
+/* .main-container */
+.main-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 320px;
+    box-sizing: border-box;
+}
+
+/* Photo class */
+.photo-display {
+    position: relative;
+    width: 280px; /* Ajusté pour l'écran 320px */
+    height: 420px; /* Ajusté pour l'écran 320px */
+    left: 20px; /* Ajusté pour centrer */
+    top: 20px;
+}
+
+.photo-display img {
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
+
+/* Frame 33 */
+.frame-33 {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 20px;
+    width: 280px; /* Ajusté pour l'écran 320px */
+    height: auto; /* Hauteur ajustable */
+    left: 20px; /* Ajusté pour centrer */
+    top: -20px; /* Ajusté pour espacement */
+}
+
+.frame-33 p {
+    font-family: "Space Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px; /* Réduit pour mobile */
+    line-height: 18px; /* Réduit pour mobile */
+    text-transform: uppercase;
+    color: #000000;
+}
+
+/* .load-more2 */
+.load-more2 {
+    position: relative;
+    display: block;
+    width: 272px;
+    height: 50px;
+    margin: 20px auto; /* Pour centrer le bouton horizontalement */
+    text-align: center;
+    background: #d8d8d8;
+    border-radius: 2px;
+    cursor: pointer;
+    border: 1px solid #ffffff;
+    top: -100px;
+    right: 15px; /* Ajusté pour centrer */
+    z-index: 1;
+}
+
+/* .line-4 */
+.line-4 {
+    position: relative;
+    width: 100%;
+    height: 0px;
+    left: auto; /* Ajusté pour centrer */
+    top: -100px;
+    border: 1px solid #000000;
+}
+
+/* .line-3 */
+.line-3 {
+    position: relative;
+    width:100%; /* Ajusté pour l'écran 320px */
+    height: 0px;
+    left: auto; /* Ajusté pour centrer */
+    top: -110px;
+    border: 1px solid #000000;
+}
+
+/* .photo-details p.title */
+.photo-details p.title {
+    font-family: Space Mono !important;
+    font-size: 24px !important; /* Réduit pour mobile */
+    font-style: italic !important;
+    font-weight: 400 !important;
+    line-height: 32px !important; /* Réduit pour mobile */
+    text-align: left !important;
+}
+
+/* .photo-details p */
+.photo-details p {
+    font-family: Space Mono;
+    font-size: 12px; /* Réduit pour mobile */
+    font-weight: 400;
+    line-height: 18px; /* Réduit pour mobile */
+    letter-spacing: 0.1em;
+    text-align: left;
+}
+
+/* .cette-photo */
+.cette-photo {
+    position: relative;
+    width: 197px;
+    height: 21px;
+    left: 20px; /* Ajusté pour centrer */
+    top: -100px;
+    font-family: "Poppins";
+    font-style: normal;
+    font-weight: 300;
+    font-size: 12px; /* Réduit pour mobile */
+    line-height: 18px; /* Réduit pour mobile */
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+}
+
+/* .aussi */
+.aussi {
+    position: relative;
+    width: 200px; /* Ajusté pour mobile */
+    height: 21px; /* Ajusté pour mobile */
+    left: 20px; /* Ajusté pour centrer */
+    top: -80px;
+    font-family: Space Mono;
+    font-size: 14px; /* Réduit pour mobile */
+    font-weight: 400;
+    line-height: 18px; /* Réduit pour mobile */
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    text-align: right;
+    color: #000000;
+}
+
+/* .photo */
+.photo {
+    position: relative; /* Changé de absolute à relative pour mobile */
+    width: 280px; /* Ajusté pour mobile */
+    height: 250px; /* Ajusté pour mobile */
+    margin: 20px auto; /* Centré avec marge */
+}
+
+/* .photo:nth-child(1) */
+.photo:nth-child(1) {
+    top: 20px; /* Ajusté pour espacement */
+}
+
+/* .photo:nth-child(2) */
+.photo:nth-child(2) {
+    top: 40px; /* Ajusté pour espacement */
+}
+
+/* .navigation-container */
+.navigation-container {
+    display: none !important; /* Caché */
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centré */
+    margin-top: 20px; /* Ajusté pour mobile */
+}
+
+/* .preview-image */
+.preview-image {
+    width: 81px;
+    height: 71px;
+    top: 1461px;
+    left: 20px; /* Ajusté pour mobile */
+    gap: 0px;
+    opacity: 0px;
+}
+
+/* .page-preview img */
+.page-preview img {
+    width: 81px;
+    height: 71px;
+}
+
+/* .next-page-preview */
+.next-page-preview {
+    position: relative;
+    width: 81px;
+    height: 71px;
+    cursor: pointer; /* Ajouter un curseur pour indiquer que c'est cliquable */
+    margin-bottom: 10px; /* Espace entre le carré et les flèches */
+}
+
+/* .navigation-arrows */
+.navigation-arrows {
+    display: flex;
+    justify-content: space-between;
+    width: 50%; /* Ajusté pour mobile */
+}
+
+/* .navigation-arrow */
+.navigation-arrow {
+    display: block;
+    width: 25px; /* Ajuster la taille selon vos besoins */
+    height: 25px; /* Ajuster la taille selon vos besoins */
+    z-index: 9999;
+}
+
+/* .navigation-arrow img */
+.navigation-arrow img {
+    width: 100%;
+    height: auto;
+}
+
+.menu-toggle {
+    width: 40px;
+    height: 40px;
+    margin-left: 25px;
+}
+.photo-grid2 {
+    position: relative;
+     display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    margin: 0 auto;
+    max-width: 1148px;
+  
+    
+    left: -0px; 
+    align-content: center;
+    align-items: center;
+    justify-items: stretch;
+}
+.popup-contact {
+    background: #ffffff;
+
+    border: 5px solid #000000;
+
+    box-sizing: border-box;
+
+    width: 597px;
+
+    height: 769px;
+
+    padding: 20px;
+
+    position: relative;
+
+    overflow: hidden; /* Pour cacher les débordements */
+
+    z-index: 2;
+}
+
+.popup-title__container {
+    display: flex;
+
+    flex-wrap: wrap; /* Pour permettre le wrap des images */
+
+    align-items: center;
+
+    margin-bottom: 20px;
+
+    width: 800px;
+
+    left: -141.49px;
+
+    gap: 0px;
+
+    position: relative;
+
+    overflow: hidden; /* Pour cacher les débordements horizontaux */
+}
+
+.popup-decor {
+    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
+
+    height: auto;
+
+    margin: 5px; /* Espace entre les images */
+
+    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
+}
+
+.popup-decor:nth-child(n + 4) {
+    position: relative;
+
+    right: 50px;
+}
+
+.popup-title {
+    color: #ffffff;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    margin: 10px;
+}
+
+.popup-decor {
+    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
+
+    height: 25px;
+
+    margin: 1px; /* Espace entre les images */
+
+    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
+}
+
+.close-popup {
+    cursor: pointer;
+
+    font-size: 24px;
+
+    font-weight: bold;
+
+    position: relative;
+
+    top: 10px;
+
+    right: 10px;
+}
+
+#ff_3_message {
+    width: 263px; /* Largeur fixe */
+
+    height: 210px; /* Hauteur fixe */
+
+    padding: 8px 15px; /* Espacement intérieur */
+
+    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
+
+    border: 1px solid #b8bbc2; /* Bordure */
+
+    resize: none; /* Empêcher le redimensionnement */
+
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+
+    margin: auto; /* Centrer horizontalement */
+
+    display: block; /* Afficher en tant que bloc */
+}
+
+.ff-el-form-control {
+    width: 263px !important; /* Largeur fixe */
+
+    height: 50px; /* Hauteur fixe */
+
+    padding: 8px 15px; /* Espacement intérieur */
+
+    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
+
+    border: 1px solid #b8bbc2; /* Bordure */
+
+    resize: none; /* Empêcher le redimensionnement */
+
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+
+    margin: auto; /* Centrer horizontalement */
+
+    display: block; /* Afficher en tant que bloc */
+}
+
+/* .popup-contact */
+.popup-contact {
+    background: #ffffff;
+    border: 5px solid #000000;
+    box-sizing: border-box;
+    width: 286px; /* Largeur ajustée pour mobile */
+    height: 583px; /* Hauteur ajustée pour mobile */
+    padding: 0px;
+    position: relative;
+    overflow: hidden; /* Pour cacher les débordements */
+    z-index: 2;
+}
+.fluentform .ff-el-group {
+    margin-bottom: 0px !important;
+}
+/* .popup-title__container */
+
+
+.popup-title__container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-bottom: 20px;
+    width: 350px;
+    left: 1px;
+    gap: 0px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* .popup-decor:nth-child(n + 4) */
+.popup-decor:nth-child(n + 4) {
+    position: relative;
+    right: 20px; /* Ajusté pour mobile */
+}
+
+/* .popup-title */
+.popup-title {
+    color: #ffffff;
+    font-size: 24px;
+    font-weight:700px;
+    margin: 10px;
+}
+
+/* .close-popup */
+.close-popup {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* #ff_3_message */
+#ff_3_message {
+    width: 190px; /* Largeur ajustée pour mobile */
+    height: 63px; /* Hauteur ajustée pour mobile */
+    padding: 8px 15px; /* Espacement intérieur */
+    border-radius: 8px; /* Bordure arrondie */
+    border: 1px solid #b8bbc2; /* Bordure */
+    resize: none; /* Empêcher le redimensionnement */
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+    margin: 10px auto; /* Centrer horizontalement */
+    display: block; /* Afficher en tant que bloc */
+}
+
+/* .ff-el-form-control */
+.ff-el-form-control {
+    width: 190px !important; /* Largeur ajustée pour mobile */
+    height: 50px; /* Hauteur ajustée pour mobile */
+    padding: 8px 15px; /* Espacement intérieur */
+    border-radius: 8px; /* Bordure arrondie */
+    border: 1px solid #b8bbc2; /* Bordure */
+    resize: none; /* Empêcher le redimensionnement */
+    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
+    margin: 10px auto; /* Centrer horizontalement */
+    display: block; /* Afficher en tant que bloc */
+}
+
+.fluentform .ff-text-center {
+    width: 190px;
+    height: 50px;
+    background: #d8d8d8;
+    color: #000;
+    border: none;
+    text-align: center;
+    border-radius: 0;
+    padding: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+    margin: auto;
+    align-items: center;
+    font-family: Space Mono !important;
+}
+element.style {
+    position: relative;
+    border: none !important;
+    margin: 0 !important;
+    padding: -200px !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+    outline: none !important;
+    min-inline-size: 100%;
+    top: -40px !important;
+}
+}
