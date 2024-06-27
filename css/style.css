@@ -95,6 +95,9 @@ code, pre {
     font-family: 'Space Mono', monospace;
 }
 
+   
+
+
 body {
     background: #ffffff;
 
@@ -362,8 +365,16 @@ ul li {
 }
 .privacy-policy{ 
 position: relative;
-right:30px;
+margin-left:0px;
 }
+
+.privacy-policy .page-template-default .page #page-id-3{
+    position: relative;
+    margin-left:20px;
+
+
+}
+    
 /* Style des liens */
 #footer a {
     display: block;
@@ -1681,4 +1692,3 @@ label {
     background-color: #000000; /* Changement de couleur de fond au survol */
     color: #ffffff; /* Changement de couleur du texte au survol */
 }
-
