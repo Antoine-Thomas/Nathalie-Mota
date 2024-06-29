@@ -957,7 +957,7 @@ label {
 }
 
 .title_filter_box {
-    width: 100%;
+    width: 220px;
     height: 100%;
     margin-bottom: -20px;
     padding: 0 20px;
@@ -990,7 +990,7 @@ label {
 }
 
 .list_items_filter {
-    width: calc(100% + 40px); /* Augmentez la largeur de l'élément de la liste pour le hover */
+    width: 260px; /* Augmentez la largeur de l'Ã©lÃ©ment de la liste pour le hover */
     background-color: #fff;
     border-radius: 0 0 8px 8px;
     position: absolute;
@@ -1004,10 +1004,12 @@ label {
     font-family: "Poppins";
     color: #313144;
     padding: 24px 0 24px 20px;
-    width: calc(100% + 40px); /* Augmentez la largeur de l'élément de la liste pour le hover */
-    margin-left: -40px; /* Ajustez le décalage à gauche pour compenser la largeur augmentée */
-    box-sizing: border-box; /* Assurez-vous que le padding est inclus dans la largeur totale */
+    width: calc(100% + 40px);
+    margin-left: -40px;
+    box-sizing: border-box;
     border-radius: 0 0 8px 8px;
+    background: white;
+    width: 260px;
 }
 
 .list_item:hover {
@@ -1021,7 +1023,8 @@ label {
 
 .list_item_selected {
     background-color: #e00000;
-    color: #fff !important;
+    color: inherit; /* Pour conserver la couleur du texte d'origine */
+    width: 260px;
 }
 
 .span_icon_filter_rotate {
@@ -1033,10 +1036,7 @@ label {
     display: block;
     animation: fadeIn_open_list_items 0.3s ease-in-out;
 }
-.list_item_selected {
-    background-color: #e00000;
-    color: inherit; /* Pour conserver la couleur du texte d'origine */
-}
+
 @keyframes fadeIn_open_list_items {
     0% {
         opacity: 0;
@@ -1279,7 +1279,7 @@ label {
 }
 
 .right-arrow {
-    right: -80px; /* Ajuster la position de la flèche droite */
+    right: -70px; /* Ajuster la position de la flèche droite */
 }
 
 .close-button {

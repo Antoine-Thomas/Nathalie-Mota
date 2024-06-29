@@ -36,11 +36,13 @@ Author URI: https://www.searching-murphy.com/
     }
 
     .filter-area {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-bottom: -100px;
-        top:-0px
+        
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: -20px;
+            top: 40px;
+      
     }
     
   
@@ -80,10 +82,7 @@ Author URI: https://www.searching-murphy.com/
 
 @media (min-width: 565px) and (max-width: 920px) {
 
-    .banner-content .title-hero {
-        font-size: 96px; /* Vous pouvez ajuster la taille du texte selon vos besoins */
-        top: 100px;
-    }
+    
     
     .filter-area {
         display: grid;
@@ -91,7 +90,7 @@ Author URI: https://www.searching-murphy.com/
         display: flex;
         justify-content: center;
         position: relative; /* Ajouter cette ligne */
-        top: -240px;
+        top: 40px;
     }
     
    .filter-box-center {
@@ -111,21 +110,31 @@ Author URI: https://www.searching-murphy.com/
         position: relative;
         left: 0;
         right: 0;
-        background-size: contain;
+        background-size: cover;
         background-repeat: no-repeat;
         background-position: top; /* Ajouté pour justifier l'image en haut */
         height: 920px;
         width: 100%;
         max-width: 1440px;
     }
+
+    .photo-grid {
+        position: relative;
+        display: grid;
+        justify-items: center;
+        grid-template-columns: 1fr;
+        top: 200px;
+    }
+
+
 }
 @media (min-width: 320px) and (max-width: 726px) {
 
     .banner-content .title-hero {
         display: flex;
         flex-direction: column;
-        font-size: 42px;
-        top: 20%;
+        font-size: 72px;
+        top: 30%;
         align-items: center; /* Centrer le texte horizontalement */
         justify-content: center; /* Centrer le texte verticalement */
         text-align: center; /* Centrer le texte */
@@ -133,7 +142,15 @@ Author URI: https://www.searching-murphy.com/
 
 }
 @media (min-width: 320px) and (max-width: 564px) {
- 
+    .banner-content .title-hero {
+        display: flex;
+        flex-direction: column;
+        font-size: 28px;
+        top: 40%;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
     .photo-thumbnail.landscape img {
         width: 100%;
@@ -141,7 +158,7 @@ Author URI: https://www.searching-murphy.com/
     }
     .photo-thumbnail.portrait img {
         width: 100%;
-        height: 100%;
+        height: auto;
     }
     .photo-grid {
         position: relative;
@@ -152,7 +169,7 @@ Author URI: https://www.searching-murphy.com/
         text-align: center;
         max-width: 320px;
         gap: 20px 0 !important;
-        top: -100px;
+
         padding-left: 10px;
         padding-right: 10px;
     }
@@ -205,7 +222,7 @@ Author URI: https://www.searching-murphy.com/
         margin: 0px 0;
         position: relative; /* Ajouter cette ligne */
         right: 20px;
-        top: 0px;
+        top: 50px;
         
     }
 
@@ -252,7 +269,7 @@ Author URI: https://www.searching-murphy.com/
 /*fullscreen 360*/
 
 .fullscreen-container {
-    padding: 20px;
+   
     box-sizing: border-box;
     margin: 0 auto; /* Centre le container horizontalement */
     overflow-x: hidden; /* Évite le défilement horizontal */
@@ -262,40 +279,56 @@ Author URI: https://www.searching-murphy.com/
 /* Styles pour toutes les images en plein écran */
 .fullscreen-image {
     position: relative !important;
-   
     object-fit: cover; /* Recadre les images en carré */
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border: 5px solid white;
+    left: -5px !important;
+    width: 90% !important;
+    height: 50%;
 }
 
 /* Styles pour les flèches gauche et droite */
 .left-arrow {
-    left: 160px; /* Ajustez la position pour les paysages */
+    left: 100px; /* Ajustez la position pour les paysages */
 }
 
 .fullscreen-arrow {
     position: relative;
-    top: 320px;
+    top: 360px;
     transform: translateY(-50%);
     cursor: pointer;
     width: auto;
     height: auto;
-    right: 60px;
+    right: 100px;
 }
 
-/* Styles pour les titres et catégories */
-.fullscreen-title {
-    top: 280px; /* Ajustez la position pour les paysages */
+/* Styles pour les détails */
+.fullscreen-details {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none; /* Pour éviter que les détails n'interfèrent avec les clics */
+}
+
+.fullscreen-title, .fullscreen-category {
+    position: relative;
     font-size: 16px;
-    right: 340px; /* Ajustez la position pour les paysages */
-    
+    white-space: nowrap; /* Empêche le texte de se casser en plusieurs lignes */
+    pointer-events: auto; /* Permet l'interaction avec les détails */
+}
+
+
+.fullscreen-title {
+    left: 20px;
+    top: 260px;
 }
 
 .fullscreen-category {
-    top: 250px; /* Ajustez la position pour les paysages */
-    font-size: 16px;
-    right: 150px; /* Ajustez la position pour les paysages */
-   
+    right: 30px !important;
+    top: 260px;
 }
 
 .close-button {
@@ -727,4 +760,44 @@ label {
     font-size: 12px;
 }
 
+}
+
+/* Styles pour les petits écrans */
+@media (min-width: 320px) and (max-width: 564px) {
+    .fullscreen-category {
+        top: 260px;
+    }
+
+    .fullscreen-container.portrait .fullscreen-details {
+        width: 70%;
+    }
+}
+
+/* Styles pour les écrans de taille moyenne */
+@media (min-width: 565px) and (max-width: 802px) {
+    .fullscreen-container.portrait .fullscreen-details {
+        right: 40% !important;
+        
+    }
+     .fullscreen-title {
+        position: relative;
+        bottom: -280px;
+        right: 390px;
+        color: #fff;
+        font-size: 18px;
+    }
+
+}
+
+
+
+/* Styles pour les écrans de petite taille */
+@media (min-width: 370px) and (max-width: 644px) {
+    .fullscreen-container.portrait .fullscreen-category {
+        position: relative;
+        bottom: -250px;
+        right: 180px;
+        color: #fff;
+        font-size: 18px;
+    }
 }

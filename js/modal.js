@@ -3,7 +3,7 @@ jQuery(document).ready(function($) {
     var currentIndex = 0; // Index de l'image actuellement affichée
     var isFullscreenOpen = false; // Variable pour suivre l'état du conteneur plein écran
 
-   // Gestionnaire d'événements pour le clic sur les icônes de plein écran
+    // Gestionnaire d'événements pour le clic sur les icônes de plein écran
     $(document).on('click', '.fullscreen-icon', function(e) {
         e.preventDefault();
 
@@ -53,112 +53,108 @@ jQuery(document).ready(function($) {
         const imageFormat = getImageFormat(imageUrl);
         if (imageFormat === 'landscape') {
             fullscreenImage.classList.add('landscape');
+            fullscreenContainer.classList.add('landscape'); // Ajouter la classe landscape au conteneur plein écran
         } else if (imageFormat === 'portrait') {
             fullscreenImage.classList.add('portrait');
+            fullscreenContainer.classList.add('portrait'); // Ajouter la classe portrait au conteneur plein écran
         }
 
-       // Créer les flèches gauche et droite
-const leftArrow = document.createElement('img');
-leftArrow.classList.add('fullscreen-arrow', 'left-arrow');
-leftArrow.src = '/wp-content/themes/nathalie-mota/images/left.png'; // Chemin relatif vers l'image de la flèche gauche
+        // Créer les flèches gauche et droite
+        const leftArrow = document.createElement('img');
+        leftArrow.classList.add('fullscreen-arrow', 'left-arrow');
+        leftArrow.src = '/wp-content/themes/nathalie-mota/images/left.png'; // Chemin relatif vers l'image de la flèche gauche
 
-const rightArrow = document.createElement('img');
-rightArrow.classList.add('fullscreen-arrow', 'right-arrow');
-rightArrow.src = '/wp-content/themes/nathalie-mota/images/right.png'; // Chemin relatif vers l'image de la flèche droite
+        const rightArrow = document.createElement('img');
+        rightArrow.classList.add('fullscreen-arrow', 'right-arrow');
+        rightArrow.src = '/wp-content/themes/nathalie-mota/images/right.png'; // Chemin relatif vers l'image de la flèche droite
 
+        // Gestionnaire d'événements pour la flèche gauche
+        leftArrow.addEventListener('click', function(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            fullscreenImage.src = images[currentIndex].url;
+            updateDetails(images[currentIndex]);
+        });
 
-  // Gestionnaire d'événements pour la flèche gauche
-leftArrow.addEventListener('click', function(e) {
-    e.stopPropagation();
-    currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-    fullscreenImage.src = images[currentIndex].url;
-    updateDetails(images[currentIndex]);
-});
+        // Gestionnaire d'événements pour la flèche droite
+        rightArrow.addEventListener('click', function(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            fullscreenImage.src = images[currentIndex].url;
+            updateDetails(images[currentIndex]);
+        });
 
-// Gestionnaire d'événements pour la flèche droite
-rightArrow.addEventListener('click', function(e) {
-    e.stopPropagation();
-    currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-    fullscreenImage.src = images[currentIndex].url;
-    updateDetails(images[currentIndex]);
-});
-
-
-        // Créer un conteneur pour les détails à gauche de l'image
-        const leftDetails = document.createElement('div');
-        leftDetails.classList.add('fullscreen-details', 'left-details');
-
-        // Créer un conteneur pour les détails à droite de l'image
-        const rightDetails = document.createElement('div');
-        rightDetails.classList.add('fullscreen-details', 'right-details');
+        // Créer un conteneur pour les détails
+        const detailsContainer = document.createElement('div');
+        detailsContainer.classList.add('fullscreen-details');
 
         // Fonction pour mettre à jour les détails
         function updateDetails(currentImage) {
             // Vider les détails précédents
-            leftDetails.innerHTML = '';
-            rightDetails.innerHTML = '';
+            detailsContainer.innerHTML = '';
 
-            // Ajouter les détails de la photo courante
-            if (currentImage.reference) {
-                const title = document.createElement('div');
-                title.classList.add('fullscreen-title');
-                title.textContent = currentImage.reference;
-                leftDetails.appendChild(title);
-            }
 
-            if (currentImage.categorie && currentImage.categorie.length > 0) {
-                const categorie = document.createElement('div');
-                categorie.classList.add('fullscreen-category');
-                // Construire la chaîne de catégories séparées par une virgule
-                const categorieNames = currentImage.categorie.map(cat => cat.name);
-                categorie.textContent = categorieNames.join(', ');
-                leftDetails.appendChild(categorie);
-            }
+        // Ajouter les détails de la photo courante
+        if (currentImage.reference) {
+            const title = document.createElement('div');
+            title.classList.add('fullscreen-title');
+            title.textContent = currentImage.reference;
+            detailsContainer.appendChild(title);
         }
 
-        // Appeler updateDetails pour l'image actuellement affichée
-        updateDetails(images[currentIndex]);
-
-        // Ajouter les éléments au conteneur plein écran
-        fullscreenContainer.appendChild(leftArrow);
-        fullscreenContainer.appendChild(fullscreenImage);
-        fullscreenContainer.appendChild(rightArrow);
-        fullscreenContainer.appendChild(leftDetails);
-        fullscreenContainer.appendChild(rightDetails);
-
-        // Ajouter le bouton de fermeture (croix)
-        const closeButton = document.createElement('div');
-        closeButton.classList.add('close-button');
-        closeButton.innerHTML = '&times;'; // Symbole de croix pour fermer
-        fullscreenContainer.appendChild(closeButton);
-
-        // Gestionnaire d'événements pour fermer le fullscreen-container
-        closeButton.addEventListener('click', function() {
-            document.body.removeChild(fullscreenContainer);
-            isFullscreenOpen = false; // Marquer le conteneur plein écran comme fermé
-        }, { passive: true });
-
-        // Ajouter la transition pour l'effet de "fade-in"
-        fullscreenContainer.style.opacity = 0;
-        document.body.appendChild(fullscreenContainer);
-        requestAnimationFrame(() => {
-            fullscreenContainer.style.transition = 'opacity 1s';
-            fullscreenContainer.style.opacity = 1;
-        });
-    }
-
-    // Fonction pour déterminer le format de l'image
-    function getImageFormat(imageUrl) {
-        const image = new Image();
-        image.src = imageUrl;
-        const width = image.naturalWidth;
-        const height = image.naturalHeight;
-        if (width > height) {
-            return 'landscape';
-        } else {
-            return 'portrait';
+        if (currentImage.categorie && currentImage.categorie.length > 0) {
+            const categorie = document.createElement('div');
+            categorie.classList.add('fullscreen-category');
+            // Construire la chaîne de catégories séparées par une virgule
+            const categorieNames = currentImage.categorie.map(cat => cat.name);
+            categorie.textContent = categorieNames.join(', ');
+            detailsContainer.appendChild(categorie);
         }
     }
+
+    // Appeler updateDetails pour l'image actuellement affichée
+    updateDetails(images[currentIndex]);
+
+    // Ajouter les éléments au conteneur plein écran
+    fullscreenContainer.appendChild(leftArrow);
+    fullscreenContainer.appendChild(fullscreenImage);
+    fullscreenContainer.appendChild(rightArrow);
+    fullscreenContainer.appendChild(detailsContainer);
+
+    // Ajouter le bouton de fermeture (croix)
+    const closeButton = document.createElement('div');
+    closeButton.classList.add('close-button');
+    closeButton.innerHTML = '&times;'; // Symbole de croix pour fermer
+    fullscreenContainer.appendChild(closeButton);
+
+    // Gestionnaire d'événements pour fermer le fullscreen-container
+    closeButton.addEventListener('click', function() {
+        document.body.removeChild(fullscreenContainer);
+        isFullscreenOpen = false; // Marquer le conteneur plein écran comme fermé
+    }, { passive: true });
+
+    // Ajouter la transition pour l'effet de "fade-in"
+    fullscreenContainer.style.opacity = 0;
+    document.body.appendChild(fullscreenContainer);
+    requestAnimationFrame(() => {
+        fullscreenContainer.style.transition = 'opacity 1s';
+        fullscreenContainer.style.opacity = 1;
+    });
+}
+
+// Fonction pour déterminer le format de l'image
+function getImageFormat(imageUrl) {
+    const image = new Image();
+    image.src = imageUrl;
+    const width = image.naturalWidth;
+    const height = image.naturalHeight;
+    if (width > height) {
+        return 'landscape';
+    } else {
+        return 'portrait';
+    }
+}
+
 
     // Ajout de l'écouteur d'événement passif
     document.addEventListener('touchstart', function() {}, { passive: true });
