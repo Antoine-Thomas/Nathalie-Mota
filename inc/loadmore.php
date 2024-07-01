@@ -63,7 +63,7 @@ function nathalie_mota_load_more_photos() {
             <?php }
             wp_reset_postdata();
         } else {
-            echo '<div class="end-of-results">Vous avez atteint la fin des résultats</div>';
+           
         }
     }
 

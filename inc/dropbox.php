@@ -5,17 +5,13 @@
  * @package Nathalie Mota
  */
 
-function load_photos_by_selection() {
+ function load_photos_by_selection() {
     // Récupération des paramètres envoyés par la requête AJAX
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
     $format_ids = isset($_POST['format_id']) ? array_map('intval', (array) $_POST['format_id']) : array();
     $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
     $page = isset($_POST['page']) ? intval($_POST['page']) : 1;
     $photos_per_page = isset($_POST['photos_per_page']) ? intval($_POST['photos_per_page']) : 8;
-
-    error_log('Catégories: ' . implode(', ', $categorie_ids));
-    error_log('Formats: ' . implode(', ', $format_ids));
-    error_log('Ordre: ' . $date_order);
 
     $offset = ($page - 1) * $photos_per_page;
     $args = array(
@@ -46,7 +42,7 @@ function load_photos_by_selection() {
         );
     }
 
-    if (!empty($categorie_ids) || !empty($format_ids)) {
+    if (!empty($categorie_ids) || !empty($format_ids)) {  
         $args['tax_query'] = $tax_query;
     }
 
@@ -98,6 +94,7 @@ function load_photos_by_selection() {
     echo $response;
     wp_die();
 }
+
 
 add_action('wp_ajax_load_photos_by_selection', 'load_photos_by_selection');
 add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection');

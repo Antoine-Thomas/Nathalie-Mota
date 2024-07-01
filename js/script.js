@@ -104,6 +104,8 @@ jQuery(document).ready(function ($) {
     $(document).ready(function() {
         let page = 1;
         const photosPerPage = 8;
+        const maxPhotos = 1000; // Définir le nombre maximum de photos à charger
+        let endOfResultsShown = false; // Nouvelle variable pour suivre l'affichage du message
     
         // Fonction pour charger les photos en fonction de la sélection
         function loadPhotosBySelection() {
@@ -146,7 +148,6 @@ jQuery(document).ready(function ($) {
             });
         }
     
-        // Fonction pour charger plus de photos
         function loadMorePhotos() {
             const categorieId = $('#categorie_id').val();
             const formatId = $('#format_id').val();
@@ -178,11 +179,17 @@ jQuery(document).ready(function ($) {
                         $('.photo-grid').append(response);
                         applyLightboxEffect(); // Appliquer l'effet de lightbox pour les nouvelles photos
     
-                        if ($(response).find('.photo-item').length < photosPerPage) {
+                        // Vérifier si le nombre maximum de photos est atteint
+                        const totalPhotosLoaded = $('.photo-item').length;
+                        if (totalPhotosLoaded >= maxPhotos && !endOfResultsShown) {
                             showEndOfResultsMessage();
+                            endOfResultsShown = true; // Marquer que le message a été affiché
+                            $('#load-more').off('click'); // Supprimer l'événement de clic sur le bouton
                         }
-                    } else {
+                    } else if (!endOfResultsShown) {
                         showEndOfResultsMessage();
+                        endOfResultsShown = true; // Marquer que le message a été affiché
+                        $('#load-more').off('click'); // Supprimer l'événement de clic sur le bouton
                     }
                 },
                 error: function(xhr, status, error) {
@@ -228,6 +235,8 @@ jQuery(document).ready(function ($) {
         initializeFeatures();
         loadPhotosBySelection(); // Charger les photos initiales
     });
+
+    
     // Module de gestion de l'effet de lightbox
     function applyLightboxEffect() {
         $('.photo-thumbnail').hover(

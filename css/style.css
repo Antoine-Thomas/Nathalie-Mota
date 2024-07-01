@@ -17,64 +17,29 @@ Author URI: https://www.searching-murphy.com/
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
-    font-weight: 400; /* Cette valeur correspond au style "Regular" */
+    font-weight: 400;
     src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
 }
-/* Intégrer la police Poppins localement */
+
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 100;
-    src: url('assets/fonts/Poppins-Thin.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Thin.ttf') format('truetype');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 100;
-    src: url('assets/fonts/Poppins-ThinItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-ThinItalic.ttf') format('truetype');
 }
-
-/* Inclure toutes les variantes de poids et de style de la police Poppins */
-/* ... */
-
-/* Intégrer la police Space Mono localement */
-@font-face {
-    font-family: 'Space Mono';
-    font-style: normal;
-    font-weight: 400;
-    src: url('assets/fonts/SpaceMono-Regular.ttf') format('truetype');
-}
-/* Intégrer la police Space Mono localement */
-@font-face {
-    font-family: 'Space Mono';
-    font-style: normal;
-    font-weight: 700;
-    src: url('assets/fonts/SpaceMono-Regular.ttf') format('truetype');
-}
-
-
-
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: italic;
-    font-weight: 700;
-    src: url('assets/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
-}
-/* Intégrer la police Space Mono localement */
+/* Ajoutez les autres variantes de Poppins si nécessaire */
 @font-face {
     font-family: 'Space Mono';
     font-style: normal;
     font-weight: 400;
     src: url('../assets/fonts/SpaceMono-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: italic;
-    font-weight: 400;
-    src: url('../assets/fonts/SpaceMono-Italic.ttf') format('truetype');
 }
 
 @font-face {
@@ -87,9 +52,18 @@ Author URI: https://www.searching-murphy.com/
 @font-face {
     font-family: 'Space Mono';
     font-style: italic;
+    font-weight: 400;
+    src: url('../assets/fonts/SpaceMono-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: italic;
     font-weight: 700;
     src: url('../assets/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
 }
+/* Ajoutez les autres variantes de Space Mono si nécessaire */
+
 
 code, pre {
     font-family: 'Space Mono', monospace;
@@ -363,17 +337,13 @@ ul li {
     width: 100%;
     margin-bottom: 10px;
 }
-.privacy-policy{ 
+.legalec{ 
 position: relative;
-margin-left:0px;
+margin-left:-50px;
 }
 
-.privacy-policy .page-template-default .page #page-id-3{
-    position: relative;
-    margin-left:20px;
 
 
-}
     
 /* Style des liens */
 #footer a {
@@ -902,14 +872,15 @@ label {
     width: 564px;
 
     height: 495px;
+    object-fit: cover;
 }
 
 /* Styles pour les images portrait */
 
 .photo-thumbnail.portrait img {
     width: 580px;
-
     height: 750px;
+    object-fit: cover;
 }
 
 
@@ -1176,20 +1147,6 @@ label {
     z-index: 999; /* Juste en dessous du conteneur plein écran */
 }
 
-
-.fullscreen-container {
-    position: fixed;
-    top: 0; /* Réglé sur 0 pour occuper tout l'écran */
-    left: 0; /* Réglé sur 0 pour occuper tout l'écran */
-    width: 100%; /* 100% de la largeur de l'écran */
-    height: 100%; /* 100% de la hauteur de l'écran */
-    background-color: rgba(0, 0, 0, 0.8); /* Fond semi-transparent */
-    z-index: 1000; /* Assurez-vous que le conteneur est au-dessus de tout le reste */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .grid-container3 {
     position: relative;
     display: grid;
@@ -1197,106 +1154,135 @@ label {
    max-width: 564px;
 
     max-height: 495px;
+overflow: auto; /* Activer le défilement si nécessaire */
+}
+.fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
-    overflow: auto; /* Activer le défilement si nécessaire */
+.image-container {
+    position: relative;
 }
 
 .fullscreen-image {
+
     position: relative;
     max-width: 564px;
-
     max-height: 495px;
-
     object-fit: cover;
-
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-
     border: 5px solid white;
+    max-width: 40%;
+    max-height: 40%;
+    display: block;
+    margin: auto;
 }
 
-/* Styles spécifiques pour les images en plein écran */
-
-.fullscreen-image.landscape {
-    position: relative;
-    left: 40px;
-    width: 100%;
-    height: 100%;
+.fullscreen-image .landscape {
+    max-width: 60%;
+    max-height: 60%;
+    display: block;
+    margin: auto;
 }
-
-.fullscreen-image.portrait {
-    position: relative;
-    left: 35px;
-    width:100%;
-    height: 100%;
+.fullscreen-image .portrait {
+    max-width: 60%;
+    max-height: 60%;
+    display: block;
+    margin: auto;
 }
-
-
-.fullscreen-title {
-    position: relative;
-
-    bottom: -280px;
-
-    right:580px;
-
+.image-container.portrait .fullscreen-image {
+    max-width: 60%;
+    max-height: 70vh;
+}
+.image-container.landscape .fullscreen-image {
+    max-width: 60%;
+    max-height: 70vh;
+}
+.fullscreen-details {
+    position: absolute;
+    width: 60%;
+    bottom: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 10px;
+    box-sizing: border-box;
     color: #fff;
-
     font-size: 18px;
-   
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.fullscreen-reference {
+    text-align: left 40px;
 }
 
 .fullscreen-category {
-    position: relative;
-
-    bottom:-250px;
-
-    right: 180px;
-
-    color: #fff !important;
-
-    font-size: 18px;
-
-    pointer-events: none;
-
-    cursor: default;
-
-    text-decoration: none;
-
-    color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
-   
+    text-align: right 40px;
 }
+
 
 .fullscreen-arrow {
-    position: relative;
-    top: 0%;
-    transform: translateY(-50%);
     cursor: pointer;
-    width: auto; /* Largeur souhaitée */
-    height: auto; /* Hauteur ajustée automatiquement en conservant les proportions */
+    width: 80px;
+    height: auto;
 }
 
-.left-arrow {
-    left: 0px; /* Ajuster la position de la flèche gauche */
+.arrows-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
 }
 
-.right-arrow {
-    right: -70px; /* Ajuster la position de la flèche droite */
+.left-arrow-container, .right-arrow-container {
+    pointer-events: auto;
+}
+
+.left-arrow-container {
+    left: 10px; /* Ajustez cette valeur selon vos besoins */
+}
+
+.right-arrow-container {
+    right: 10px; /* Ajustez cette valeur selon vos besoins */
+}
+
+.fullscreen-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
 }
 
 .close-button {
     position: absolute;
-
-    top: -10px;
-
-    right: 10px;
-
-    font-size: 60px;
-
-    cursor: pointer;
-
+    top: 20px;
+    right: 20px;
+    font-size: 2em;
     color: #fff;
-
-    z-index: 100; /* Assurez-vous que la croix est au-dessus du contenu du fullscreen */
+    cursor: pointer;
 }
+
+
 
 .close-button:hover {
     color: #ff0000; /* Changez la couleur au survol si désiré */

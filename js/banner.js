@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
                 if (images.length > 0) {
                     displayBannerImages(images);
                 } else {
-                    console.log('Aucune image de bannière trouvée.');
+                    
                 }
             },
             error: function(_xhr, _status, error) {

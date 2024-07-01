@@ -1,26 +1,19 @@
 jQuery(document).ready(function($) {
-    var images = []; // Tableau d'images
-    var currentIndex = 0; // Index de l'image actuellement affichée
-    var isFullscreenOpen = false; // Variable pour suivre l'état du conteneur plein écran
+    var images = [];
+    var currentIndex = 0;
+    var isFullscreenOpen = false;
 
-    // Gestionnaire d'événements pour le clic sur les icônes de plein écran
     $(document).on('click', '.fullscreen-icon', function(e) {
         e.preventDefault();
-
-        // Vérifier si un conteneur plein écran est déjà ouvert
         if (isFullscreenOpen) {
-            return; // Sortir de la fonction si un conteneur est déjà ouvert
+            return;
         }
 
-        // Récupérer l'URL de l'image à partir de l'attribut de données "data-photo"
         let imageUrl = $(this).data('photo');
-
-        // Si l'attribut "data-photo" n'est pas défini, récupérer l'URL de l'image à partir de la classe "photo" dans le conteneur parent
         if (!imageUrl) {
             imageUrl = $(this).closest('.photo-item').find('.photo-thumbnail img').attr('src');
         }
 
-        // Faire une requête Ajax pour récupérer les photos du serveur
         $.ajax({
             url: nmAjax.ajaxUrl,
             method: 'POST',
@@ -29,136 +22,142 @@ jQuery(document).ready(function($) {
                 photo_id: $(this).data('photo')
             },
             success: function(response) {
-                images = JSON.parse(response).photos; // Mettre à jour le tableau d'images avec la réponse du serveur
-                currentIndex = 0; // Réinitialiser l'index à 0 pour afficher la première image de la catégorie
-                openFullscreen(imageUrl); // Ouvrir l'image en plein écran
+                images = JSON.parse(response).photos;
+                currentIndex = 0;
+                openFullscreen(imageUrl);
             }
         });
     });
 
-    // Fonction pour ouvrir l'image en plein écran
     function openFullscreen(imageUrl) {
-        isFullscreenOpen = true; // Marquer le conteneur plein écran comme ouvert
+        isFullscreenOpen = true;
+        
+        // Ajouter la classe no-scroll au body
+        document.body.classList.add('no-scroll');
 
-        // Créer un conteneur plein écran
         const fullscreenContainer = document.createElement('div');
         fullscreenContainer.classList.add('fullscreen-container');
 
-        // Créer un élément image plein écran
+        const imageWithArrows = document.createElement('div');
+        imageWithArrows.classList.add('image-with-arrows');
+
+        const imageContainer = document.createElement('div');
+        imageContainer.classList.add('image-container');
+
         const fullscreenImage = document.createElement('img');
         fullscreenImage.src = imageUrl;
         fullscreenImage.classList.add('fullscreen-image');
 
-        // Appliquer le format de l'image (landscape ou portrait)
-        const imageFormat = getImageFormat(imageUrl);
-        if (imageFormat === 'landscape') {
-            fullscreenImage.classList.add('landscape');
-            fullscreenContainer.classList.add('landscape'); // Ajouter la classe landscape au conteneur plein écran
-        } else if (imageFormat === 'portrait') {
-            fullscreenImage.classList.add('portrait');
-            fullscreenContainer.classList.add('portrait'); // Ajouter la classe portrait au conteneur plein écran
+        fullscreenImage.onload = function() {
+            updateImageFormat(fullscreenImage, imageContainer);
+        };
+
+        const detailsContainer = document.createElement('div');
+        detailsContainer.classList.add('fullscreen-details');
+
+        function updateDetails(currentImage) {
+            detailsContainer.innerHTML = '';
+
+            if (currentImage.reference) {
+                const reference = document.createElement('div');
+                reference.classList.add('fullscreen-reference');
+                reference.textContent = currentImage.reference;
+                detailsContainer.appendChild(reference);
+            }
+
+            if (currentImage.categorie && currentImage.categorie.length > 0) {
+                const categorie = document.createElement('div');
+                categorie.classList.add('fullscreen-category');
+                const categorieNames = currentImage.categorie.map(cat => cat.name);
+                categorie.textContent = categorieNames.join(', ');
+                detailsContainer.appendChild(categorie);
+            }
         }
 
-        // Créer les flèches gauche et droite
+        updateDetails(images[currentIndex]);
+
+        const leftArrowContainer = document.createElement('div');
+        leftArrowContainer.classList.add('left-arrow-container');
+
+        const rightArrowContainer = document.createElement('div');
+        rightArrowContainer.classList.add('right-arrow-container');
+
         const leftArrow = document.createElement('img');
-        leftArrow.classList.add('fullscreen-arrow', 'left-arrow');
-        leftArrow.src = '/wp-content/themes/nathalie-mota/images/left.png'; // Chemin relatif vers l'image de la flèche gauche
+        leftArrow.classList.add('fullscreen-arrow', 'left-arrow', 'chevron-arrow', 'modal-arrows');
+        leftArrow.src = '/wp-content/themes/nathalie-mota/images/left.png';
 
         const rightArrow = document.createElement('img');
-        rightArrow.classList.add('fullscreen-arrow', 'right-arrow');
-        rightArrow.src = '/wp-content/themes/nathalie-mota/images/right.png'; // Chemin relatif vers l'image de la flèche droite
+        rightArrow.classList.add('fullscreen-arrow', 'right-arrow', 'chevron-arrow', 'modal-arrows');
+        rightArrow.src = '/wp-content/themes/nathalie-mota/images/right.png';
 
-        // Gestionnaire d'événements pour la flèche gauche
+        leftArrowContainer.appendChild(leftArrow);
+        rightArrowContainer.appendChild(rightArrow);
+
         leftArrow.addEventListener('click', function(e) {
             e.stopPropagation();
             currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
             fullscreenImage.src = images[currentIndex].url;
             updateDetails(images[currentIndex]);
+            updateImageFormat(fullscreenImage, imageContainer);
         });
 
-        // Gestionnaire d'événements pour la flèche droite
         rightArrow.addEventListener('click', function(e) {
             e.stopPropagation();
             currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
             fullscreenImage.src = images[currentIndex].url;
             updateDetails(images[currentIndex]);
+            updateImageFormat(fullscreenImage, imageContainer);
         });
 
-        // Créer un conteneur pour les détails
-        const detailsContainer = document.createElement('div');
-        detailsContainer.classList.add('fullscreen-details');
+        const arrowsContainer = document.createElement('div');
+        arrowsContainer.classList.add('arrows-container');
+        arrowsContainer.appendChild(leftArrowContainer);
+        arrowsContainer.appendChild(rightArrowContainer);
 
-        // Fonction pour mettre à jour les détails
-        function updateDetails(currentImage) {
-            // Vider les détails précédents
-            detailsContainer.innerHTML = '';
+        imageContainer.appendChild(fullscreenImage);
+        imageContainer.appendChild(detailsContainer);
+        imageWithArrows.appendChild(imageContainer);
+        fullscreenContainer.appendChild(imageWithArrows);
+        fullscreenContainer.appendChild(arrowsContainer);
 
+        const closeButton = document.createElement('div');
+        closeButton.classList.add('close-button');
+        closeButton.innerHTML = '&times;';
+        fullscreenContainer.appendChild(closeButton);
 
-        // Ajouter les détails de la photo courante
-        if (currentImage.reference) {
-            const title = document.createElement('div');
-            title.classList.add('fullscreen-title');
-            title.textContent = currentImage.reference;
-            detailsContainer.appendChild(title);
-        }
+        closeButton.addEventListener('click', function() {
+            document.body.removeChild(fullscreenContainer);
+            isFullscreenOpen = false;
+            // Supprimer la classe no-scroll du body
+            document.body.classList.remove('no-scroll');
+        }, { passive: true });
 
-        if (currentImage.categorie && currentImage.categorie.length > 0) {
-            const categorie = document.createElement('div');
-            categorie.classList.add('fullscreen-category');
-            // Construire la chaîne de catégories séparées par une virgule
-            const categorieNames = currentImage.categorie.map(cat => cat.name);
-            categorie.textContent = categorieNames.join(', ');
-            detailsContainer.appendChild(categorie);
+        fullscreenContainer.style.opacity = 0;
+        document.body.appendChild(fullscreenContainer);
+        requestAnimationFrame(() => {
+            fullscreenContainer.style.transition = 'opacity 1s';
+            fullscreenContainer.style.opacity = 1;
+        });
+    }
+
+    function updateImageFormat(image, container) {
+        const width = image.naturalWidth;
+        const height = image.naturalHeight;
+        container.classList.remove('landscape', 'portrait');
+        image.classList.remove('landscape', 'portrait');
+
+        if (width > height) {
+            image.classList.add('landscape');
+            container.classList.add('landscape');
+        } else {
+            image.classList.add('portrait');
+            container.classList.add('portrait');
         }
     }
 
-    // Appeler updateDetails pour l'image actuellement affichée
-    updateDetails(images[currentIndex]);
-
-    // Ajouter les éléments au conteneur plein écran
-    fullscreenContainer.appendChild(leftArrow);
-    fullscreenContainer.appendChild(fullscreenImage);
-    fullscreenContainer.appendChild(rightArrow);
-    fullscreenContainer.appendChild(detailsContainer);
-
-    // Ajouter le bouton de fermeture (croix)
-    const closeButton = document.createElement('div');
-    closeButton.classList.add('close-button');
-    closeButton.innerHTML = '&times;'; // Symbole de croix pour fermer
-    fullscreenContainer.appendChild(closeButton);
-
-    // Gestionnaire d'événements pour fermer le fullscreen-container
-    closeButton.addEventListener('click', function() {
-        document.body.removeChild(fullscreenContainer);
-        isFullscreenOpen = false; // Marquer le conteneur plein écran comme fermé
-    }, { passive: true });
-
-    // Ajouter la transition pour l'effet de "fade-in"
-    fullscreenContainer.style.opacity = 0;
-    document.body.appendChild(fullscreenContainer);
-    requestAnimationFrame(() => {
-        fullscreenContainer.style.transition = 'opacity 1s';
-        fullscreenContainer.style.opacity = 1;
-    });
-}
-
-// Fonction pour déterminer le format de l'image
-function getImageFormat(imageUrl) {
-    const image = new Image();
-    image.src = imageUrl;
-    const width = image.naturalWidth;
-    const height = image.naturalHeight;
-    if (width > height) {
-        return 'landscape';
-    } else {
-        return 'portrait';
-    }
-}
-
-
-    // Ajout de l'écouteur d'événement passif
     document.addEventListener('touchstart', function() {}, { passive: true });
 });
+
 
 
 
