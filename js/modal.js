@@ -1,7 +1,24 @@
+// Définir la fonction updateImageFormat avant openFullscreen
+function updateImageFormat(image, container) {
+    const width = image.naturalWidth;
+    const height = image.naturalHeight;
+    container.classList.remove('landscape', 'portrait');
+    image.classList.remove('landscape', 'portrait');
+
+    if (width > height) {
+        image.classList.add('landscape');
+        container.classList.add('landscape');
+    } else {
+        image.classList.add('portrait');
+        container.classList.add('portrait');
+    }
+}
+
+// Assurez-vous que tout votre code est dans un bloc jQuery(document).ready
 jQuery(document).ready(function($) {
-    var images = [];
-    var currentIndex = 0;
-    var isFullscreenOpen = false;
+    let images = [];
+    let currentIndex = 0;
+    let isFullscreenOpen = false;
 
     $(document).on('click', '.fullscreen-icon', function(e) {
         e.preventDefault();
@@ -25,14 +42,16 @@ jQuery(document).ready(function($) {
                 images = JSON.parse(response).photos;
                 currentIndex = 0;
                 openFullscreen(imageUrl);
+            },
+            error: function(_xhr, _status, error) {
+                console.error('Erreur lors du chargement des photos:', error);
             }
         });
     });
 
     function openFullscreen(imageUrl) {
         isFullscreenOpen = true;
-        
-        // Ajouter la classe no-scroll au body
+
         document.body.classList.add('no-scroll');
 
         const fullscreenContainer = document.createElement('div');
@@ -128,7 +147,6 @@ jQuery(document).ready(function($) {
         closeButton.addEventListener('click', function() {
             document.body.removeChild(fullscreenContainer);
             isFullscreenOpen = false;
-            // Supprimer la classe no-scroll du body
             document.body.classList.remove('no-scroll');
         }, { passive: true });
 
@@ -138,26 +156,39 @@ jQuery(document).ready(function($) {
             fullscreenContainer.style.transition = 'opacity 1s';
             fullscreenContainer.style.opacity = 1;
         });
-    }
 
-    function updateImageFormat(image, container) {
-        const width = image.naturalWidth;
-        const height = image.naturalHeight;
-        container.classList.remove('landscape', 'portrait');
-        image.classList.remove('landscape', 'portrait');
+        // Gestion des flèches mobiles pour les petits écrans
+        const mobileArrows = document.createElement('div');
+        mobileArrows.classList.add('fullscreen-mobile-arrows');
 
-        if (width > height) {
-            image.classList.add('landscape');
-            container.classList.add('landscape');
-        } else {
-            image.classList.add('portrait');
-            container.classList.add('portrait');
-        }
+        const leftMobileArrow = document.createElement('span');
+        leftMobileArrow.classList.add('fullscreen-mobile-arrow');
+        leftMobileArrow.innerHTML = '&lt;';
+
+        const rightMobileArrow = document.createElement('span');
+        rightMobileArrow.classList.add('fullscreen-mobile-arrow');
+        rightMobileArrow.innerHTML = '&gt;';
+
+        leftMobileArrow.addEventListener('click', function(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+            fullscreenImage.src = images[currentIndex].url;
+            updateDetails(images[currentIndex]);
+            updateImageFormat(fullscreenImage, imageContainer);
+        });
+
+        rightMobileArrow.addEventListener('click', function(e) {
+            e.stopPropagation();
+            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
+            fullscreenImage.src = images[currentIndex].url;
+            updateDetails(images[currentIndex]);
+            updateImageFormat(fullscreenImage, imageContainer);
+        });
+
+        mobileArrows.appendChild(leftMobileArrow);
+        mobileArrows.appendChild(rightMobileArrow);
+        imageContainer.appendChild(mobileArrows);
     }
 
     document.addEventListener('touchstart', function() {}, { passive: true });
 });
-
-
-
-

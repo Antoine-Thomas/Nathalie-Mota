@@ -1,4 +1,3 @@
-
 jQuery(document).ready(function ($) {
     const menuToggle = $('.menu-toggle');
     const burgerMenuContainer = $('.burger-menu-container');
@@ -252,6 +251,8 @@ jQuery(document).ready(function ($) {
     // Appeler la fonction pour appliquer l'effet de lightbox
     applyLightboxEffect();
 
+    
+
     // Module de navigation entre les pages
     function updatePreviewImage() {
         const rightArrow = $('.right-arrow');
@@ -303,11 +304,7 @@ jQuery(document).ready(function ($) {
 
     updatePreviewImage();
 
-
-
-
-
-
+// dropdown
 
     dropdowns.forEach(function(dropdown) {
         const titleBox = dropdown.querySelector('.title_filter_box');
@@ -352,10 +349,3 @@ jQuery(document).ready(function ($) {
 // Ajout de l'écouteur d'événement passif
     document.addEventListener('touchstart', function() {}, { passive: true });
 });
-
-
-
-
-
-
-

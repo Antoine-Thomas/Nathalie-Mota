@@ -15,12 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="photographe événementiel, photographe event, nathalie mota, photo format hd" />
     <meta name="description" content="Nathalie Mota - Site personnel pour la vente de mes photos en impression HD.">
-
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-
-    <script src="https://kit.fontawesome.com/57bf6f7049.js" crossorigin="anonymous"></script>
+    
+    
+   
 
     <?php wp_head(); ?>
 </head>
@@ -31,20 +28,25 @@
     <!-- Header -->
     <header id="header" class="header">
         <div class="container-header">
+            <!-- Logo du site avec un lien vers la page d'accueil -->
             <a id="logo" href="<?php echo esc_url(home_url('/')); ?>" aria-label="Page d'accueil de Nathalie Mota">
                 <img src="<?php echo get_template_directory_uri(); ?>/images/logo_nathalie_mota.png" alt="Logo <?php echo esc_attr(get_bloginfo('name')); ?>">
             </a>
+
+            <!-- Bouton du menu burger -->
             <button class="menu-toggle" aria-controls="primary-menu" aria-expanded="false" title="Menu">
                 <span class="line"></span>
                 <span class="line"></span>
                 <span class="line"></span>
             </button>
+
+            <!-- Navigation principale -->
             <nav id="navigation" class="main-menu">
                 <?php
                 wp_nav_menu(
                     array(
-                        'theme_location' => 'primary',
-                        'menu_class'     => 'main-menu-nav',
+                        'theme_location' => 'primary', // Localisation du menu
+                        'menu_class'     => 'main-menu-nav', // Classe CSS pour le menu
                     )
                 );
                 ?>
@@ -52,15 +54,15 @@
         </div>
     </header>
 
-    <!-- Burger Menu Container -->
+    <!-- Conteneur du menu burger -->
     <div class="burger-menu-container">
         <span class="close-menu"></span>
         <nav class="menu-nav">
             <?php
             wp_nav_menu(
                 array(
-                    'theme_location' => 'primary',
-                    'menu_class'     => 'menu-nav-items',
+                    'theme_location' => 'primary', // Localisation du menu
+                    'menu_class'     => 'menu-nav-items', // Classe CSS pour les éléments du menu
                 )
             );
             ?>
@@ -68,7 +70,7 @@
     </div>
 
     <?php
-    // Inclure la popup-contact.php
+    // Inclure le fichier de la popup de contact
     get_template_part('popup-contact');
     ?>
 
@@ -76,4 +78,5 @@
 </body>
 
 </html>
+
 

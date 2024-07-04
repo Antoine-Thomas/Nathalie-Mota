@@ -12,7 +12,7 @@ jQuery(document).ready(function($) {
                 if (images.length > 0) {
                     displayBannerImages(images);
                 } else {
-                    
+                    // Aucune image de bannière trouvée.
                 }
             },
             error: function(_xhr, _status, error) {
@@ -24,17 +24,18 @@ jQuery(document).ready(function($) {
     // Fonction pour afficher les images dans la bannière
     function displayBannerImages(images) {
         var $bannerContent = $('.banner-content');
+        $bannerContent.empty(); // Vide le contenu actuel de la bannière
 
-        // Vide le contenu actuel de la bannière
-        $bannerContent.empty();
-
-        // Ajoute chaque image à la bannière
         images.forEach(function(imageUrl) {
             var $photoElement = $('<div class="photo-banner" style="background-image: url(' + imageUrl + ');"></div>');
             $bannerContent.append($photoElement);
         });
     }
 
-    // Chargement initial des images de la bannière
+    // Appel de la fonction pour charger les images de la bannière au chargement de la page
     loadBannerImages();
 });
+
+
+
+
