@@ -31,7 +31,8 @@ jQuery(document).ready(function($) {
             $bannerContent.append($photoElement);
         });
     }
-
+// Déclencher un événement personnalisé pour indiquer que la bannière est chargée
+$(document).trigger('bannerLoaded');
     // Appel de la fonction pour charger les images de la bannière au chargement de la page
     loadBannerImages();
 });

@@ -1,4 +1,3 @@
-// Définir la fonction updateImageFormat avant openFullscreen
 function updateImageFormat(image, container) {
     const width = image.naturalWidth;
     const height = image.naturalHeight;
@@ -14,7 +13,6 @@ function updateImageFormat(image, container) {
     }
 }
 
-// Assurez-vous que tout votre code est dans un bloc jQuery(document).ready
 jQuery(document).ready(function($) {
     let images = [];
     let currentIndex = 0;
@@ -26,10 +24,7 @@ jQuery(document).ready(function($) {
             return;
         }
 
-        let imageUrl = $(this).data('photo');
-        if (!imageUrl) {
-            imageUrl = $(this).closest('.photo-item').find('.photo-thumbnail img').attr('src');
-        }
+        let imageUrl = $(this).data('photo') || $(this).closest('.photo-item').find('.photo-thumbnail img').attr('src');
 
         $.ajax({
             url: nmAjax.ajaxUrl,
@@ -39,9 +34,13 @@ jQuery(document).ready(function($) {
                 photo_id: $(this).data('photo')
             },
             success: function(response) {
-                images = JSON.parse(response).photos;
-                currentIndex = 0;
-                openFullscreen(imageUrl);
+                try {
+                    images = JSON.parse(response).photos;
+                    currentIndex = 0;
+                    openFullscreen(imageUrl);
+                } catch (error) {
+                    console.error('Erreur lors de l\'analyse des photos:', error);
+                }
             },
             error: function(_xhr, _status, error) {
                 console.error('Erreur lors du chargement des photos:', error);
@@ -51,7 +50,6 @@ jQuery(document).ready(function($) {
 
     function openFullscreen(imageUrl) {
         isFullscreenOpen = true;
-
         document.body.classList.add('no-scroll');
 
         const fullscreenContainer = document.createElement('div');
@@ -102,31 +100,32 @@ jQuery(document).ready(function($) {
         rightArrowContainer.classList.add('right-arrow-container');
 
         const leftArrow = document.createElement('img');
-        leftArrow.classList.add('fullscreen-arrow', 'left-arrow', 'chevron-arrow', 'modal-arrows');
+        leftArrow.classList.add('fullscreen-arrow', 'left-arrow');
         leftArrow.src = '/wp-content/themes/nathalie-mota/images/left.png';
 
         const rightArrow = document.createElement('img');
-        rightArrow.classList.add('fullscreen-arrow', 'right-arrow', 'chevron-arrow', 'modal-arrows');
+        rightArrow.classList.add('fullscreen-arrow', 'right-arrow');
         rightArrow.src = '/wp-content/themes/nathalie-mota/images/right.png';
 
         leftArrowContainer.appendChild(leftArrow);
         rightArrowContainer.appendChild(rightArrow);
 
-        leftArrow.addEventListener('click', function(e) {
-            e.stopPropagation();
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
+        const navigate = (direction) => {
+            currentIndex = (currentIndex + direction + images.length) % images.length;
             fullscreenImage.src = images[currentIndex].url;
             updateDetails(images[currentIndex]);
             updateImageFormat(fullscreenImage, imageContainer);
-        });
+        };
+
+        leftArrow.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navigate(-1);
+        }, { passive: true });
 
         rightArrow.addEventListener('click', function(e) {
             e.stopPropagation();
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-            fullscreenImage.src = images[currentIndex].url;
-            updateDetails(images[currentIndex]);
-            updateImageFormat(fullscreenImage, imageContainer);
-        });
+            navigate(1);
+        }, { passive: true });
 
         const arrowsContainer = document.createElement('div');
         arrowsContainer.classList.add('arrows-container');
@@ -157,7 +156,6 @@ jQuery(document).ready(function($) {
             fullscreenContainer.style.opacity = 1;
         });
 
-        // Gestion des flèches mobiles pour les petits écrans
         const mobileArrows = document.createElement('div');
         mobileArrows.classList.add('fullscreen-mobile-arrows');
 
@@ -171,19 +169,13 @@ jQuery(document).ready(function($) {
 
         leftMobileArrow.addEventListener('click', function(e) {
             e.stopPropagation();
-            currentIndex = (currentIndex > 0) ? currentIndex - 1 : images.length - 1;
-            fullscreenImage.src = images[currentIndex].url;
-            updateDetails(images[currentIndex]);
-            updateImageFormat(fullscreenImage, imageContainer);
-        });
+            navigate(-1);
+        }, { passive: true });
 
         rightMobileArrow.addEventListener('click', function(e) {
             e.stopPropagation();
-            currentIndex = (currentIndex < images.length - 1) ? currentIndex + 1 : 0;
-            fullscreenImage.src = images[currentIndex].url;
-            updateDetails(images[currentIndex]);
-            updateImageFormat(fullscreenImage, imageContainer);
-        });
+            navigate(1);
+        }, { passive: true });
 
         mobileArrows.appendChild(leftMobileArrow);
         mobileArrows.appendChild(rightMobileArrow);
@@ -192,3 +184,4 @@ jQuery(document).ready(function($) {
 
     document.addEventListener('touchstart', function() {}, { passive: true });
 });
+

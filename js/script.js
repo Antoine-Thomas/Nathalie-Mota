@@ -107,45 +107,45 @@ jQuery(document).ready(function ($) {
         let endOfResultsShown = false; // Nouvelle variable pour suivre l'affichage du message
     
         // Fonction pour charger les photos en fonction de la sélection
-        function loadPhotosBySelection() {
-            page = 1; // Réinitialiser la page à 1 lors de la sélection des filtres
-            const categorieId = $('#categorie_id').val();
-            const formatId = $('#format_id').val();
-            const dateOrder = $('#date').val() || "ASC";
-    
-            const args = {
-                action: 'load_photos_by_selection',
-                date_order: dateOrder.toUpperCase(),
-                page: page,
-                photos_per_page: photosPerPage
-            };
-    
-            if (categorieId && categorieId !== 'categories') {
-                args.categorie_id = categorieId;
-            }
-    
-            if (formatId && formatId !== 'formats') {
-                args.format_id = formatId;
-            }
-    
-            if (dateOrder !== 'trier_par') {
-                args.date_order = dateOrder.toUpperCase();
-            }
-    
-            $.ajax({
-                type: 'POST',
-                url: ajaxUrl,
-                data: args,
-                success: function(response) {
-                    $('.photo-grid-container').html(response);
-                    applyLightboxEffect(); // Appliquer l'effet de lightbox après le chargement
-                    initializeFeatures(); // Réinitialiser les fonctionnalités après chargement
-                },
-                error: function(response) {
-                    console.error('Erreur:', response);
-                }
-            });
+    function loadPhotosBySelection() {
+        page = 1; // Réinitialiser la page à 1 lors de la sélection des filtres
+        const categorieId = $('#categorie_id').val();
+        const formatId = $('#format_id').val();
+        const dateOrder = $('#date').val() || "ASC";
+
+        const args = {
+            action: 'load_photos_by_selection',
+            date_order: dateOrder.toUpperCase(),
+            page: page,
+            photos_per_page: photosPerPage
+        };
+
+        if (categorieId && categorieId !== 'categories') {
+            args.categorie_id = categorieId;
         }
+
+        if (formatId && formatId !== 'formats') {
+            args.format_id = formatId;
+        }
+
+        if (dateOrder !== 'trier_par') {
+            args.date_order = dateOrder.toUpperCase();
+        }
+
+        $.ajax({
+            type: 'POST',
+            url: ajaxUrl, // Remplacer par l'URL de votre site
+            data: args,
+            success: function(response) {
+                $('.photo-grid-container').html(response);
+                applyLightboxEffect(); // Appliquer l'effet de lightbox après le chargement
+                initializeFeatures(); // Réinitialiser les fonctionnalités après chargement
+            },
+            error: function(response) {
+                console.error('Erreur:', response);
+            }
+        });
+    }
     
         function loadMorePhotos() {
             const categorieId = $('#categorie_id').val();

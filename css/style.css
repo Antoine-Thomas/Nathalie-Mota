@@ -14,1751 +14,1453 @@ Author URI: https://www.searching-murphy.com/
 
 */
 
+
+
+/* Poppins Font Faces */
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 100;
-    src: url('../assets/fonts/Poppins-Thin.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Thin.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 100;
-    src: url('../assets/fonts/Poppins-ThinItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-ThinItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 200;
-    src: url('../assets/fonts/Poppins-ExtraLight.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-ExtraLight.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 200;
-    src: url('../assets/fonts/Poppins-ExtraLightItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-ExtraLightItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 300;
-    src: url('../assets/fonts/Poppins-Light.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Light.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 300;
-    src: url('../assets/fonts/Poppins-LightItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-LightItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 400;
-    src: url('../assets/fonts/Poppins-Regular.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Regular.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 400;
-    src: url('../assets/fonts/Poppins-Italic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Italic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
-    src: url('../assets/fonts/Poppins-Medium.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Medium.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 500;
-    src: url('../assets/fonts/Poppins-MediumItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-MediumItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    src: url('../assets/fonts/Poppins-SemiBold.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-SemiBold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 600;
-    src: url('../assets/fonts/Poppins-SemiBoldItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-SemiBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 700;
-    src: url('../assets/fonts/Poppins-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Bold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 700;
-    src: url('../assets/fonts/Poppins-BoldItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-BoldItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 800;
-    src: url('../assets/fonts/Poppins-ExtraBold.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-ExtraBold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 800;
-    src: url('../assets/fonts/Poppins-ExtraBoldItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-ExtraBoldItalic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 900;
-    src: url('../assets/fonts/Poppins-Black.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-Black.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Poppins';
     font-style: italic;
     font-weight: 900;
-    src: url('../assets/fonts/Poppins-BlackItalic.ttf') format('truetype');
+    src: url('../assets/fonts/Poppins-BlackItalic.woff2') format('woff2');
+}
+
+/* Space Mono Font Faces */
+@font-face {
+    font-family: 'Space Mono';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/SpaceMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Space Mono';
+    font-style: italic;
+    font-weight: 400;
+    src: url('../assets/fonts/SpaceMono-Italic.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Space Mono';
     font-style: normal;
-    font-weight: 400;
-    src: url('../assets/fonts/SpaceMono-Regular.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: italic;
-    font-weight: 400;
-    src: url('../assets/fonts/SpaceMono-Italic.ttf') format('truetype');
-}
-
-@font-face {
-    font-family: 'Space Mono';
-    font-style: normal;
     font-weight: 700;
-    src: url('../assets/fonts/SpaceMono-Bold.ttf') format('truetype');
+    src: url('../assets/fonts/SpaceMono-Bold.woff2') format('woff2');
 }
 
 @font-face {
     font-family: 'Space Mono';
     font-style: italic;
     font-weight: 700;
-    src: url('../assets/fonts/SpaceMono-BoldItalic.ttf') format('truetype');
-}
-/* Ajoutez les autres variantes de Space Mono si nécessaire */
-
-
-code, pre {
-    font-family: 'Space Mono', monospace;
+    src: url('../assets/fonts/SpaceMono-BoldItalic.woff2') format('woff2');
 }
 
-   
-
-
-body {
-    background: #ffffff;
-
-    color: #23282d;
-
-    font-family: 'Poppins', sans-serif;
-
-    font-family: "Space Mono", monospace;
-
-    margin: auto;
-
-    max-width: 1440px;
+code,pre
+{
+	font-family:'Space Mono',monospace
 }
 
-/* Appliquer la police Poppins aux paragraphes */
-
-p {
-    font-family: "Poppins", sans-serif;
-
-    font-weight: 400; /* Poids normal */
+body
+{
+	background:#fff;
+	color:#23282d;
+	font-family:'Poppins',sans-serif;
+	font-family:"Space Mono",monospace;
+	margin:auto;
+	max-width:1440px
 }
 
-/* Vous pouvez également définir un poids différent si vous le souhaitez */
-
-p.bold {
-    font-weight: 700; /* Gras */
+p
+{
+	font-family:"Poppins",sans-serif;
+	font-weight:400
 }
 
-p.light {
-    font-weight: 300; /* Light */
+p.bold
+{
+	font-weight:700
 }
 
-h1 {
-    padding-top: 50px;
-
-    text-align: center;
+p.light
+{
+	font-weight:300
 }
 
-a {
-    font-family: "Space Mono", monospace;
-
-    text-decoration: none;
-
-    color: #000000;
+h1
+{
+	padding-top:50px;
+	text-align:center
 }
 
-ul li {
-    display: inline-block;
-    font-family: "Space Mono";
+a
+{
+	font-family:"Space Mono",monospace;
+	text-decoration:none;
+	color:#000
 }
 
-/* Styles globaux pour les éléments du menu et du header */
-
-#header {
-    display: flex;
-
-    background-color: #ffffff;
-
-    text-align: center;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin: auto;
-
-    z-index: 100;
-
-    justify-content: center;
-
-    height: 80px;
-
-    width: 100%;
-
-    max-width: 1440px;
-
-    -webkit-box-shadow: 0px 11px 12px -7px rgba(126, 126, 126, 0.226);
-
-    box-shadow: 0px 11px 12px -7px rgba(126, 126, 126, 0.226);
+ul li
+{
+	display:inline-block;
+	font-family:"Space Mono"
 }
 
-.container-header {
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    width: 100%;
-
-    max-width: 1440px;
-
-    padding: 0 80px;
+#header
+{
+	display:flex;
+	background-color:#fff;
+	text-align:center;
+	align-items:center;
+	justify-content:center;
+	margin:auto;
+	z-index:100;
+	justify-content:center;
+	height:80px;
+	width:100%;
+	max-width:1440px;
+	-webkit-box-shadow:0 11px 12px -7px rgba(126,126,126,0.226);
+	box-shadow:0 11px 12px -7px rgba(126,126,126,0.226)
 }
 
-.container-header img {
-    width: 220px;
-
-    height: auto;
-
-    display: flex;
-
-    justify-content: right;
+.container-header
+{
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	width:100%;
+	max-width:1440px;
+	padding:0 80px
 }
 
-.main-menu {
-    margin-left: auto;
-
-    display: flex;
+.container-header img
+{
+	width:220px;
+	height:auto;
+	display:flex;
+	justify-content:right
 }
 
-.main-menu ul {
-    display: flex;
-
-    list-style: none;
-
-    padding: 0;
-
-    margin: 0;
+.main-menu
+{
+	margin-left:auto;
+	display:flex
 }
 
-.main-menu ul li {
-    margin: 0 10px;
+.main-menu ul
+{
+	display:flex;
+	list-style:none;
+	padding:0;
+	margin:0
 }
 
-.main-menu ul li a {
-    text-decoration: none;
-
-    color: #000000;
-
-    font-weight: 400;
-
-    font-size: 16px;
-
-    text-transform: uppercase;
+.main-menu ul li
+{
+	margin:0 10px
 }
 
-.main-menu ul li a:hover,
-.main-menu ul li.current-menu-item a {
-    font-weight: 700;
+.main-menu ul li a
+{
+	text-decoration:none;
+	color:#000;
+	font-weight:400;
+	font-size:16px;
+	text-transform:uppercase
 }
 
-.photo-banner {
-    position: relative;
-    left: 0;
-    right: 0;
-    background-size: cover; /* Changement de contain à cover */
-    background-repeat: no-repeat;
-    background-position: center; /* Changement de top à center */
-    height: 820px; /* Hauteur de votre bannière */
-    width: 100%;
+.main-menu ul li a:hover,.main-menu ul li.current-menu-item a
+{
+	font-weight:700
 }
 
-
-.title-hero {
-    position: relative;
-   top: 40%;
-    left:0px;
-    width: 100%;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    font-size: 96px;
-    font-style: italic;
-    color: transparent;
-    -webkit-text-stroke: 2px rgb(255, 255, 255);
-    z-index: 1;
+.photo-banner
+{
+	position:relative;
+	left:0;
+	right:0;
+	background-size:cover;
+	background-repeat:no-repeat;
+	background-position:center;
+	height:820px;
+	width:100%
 }
 
-/* Menu Header */
-.main-menu ul li a {
-    font-family: "Space Mono" !important;
-    text-decoration: none;
-    color: #000000;
-    font-weight: 400;
-    font-size: 16px;
-    text-transform: uppercase;
-    transition: font-weight 0.3s ease; /* Ajout d'une transition pour l'animation du poids de la police */
+.title-hero
+{
+	position:relative;
+	top:40%;
+	left:0;
+	width:100%;
+	font-weight:700;
+	text-transform:uppercase;
+	text-align:center;
+	font-size:96px;
+	font-style:italic;
+	color:transparent;
+	-webkit-text-stroke:2px #fff;
+	z-index:1
 }
 
-.main-menu ul li a.active {
-    font-weight: 700; /* Appliquer le poids 700 au clic */
+.main-menu ul li a
+{
+	font-family:"Space Mono"!important;
+	text-decoration:none;
+	color:#000;
+	font-weight:400;
+	font-size:16px;
+	text-transform:uppercase;
+	transition:font-weight .3s ease
 }
 
-.main-menu ul li a:hover {
-    font-weight: 700; /* Garder le poids 700 au survol */
+.main-menu ul li a.active
+{
+	font-weight:700
 }
 
-/* Footer */
-
-
-#footer {
-    font-family: "Space Mono", monospace !important;
-    height: 40px;
-    border-top: 1px solid #000000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+.main-menu ul li a:hover
+{
+	font-weight:700
 }
 
-#footer a {
-    font-family: "Space Mono", monospace !important;
-    color: #000000;
-    text-decoration: none;
-    font-weight: 400;
-    font-size: 16px;
-    text-transform: uppercase;
-    margin: 0 20px;
-    transition: font-weight 0.3s ease; /* Transition pour l'animation du poids de la police */
+#footer
+{
+	font-family:"Space Mono",monospace!important;
+	height:40px;
+	border-top:1px solid #000;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%
 }
 
-#footer a:hover {
-    font-weight: bold;
+#footer a
+{
+	font-family:"Space Mono",monospace!important;
+	color:#000;
+	text-decoration:none;
+	font-weight:400;
+	font-size:16px;
+	text-transform:uppercase;
+	margin:0 20px;
+	transition:font-weight .3s ease
 }
 
-#footer .current-menu-item a,
-#footer .menu-item a:hover {
-    font-weight: bold; /* Assurez-vous que le menu actif reste en gras */
+#footer a:hover
+{
+	font-weight:700
 }
 
-.footer-container {
-    display: flex;
-    justify-content: center; /* Centrer les éléments horizontalement */
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    padding: 0 20px; /* Ajouter un padding pour l'espace autour des éléments */
-    max-width: 1440px; /* Limite la largeur maximale */
+#footer .current-menu-item a,#footer .menu-item a:hover
+{
+	font-weight:700
 }
 
-
+.footer-container
+{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:100%;
+	padding:0 20px;
+	max-width:1440px
+}
 
 @media screen and (max-width: 768px) {
-    /* Style général du footer */
-#footer {
-    height: auto;
-    border-top: 1px solid #000000;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    padding: 20px 0;
+	#footer
+	{
+		height:auto;
+		border-top:1px solid #000;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		width:100%;
+		padding:20px 0
+	}
+	
+	.footer-container
+	{
+		width:320px;
+		padding:0;
+		max-width:none;
+		display:flex;
+		flex-direction:column;
+		align-items:center
+	}
+	
+	.menu-footer-menu-container,.footer-center,#widget-area
+	{
+		flex-grow:0;
+		text-align:center;
+		width:100%;
+		margin-bottom:10px
+	}
+	
+	.legale
+	{
+		position:relative;
+		margin-left:-50px
+	}
+	
+	#footer a
+	{
+		display:block;
+		margin:0;
+		width:auto;
+		height:auto
+	}
+	
+	.menu-footer-menu-container
+	{
+		order:1;
+		left:-20px;
+		position:relative
+	}
+	
+	.footer-center
+	{
+		order:2
+	}
+	
+	#widget-area
+	{
+		order:3
+	}
 }
-
-/* Conteneur principal du footer */
-.footer-container {
-    width: 320px;
-    padding: 0;
-    max-width: none;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/* Style des éléments du footer */
-.menu-footer-menu-container,
-.footer-center,
-#widget-area {
-    flex-grow: 0;
-    text-align: center;
-    width: 100%;
-    margin-bottom: 10px;
-}
-.legale{ 
-position: relative;
-margin-left:-50px;
-}
-
-
-
-    
-/* Style des liens */
-#footer a {
-    display: block;
-    margin: 0;
-    width: auto;
-    height: auto;
-}
-
-/* Ordre des éléments */
-.menu-footer-menu-container {
-    
-        order: 1;
-        left: -20px;
-        position: relative;
-   
-
-}
-
-.footer-center {
-    order: 2; /* "Vie privée" au milieu */
-}
-
-#widget-area {
-    order: 3; /* "TOUS DROITS RÉSERVÉS" en bas */
-}
-}
-
-/* Media query pour le menu burger */
 
 @media screen and (max-width: 777px) {
-    /* Masquer le menu principal sur les petits écrans */
-
-    .main-menu {
-        display: none;
-    }
-
-    /* Afficher le bouton du menu burger */
-
-    .burger-menu-container.active {
-        position: relative;
-        top: 0px;
-    }
-
-    .menu-toggle {
-        display: block;
-
-        top: 20px;
-
-        right: 20px;
-
-        z-index: 2;
-
-        cursor: pointer;
-
-        background-color: transparent;
-
-        border: none;
-
-        padding: 0;
-    }
-    
-        .popup-overlay.hidden {
-            display: none;
-        }
-    
-        .popup-overlay.visible {
-            display: flex;
-        }
-  
-    
-    @media screen and (max-width: 440px) {
-        /* Redimensionner le menu toggle */
-
-        .menu-toggle {
-            width: 40px; /* Ajustez la largeur du menu toggle selon vos besoins */
-
-            height: 40px; /* Ajustez la hauteur du menu toggle selon vos besoins */
-
-            margin-left: 40px;
-        }
-
-        /* Redimensionner l'image du logo */
-
-        .container-header img {
-            width: 150px; /* Ajustez la largeur de l'image selon vos besoins */
-
-            width: 220px;
-
-            height: auto;
-
-            display: flex;
-
-            justify-content: right;
-
-            margin-left: -60px; /* Ajoutez cette ligne pour enlever la marge à gauche */
-        }
-    }
-
-    .menu-toggle .line {
-        width: 30px;
-
-        height: 3px;
-
-        background-color: #000;
-
-        display: block;
-
-        margin: 6px auto;
-
-        transition: background-color 0.3s ease;
-
-        width: 30px;
-
-        height: 3px;
-
-        background-color: #000;
-
-        display: block;
-
-        margin: 6px auto;
-
-        transition: all 0.3s ease;
-    }
-
-    .menu-toggle.active .line:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-
-    .menu-toggle.active .line:nth-child(2) {
-        opacity: 0;
-    }
-
-    .menu-toggle.active .line:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-
-    /* Styles pour le bouton de fermeture du menu burger */
-
-    .burger-menu-container .close-menu {
-        display: block;
-
-        position: absolute;
-
-        top: 20px;
-
-        right: 20px;
-
-        color: #000000;
-
-        font-size: 24px;
-
-        cursor: pointer;
-
-        z-index: 2;
-    }
-
-    /* styles.css */
-
-    /* ... */
-
-    /* Styles pour le menu burger container */
-
-    .burger-menu-container {
-        position: fixed;
-
-        top: 40px;
-
-        left: 0;
-
-        width: 100%;
-
-        height: 100vh;
-
-        background-color: #e00000;
-
-        display: none; /* Masquer le menu burger par défaut */
-
-        z-index: 2;
-
-        overflow: hidden;
-    }
-
-    /* Afficher le menu burger lorsque la classe active est ajoutée */
-
-    .burger-menu-container.active {
-        display: block;
-    }
-
-    /* Styles pour la liste de navigation du menu burger */
-
-    .burger-menu-container .menu-nav ul {
-        display: flex;
-
-        flex-direction: column;
-
-        justify-content: center;
-
-        align-items: center;
-
-        height: calc(100vh - 60px); /* Hauteur moins la hauteur du bouton de fermeture */
-
-        color: #ffffff;
-
-        font-family: "Space Mono", monospace;
-
-        font-size: 44px;
-
-        font-weight: 400;
-
-        line-height: 80px; /* Ajuster la hauteur de ligne */
-
-        text-align: center;
-    }
-
-    /* Styles pour les éléments de la liste de navigation du menu burger */
-
-    .burger-menu-container .menu-nav ul {
-        padding: 0;
-
-        margin: 0;
-    }
-
-    .burger-menu-container .menu-nav ul li {
-        margin-bottom: 20px;
-    }
-
-    .burger-menu-container .menu-nav ul li:last-child {
-        margin-bottom: 0;
-    }
-
-    .burger-menu-container .menu-nav ul li a {
-        color: #ffffff;
-
-        text-decoration: none;
-    }
+	.main-menu
+	{
+		display:none
+	}
+	
+	.burger-menu-container.active
+	{
+		position:relative;
+		top:0
+	}
+	
+	.menu-toggle
+	{
+		display:block;
+		top:20px;
+		right:20px;
+		z-index:2;
+		cursor:pointer;
+		background-color:transparent;
+		border:none;
+		padding:0
+	}
+	
+	.popup-overlay.hidden
+	{
+		display:none
+	}
+	
+	.popup-overlay.visible
+	{
+		display:flex
+	}
 }
 
-/* ... */
+@media screen and (max-width: 440px) {
+	.menu-toggle
+	{
+		width:40px;
+		height:40px;
+		margin-left:40px
+	}
+	
+	.container-header img
+	{
+		width:150px;
+		width:220px;
+		height:auto;
+		display:flex;
+		justify-content:right;
+		margin-left:-60px
+	}
+}
 
-/* Ajouter cette règle pour masquer le menu burger sur les grands écrans */
+.menu-toggle .line
+{
+	width:30px;
+	height:3px;
+	background-color:#000;
+	display:block;
+	margin:6px auto;
+	transition:background-color .3s ease;
+	width:30px;
+	height:3px;
+	background-color:#000;
+	display:block;
+	margin:6px auto;
+	transition:all .3s ease
+}
+
+.menu-toggle.active .line:nth-child(1)
+{
+	transform:translateY(9px) rotate(45deg)
+}
+
+.menu-toggle.active .line:nth-child(2)
+{
+	opacity:0
+}
+
+.menu-toggle.active .line:nth-child(3)
+{
+	transform:translateY(-9px) rotate(-45deg)
+}
+
+.burger-menu-container .close-menu
+{
+	display:block;
+	position:absolute;
+	top:20px;
+	right:20px;
+	color:#000;
+	font-size:24px;
+	cursor:pointer;
+	z-index:2
+}
+
+.burger-menu-container
+{
+	position:fixed;
+	top:40px;
+	left:0;
+	width:100%;
+	height:100vh;
+	background-color:#e00000;
+	display:none;
+	z-index:2;
+	overflow:hidden
+}
+
+.burger-menu-container.active
+{
+	display:block
+}
+
+.burger-menu-container .menu-nav ul
+{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	height:calc(100vh - 60px);
+	color:#fff;
+	font-family:"Space Mono",monospace;
+	font-size:44px;
+	font-weight:400;
+	line-height:80px;
+	text-align:center;
+	padding:0;
+	margin:0
+}
+
+.burger-menu-container .menu-nav ul li
+{
+	margin-bottom:20px
+}
+
+.burger-menu-container .menu-nav ul li:last-child
+{
+	margin-bottom:0
+}
+
+.burger-menu-container .menu-nav ul li a
+{
+	color:#fff;
+	text-decoration:none
+}
 
 @media screen and (min-width: 778px) {
-    .menu-toggle,
-    .burger-menu-container {
-        display: none;
-    }
+	.menu-toggle,.burger-menu-container
+	{
+		display:none
+	}
 }
 
-/* Styles pour la popup de contact */
-
-.popup-overlay {
-    position: fixed;
-
-    top: 0;
-
-    left: 0;
-
-    width: 100%;
-
-    height: 100%;
-
-    background: rgba(0, 0, 0, 0.5);
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    z-index: 2;
+.popup-overlay
+{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.5);
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	z-index:2
 }
 
-
-
-.popup-overlay.hidden {
-    display: none;
+.popup-overlay.hidden
+{
+	display:none
 }
 
-
-
-
-
-.popup-contact {
-    background: #ffffff;
-
-    border: 5px solid #000000;
-
-    box-sizing: border-box;
-
-    width: 597px;
-
-    height: 769px;
-
-    padding: 20px;
-
-    position: relative;
-
-    overflow: hidden; /* Pour cacher les débordements */
-
-    z-index: 2;
+.popup-contact
+{
+	background:#fff;
+	border:5px solid #000;
+	box-sizing:border-box;
+	width:597px;
+	height:769px;
+	padding:20px;
+	position:relative;
+	overflow:hidden;
+	z-index:2
 }
 
-.popup-title__container {
-    display: flex;
-
-    flex-wrap: wrap; /* Pour permettre le wrap des images */
-
-    align-items: center;
-
-    margin-bottom: 20px;
-
-    width: 800px;
-
-    left: -141.49px;
-
-    gap: 0px;
-
-    position: relative;
-
-    overflow: hidden; /* Pour cacher les débordements horizontaux */
+.popup-title__container
+{
+	display:flex;
+	flex-wrap:wrap;
+	align-items:center;
+	margin-bottom:20px;
+	width:800px;
+	left:-141.49px;
+	gap:0;
+	position:relative;
+	overflow:hidden
 }
 
-.popup-decor {
-    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
-
-    height: auto;
-
-    margin: 5px; /* Espace entre les images */
-
-    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
+.popup-decor
+{
+	width:calc(33.33% - 10px);
+	height:auto;
+	margin:5px;
+	flex:0 0 calc(33.33% - 10px)
 }
 
-.popup-decor:nth-child(n + 4) {
-    position: relative;
-
-    right: 50px;
+.popup-decor:nth-child(n + 4)
+{
+	position:relative;
+	right:50px
 }
 
-.popup-title {
-    color: #ffffff;
-
-    font-size: 24px;
-
-    font-weight: bold;
-
-    margin: 10px;
+.popup-title
+{
+	color:#fff;
+	font-size:24px;
+	font-weight:700;
+	margin:10px
 }
 
-.popup-decor {
-    width: calc(33.33% - 10px); /* Ajustez pour obtenir trois images par ligne avec une marge de 5px de chaque côté */
-
-    height: auto;
-
-    margin: 5px; /* Espace entre les images */
-
-    flex: 0 0 calc(33.33% - 10px); /* S'assurer que les images prennent exactement un tiers de la largeur */
+.popup-decor
+{
+	width:calc(33.33% - 10px);
+	height:auto;
+	margin:5px;
+	flex:0 0 calc(33.33% - 10px)
 }
 
-.close-popup {
-    cursor: pointer;
-
-    font-size: 24px;
-
-    font-weight: bold;
-
-    position: absolute;
-
-    top: 10px;
-
-    right: 10px;
+.close-popup
+{
+	cursor:pointer;
+	font-size:24px;
+	font-weight:700;
+	position:absolute;
+	top:10px;
+	right:10px
 }
 
-#ff_3_message {
-    width: 263px; /* Largeur fixe */
-
-    height: 210px; /* Hauteur fixe */
-
-    padding: 8px 15px; /* Espacement intérieur */
-
-    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
-
-    border: 1px solid #b8bbc2; /* Bordure */
-
-    resize: none; /* Empêcher le redimensionnement */
-
-    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
-
-    margin: auto; /* Centrer horizontalement */
-
-    display: block; /* Afficher en tant que bloc */
+#ff_3_message
+{
+	width:263px;
+	height:210px;
+	padding:8px 15px;
+	border-radius:8px 8px 8px 8px;
+	border:1px solid #b8bbc2;
+	resize:none;
+	box-sizing:border-box;
+	margin:auto;
+	display:block
 }
 
-.ff-el-form-control {
-    width: 263px !important; /* Largeur fixe */
-
-    height: 50px; /* Hauteur fixe */
-
-    padding: 8px 15px; /* Espacement intérieur */
-
-    border-radius: 8px 8px 8px 8px; /* Bordure arrondie uniquement en bas à gauche */
-
-    border: 1px solid #b8bbc2; /* Bordure */
-
-    resize: none; /* Empêcher le redimensionnement */
-
-    box-sizing: border-box; /* Inclure la bordure dans la taille totale */
-
-    margin: auto; /* Centrer horizontalement */
-
-    display: block; /* Afficher en tant que bloc */
+.ff-el-form-control
+{
+	width:263px!important;
+	height:50px;
+	padding:8px 15px;
+	border-radius:8px 8px 8px 8px;
+	border:1px solid #b8bbc2;
+	resize:none;
+	box-sizing:border-box;
+	margin:auto;
+	display:block
 }
 
-/* Style par défaut */
-
-label {
-    position: relative;
-
-    left: 150px !important;
+label
+{
+	position:relative;
+	left:150px!important
 }
 
-/* Les labels restent centrés pour les écrans entre 320px et 433px */
-
-/*@media (max-width: 433px) and (min-width: 0px) {
-    label {
-        left: 40px !important;
-    }
-}*/
-
-.fluentform .ff-text-center {
-    width: 263px; /* Rend le bouton aussi large que le conteneur parent */
-
-    height: 50px;
-
-    background: #d8d8d8; /* Fond gris */
-
-    color: #000; /* Texte noir */
-
-    border: none; /* Enlève les bordures par défaut */
-
-    text-align: center;
-
-    border-radius: 0; /* Bords carrés */
-
-    padding: 10px 0; /* Ajuste la hauteur du bouton */
-
-    cursor: pointer; /* Change le curseur au survol */
-
-    font-size: 16px; /* Taille de police */
-
-    margin: auto; /* Centrer horizontalement */
-
-    align-items: center; /* Centre verticalement */
-
-    font-family: Space Mono !important;
+.fluentform .ff-text-center
+{
+	width:263px;
+	height:50px;
+	background:#d8d8d8;
+	color:#000;
+	border:none;
+	text-align:center;
+	border-radius:0;
+	padding:10px 0;
+	cursor:pointer;
+	font-size:16px;
+	margin:auto;
+	align-items:center;
+	font-family:Space Mono!important
 }
 
-.fluentform .ff-el-group {
-    margin-bottom: 15px !important;
+.fluentform .ff-el-group
+{
+	margin-bottom:15px!important
 }
 
-/* grille de base*/
-
-.photo-grid {
-    position: relative;
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr);
-
-    grid-gap: 20px !important;
-
-    justify-content: center;
-
-    margin: 0 auto;
-
-    max-width: 1148px;
-
-    margin-top: 110px;
+.photo-grid
+{
+	position:relative;
+	display:grid;
+	grid-template-columns:repeat(2,1fr);
+	grid-gap:20px!important;
+	justify-content:center;
+	margin:0 auto;
+	max-width:1148px;
+	margin-top:110px
 }
 
-.photo-grid2 {
-    position: relative;
-
-    display: grid;
-
-    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
-
-    grid-gap: 20px !important; /* Espacement de 20px entre les photos */
-
-    justify-content: center; /* Centrer horizontalement */
-
-    margin: 0 auto; /* Centrer la grille horizontalement */
-
-    max-width: 1148px; /* Limiter la largeur de la grille */
-
-    padding: 20px 0; /* Espacement en haut et en bas de la grille */
-
-    top: -80px;
-
-    left: 10px;
+.photo-grid2
+{
+	position:relative;
+	display:grid;
+	grid-template-columns:repeat(2,1fr);
+	grid-gap:20px!important;
+	justify-content:center;
+	margin:0 auto;
+	max-width:1148px;
+	padding:20px 0;
+	top:-80px;
+	left:10px
 }
 
-
-
-.photo-item {
-    width: 100%; /* Assurez-vous que chaque élément occupe toute la largeur de sa colonne */
-
-    max-width: 564px; /* Limitez la largeur de chaque élément à 564px */
-
-    height: 495px; /* Set the height to match the image size */
+.photo-item
+{
+	width:100%;
+	max-width:564px;
+	height:495px
 }
 
-.photo-thumbnail {
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    width: 100%; /* Assurez-vous que l'image occupe toute la largeur de son conteneur */
-
-    height: 100%; /* Assurez-vous que l'image occupe toute la hauteur de son conteneur */
-
-    object-fit: cover; /* Assurez-vous que l'image couvre le conteneur sans déformation */
+.photo-thumbnail
+{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	width:100%;
+	height:100%;
+	object-fit:cover
 }
 
-/* Styles pour les images paysage */
-
-.photo-thumbnail.landscape img {
-    width: 564px;
-
-    height: 495px;
-    object-fit: cover;
+.photo-thumbnail.landscape img
+{
+	width:564px;
+	height:495px;
+	object-fit:cover
 }
 
-/* Styles pour les images portrait */
-
-.photo-thumbnail.portrait img {
-    width: 580px;
-    height: 750px;
-    object-fit: cover;
+.photo-thumbnail.portrait img
+{
+	width:580px;
+	height:750px;
+	object-fit:cover
 }
 
-
-
-/* règle pour décaler le dropdown des formats */
-
-.filter-area {
- display: flex;
- justify-content: center;
- position: relative; /* Ajouter cette ligne */
+.filter-area
+{
+	display:flex;
+	justify-content:center;
+	position:relative
 }
 
-.filter-box {
-    flex: 1 1 30%;
-    margin: 0px;
-    min-width: 220px;
-   
-
-    position: absolute; /* Ajouter cette ligne */
-    border-radius: 4px;
+.filter-box
+{
+	flex:1 1 30%;
+	margin:0;
+	min-width:220px;
+	position:absolute;
+	border-radius:4px
 }
 
-.filter-box-left {
-    left: 140px; /* Remplacer right: 450px par left: 10px */
-    top: 30px;
+.filter-box-left
+{
+	left:140px;
+	top:30px
 }
 
-.filter-box-center {
-    left: 39%;
-    transform: translateX(-50%);
-    top: 30px;
-    z-index: 1;
+.filter-box-center
+{
+	left:39%;
+	transform:translateX(-50%);
+	top:30px;
+	z-index:1
 }
 
-.filter-box-right {
-    right: 190px; /* Remplacer margin-left: auto par right: 10px */
-   top: 30px;
+.filter-box-right
+{
+	right:190px;
+	top:30px
 }
 
-
-/* Styles généraux */
-.custom-dropdown {
-    height: 52px;
-    margin: 0 auto;
+.custom-dropdown
+{
+	height:52px;
+	margin:0 auto
 }
 
-.title_filter_box {
-    width: 220px;
-    height: 100%;
-    margin-bottom: -20px;
-    padding: 0 20px;
-    border: 1px solid #b8bbc2;
-    border-radius: 8px;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    cursor: pointer;
+.title_filter_box
+{
+	width:220px;
+	height:100%;
+	margin-bottom:-20px;
+	padding:0 20px;
+	border:1px solid #b8bbc2;
+	border-radius:8px;
+	background-color:#fff;
+	display:flex;
+	justify-content:space-between;
+	align-items:center;
+	cursor:pointer
 }
 
-.selected-value {
-    font-size: 14px;
-    font-weight: 500;
-    font-family: "Poppins";
-    text-transform: uppercase;
-    color: black;
+.selected-value
+{
+	font-size:14px;
+	font-weight:500;
+	font-family:"Poppins";
+	text-transform:uppercase;
+	color:#000
 }
 
-.span_icon_filter {
-    width: 30px;
-    height: 30px;
-    font-size: 24px;
-    line-height: 15px;
-    display: flex;
-    justify-content: center;
-    transition: all 300ms ease-in;
-    color: black;
+.span_icon_filter
+{
+	width:30px;
+	height:30px;
+	font-size:24px;
+	line-height:15px;
+	display:flex;
+	justify-content:center;
+	transition:all 300ms ease-in;
+	color:#000
 }
 
-.list_items_filter {
-    width: 260px; /* Augmentez la largeur de l'Ã©lÃ©ment de la liste pour le hover */
-    background-color: #fff;
-    border-radius: 0 0 8px 8px;
-    position: absolute;
-    display: none;
-    z-index: 1;
+.list_items_filter
+{
+	width:260px;
+	background-color:#fff;
+	border-radius:0 0 8px 8px;
+	position:absolute;
+	display:none;
+	z-index:1
 }
 
-.list_item {
-    font-size: 14px;
-    font-weight: 500;
-    font-family: "Poppins";
-    color: #313144;
-    padding: 24px 0 24px 20px;
-    width: calc(100% + 40px);
-    margin-left: -40px;
-    box-sizing: border-box;
-    border-radius: 0 0 8px 8px;
-    background: white;
-    width: 260px;
+.list_item
+{
+	font-size:14px;
+	font-weight:500;
+	font-family:"Poppins";
+	color:#313144;
+	padding:24px 0 24px 20px;
+	width:calc(100% + 40px);
+	margin-left:-40px;
+	box-sizing:border-box;
+	border-radius:0 0 8px 8px;
+	background:#fff;
+	width:260px
 }
 
-.list_item:hover {
-    background: #ffd6d6;
-    cursor: pointer;
+.list_item:hover
+{
+	background:#ffd6d6;
+	cursor:pointer
 }
 
-.list_item:active {
-    background: #fe5858;
+.list_item:active
+{
+	background:#fe5858
 }
 
-.list_item_selected {
-    background-color: #e00000;
-    color: inherit; /* Pour conserver la couleur du texte d'origine */
-    width: 260px;
+.list_item_selected
+{
+	background-color:#e00000;
+	color:inherit;
+	width:260px
 }
 
-.span_icon_filter_rotate {
-    transform: rotate(180deg);
-    transition: all 300ms ease-in;
+.span_icon_filter_rotate
+{
+	transform:rotate(180deg);
+	transition:all 300ms ease-in
 }
 
-.menu_open {
-    display: block;
-    animation: fadeIn_open_list_items 0.3s ease-in-out;
+.menu_open
+{
+	display:block;
+	animation:fadeIn_open_list_items .3s ease-in-out
 }
 
 @keyframes fadeIn_open_list_items {
-    0% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-    }
+	0%
+	{
+		opacity:0;
+		transform:translateY(-10px)
+	}
+	
+	100%
+	{
+		opacity:1;
+		transform:translateY(0)
+	}
 }
 
 @keyframes fadeIn_close_list_items {
-    0% {
-        opacity: 1;
-        transform: translateY(0);
-    }
-    100% {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
+	0%
+	{
+		opacity:1;
+		transform:translateY(0)
+	}
+	
+	100%
+	{
+		opacity:0;
+		transform:translateY(-10px)
+	}
 }
 
-
-
-
-/*lightbox*/
-
-.photo-thumbnail {
-    position: relative;
-    overflow: hidden;
+.photo-thumbnail
+{
+	position:relative;
+	overflow:hidden
 }
 
-.photo-thumbnail img {
-    transition: transform 0.3s ease;
+.photo-thumbnail img
+{
+	transition:transform .3s ease
 }
 
-.photo-thumbnail:hover img {
-    transform: scale(1.1);
+.photo-thumbnail:hover img
+{
+	transform:scale(1.1)
 }
 
-.lightbox {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.lightbox
+{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.6);
+	opacity:0;
+	transition:opacity .3s ease;
+	display:flex;
+	align-items:center;
+	justify-content:center
 }
 
-.photo-thumbnail:hover .lightbox {
-    opacity: 1;
+.photo-thumbnail:hover .lightbox
+{
+	opacity:1
 }
 
-.lightbox-content {
-    position: relative;
-    width: 564px;
-    height: 495px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 20px;
-    box-sizing: border-box;
-    font-family: 'Space Mono';
-    z-index: 999;
+.lightbox-content
+{
+	position:relative;
+	width:564px;
+	height:495px;
+	display:flex;
+	flex-direction:column;
+	justify-content:space-between;
+	padding:20px;
+	box-sizing:border-box;
+	font-family:'Space Mono';
+	z-index:999
 }
 
-.lightbox-title {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    color: #fff;
-    font-size: 18px;
+.lightbox-title
+{
+	position:absolute;
+	bottom:10px;
+	left:10px;
+	color:#fff;
+	font-size:18px
 }
 
-.lightbox-category {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    color: #fff !important;
-    font-size: 18px;
-    pointer-events: none;
-    cursor: default;
-    text-decoration: none;
-    color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
+.lightbox-category
+{
+	position:absolute;
+	bottom:10px;
+	right:10px;
+	color:#fff!important;
+	font-size:18px;
+	pointer-events:none;
+	cursor:default;
+	text-decoration:none;
+	color:inherit
 }
 
-/* Style spécifique pour les liens dans .lightbox-category */
-.lightbox-category a {
-    color: #fff !important;
-    text-decoration: none;
-    pointer-events: none;
-    cursor: default;
-    text-decoration: none;
-    color: inherit; /* Optionnel : pour hériter de la couleur du texte environnant */
+.lightbox-category a
+{
+	color:#fff!important;
+	text-decoration:none;
+	pointer-events:none;
+	cursor:default;
+	text-decoration:none;
+	color:inherit
 }
 
-.lightbox-category a:hover {
-    text-decoration: underline;
+.lightbox-category a:hover
+{
+	text-decoration:underline
 }
 
-.lightbox-icon {
-    position: absolute;
-    display: block;
-    width: 32px;
-    height: 32px;
-    background-size: contain;
-    background-repeat: no-repeat;
-    z-index: 1000; /* S'assurer que les icônes sont au-dessus des autres éléments */
+.lightbox-icon
+{
+	position:absolute;
+	display:block;
+	width:32px;
+	height:32px;
+	background-size:contain;
+	background-repeat:no-repeat;
+	z-index:1000
 }
 
-.eye-icon {
-    background-image: url("../images/icon/Icon_eye-1.png");
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.eye-icon
+{
+	background-image:url(../images/icon/Icon_eye-1.png);
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%)
 }
 
-.fullscreen-icon {
-    background-image: url("../images/icon/Icon_fullscreen-1.png");
-    top: 10px;
-    right: 10px;
+.fullscreen-icon
+{
+	background-image:url(../images/icon/Icon_fullscreen-1.png);
+	top:10px;
+	right:10px
 }
 
-#fullscreen-overlay {
-    display: none; /* Caché par défaut */
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent */
-    z-index: 999; /* Juste en dessous du conteneur plein écran */
+#fullscreen-overlay
+{
+	display:none;
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,0.5);
+	z-index:999
 }
 
-.grid-container3 {
-    position: relative;
-    display: grid;
-
-   max-width: 564px;
-
-    max-height: 495px;
-overflow: auto; /* Activer le défilement si nécessaire */
-}
-.fullscreen-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
+.grid-container3
+{
+	position:relative;
+	display:grid;
+	max-width:564px;
+	max-height:495px;
+	overflow:auto
 }
 
-.image-container {
-    position: relative;
-    max-width: 100%;
-    max-height: 100%;
+.fullscreen-container
+{
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background:rgba(0,0,0,0.8);
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	z-index:1000
 }
 
-.fullscreen-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
-   
+.image-container
+{
+	position:relative;
+	max-width:100%;
+	max-height:100%
 }
 
-.fullscreen-details {
-    position: absolute;
-    bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
-   
-    box-sizing: border-box;
-    color: #fff;
-    font-size: 24px;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
-    border-radius: 10px;
-    font-size: 18px;
+.fullscreen-image
+{
+	max-width:100%;
+	max-height:100%;
+	object-fit:contain;
+	box-shadow:0 0 20px rgba(0,0,0,0.7)
 }
 
-.fullscreen-category {
-    max-width: 50%;
-    text-align: left;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.fullscreen-details
+{
+	position:absolute;
+	bottom:-20px;
+	left:50%;
+	transform:translateX(-50%);
+	box-sizing:border-box;
+	color:#fff;
+	font-size:24px;
+	display:flex;
+	justify-content:space-between;
+	width:100%;
+	border-radius:10px;
+	font-size:18px
 }
 
-.fullscreen-reference {
-    max-width: 50%;
-    text-align: right;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+.fullscreen-category
+{
+	max-width:50%;
+	text-align:left;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap
 }
 
-.arrows-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 85%;
-    display: flex;
-    justify-content: space-between;
-    pointer-events: none;
+.fullscreen-reference
+{
+	max-width:50%;
+	text-align:right;
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap
 }
 
-.fullscreen-arrow {
-   
-        cursor: pointer;
-        width: 150px;
-        height: auto;
-        pointer-events: auto;
-        filter: brightness(2) contrast(2); /* Augmenter la luminosité et le contraste pour améliorer l'image */
-    
+.arrows-container
+{
+	position:absolute;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+	width:85%;
+	display:flex;
+	justify-content:space-between;
+	pointer-events:none
 }
 
-.left-arrow-container {
-    margin-left: 20px;
+.fullscreen-arrow
+{
+	cursor:pointer;
+	width:150px;
+	height:auto;
+	pointer-events:auto;
+	filter:brightness(2) contrast(2)
 }
 
-.right-arrow-container {
-    margin-right: 20px;
+.left-arrow-container
+{
+	margin-left:20px
 }
 
-
-
-.close-button {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    font-size: 2em;
-    color: #fff;
-    cursor: pointer;
+.right-arrow-container
+{
+	margin-right:20px
 }
 
-
-
-.close-button:hover {
-    color: #ff0000; /* Changez la couleur au survol si désiré */
+.close-button
+{
+	position:absolute;
+	top:20px;
+	right:20px;
+	font-size:2em;
+	color:#fff;
+	cursor:pointer
 }
 
-/*single photo*/
-
-.single-photo-content {
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    position: relative;
-
-    width: 100%;
-
-    margin: 0 auto;
-
-    padding-bottom: 150px;
-
-    top: 20px;
+.close-button:hover
+{
+	color:red
 }
 
-.main-container {
-    position: relative;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    max-width: 1440px;
-
-    box-sizing: border-box;
+.single-photo-content
+{
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	position:relative;
+	width:100%;
+	margin:0 auto;
+	padding-bottom:150px;
+	top:20px
 }
 
-/* Photo class */
-
-.photo-display {
-    position: relative;
-
-    width: 563px;
-
-    height: 844px;
-
-    left: 300px;
-
-    top: 20px;
+.main-container
+{
+	position:relative;
+	display:flex;
+	flex-direction:column;
+	align-items:center;
+	max-width:1440px;
+	box-sizing:border-box
 }
 
-.photo-display img {
-    width: 100%;
-
-    height: 100%;
-
-    object-fit: cover;
+.photo-display
+{
+	position:relative;
+	width:563px;
+	height:844px;
+	left:300px;
+	top:20px
 }
 
-/* Frame 33 */
-
-.frame-33 {
-    position: relative;
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    padding: 0px;
-
-    gap: 20px;
-
-    position: absolute;
-
-    width: 420px;
-
-    height: 321px;
-
-    left: 160px;
-
-    top: 250px;
+.photo-display img
+{
+	width:100%;
+	height:100%;
+	object-fit:cover
 }
 
-.frame-33 p {
-    font-family: "Space Mono";
-
-    font-style: normal;
-
-    font-weight: 400;
-
-    font-size: 14px;
-
-    line-height: 21px;
-
-    text-transform: uppercase;
-
-    color: #000000;
+.frame-33
+{
+	position:relative;
+	display:flex;
+	flex-direction:column;
+	align-items:flex-start;
+	padding:0;
+	gap:20px;
+	position:absolute;
+	width:420px;
+	height:321px;
+	left:160px;
+	top:250px
 }
 
-
-
-.load-more2 {
-
-    position: relative;
-
-    display: block;
-
-    width: 272px;
-
-    height: 50px;
-
-    margin: 20px auto; /* Pour centrer le bouton horizontalement */
-
-    text-align: center;
-
-    background: #d8d8d8;
-
-    border-radius: 2px;
-
-    cursor: pointer;
-
-    border: 1px solid #ffffff;
-
-    top:-100px;
-
-    right: 130px;
-    z-index: 1;
+.frame-33 p
+{
+	font-family:"Space Mono";
+	font-style:normal;
+	font-weight:400;
+	font-size:14px;
+	line-height:21px;
+	text-transform:uppercase;
+	color:#000
 }
 
-
-
-/* Line 4 */
-
-.line-4 {
-    position: relative;
-
-    width: 80%;
-
-    height: 0px;
-
-    left: 160px;
-
-    top: -200px;
-
-    border: 1px solid #000000;
+.load-more2
+{
+	position:relative;
+	display:block;
+	width:272px;
+	height:50px;
+	margin:20px auto;
+	text-align:center;
+	background:#d8d8d8;
+	border-radius:2px;
+	cursor:pointer;
+	border:1px solid #fff;
+	top:-100px;
+	right:130px;
+	z-index:1
 }
 
-/* Line 3 */
-
-.line-3 {
-    position: relative;
-
-    width: 564px;
-
-    height: 0px;
-
-    left: 160px;
-
-    top: -110px;
-
-    border: 1px solid #000000;
+.line-4
+{
+	position:relative;
+	width:80%;
+	height:0;
+	left:160px;
+	top:-200px;
+	border:1px solid #000
 }
 
-
-.photo-details p.title {
-    font-family: Space Mono !important;
-
-    font-size: 44px !important;
-
-    font-style: italic !important;
-
-    font-weight: 400 !important;
-
-    line-height: 58px !important;
-
-    text-align: left !important;
+.line-3
+{
+	position:relative;
+	width:564px;
+	height:0;
+	left:160px;
+	top:-110px;
+	border:1px solid #000
 }
 
-.photo-details p {
-    font-family: Space Mono;
-
-    font-size: 14px;
-
-    font-weight: 400;
-
-    line-height: 20.73px;
-
-    letter-spacing: 0.1em;
-
-    text-align: left;
-
+.photo-details p.title
+{
+	font-family:Space Mono!important;
+	font-size:44px!important;
+	font-style:italic!important;
+	font-weight:400!important;
+	line-height:58px!important;
+	text-align:left!important
 }
 
-/* Cette photo vous intéresse ? */
-
-.cette-photo {
-    position: relative;
-
-    width: 197px;
-
-    height: 21px;
-
-    left: 160px;
-
-    top: -40px;
-
-    font-family: "Poppins"!important;
-
- 
-
-   
-
-    font-size: 14px;
-
-    line-height: 21px;
-
-    display: flex;
-
-    align-items: center;
-
-    text-align: right;
-
-    color: #000000;
+.photo-details p
+{
+	font-family:Space Mono;
+	font-size:14px;
+	font-weight:400;
+	line-height:20.73px;
+	letter-spacing:.1em;
+	text-align:left
 }
 
-/* Style pour le titre "Vous aimerez AUSSI" */
-
-.aussi {
-    position: relative;
-
-    width: 100%;
-
-    height: 27px;
-
-    left:160px;
-
-    top: -140px;
-
-    font-family: Space Mono;
-
-    font-size: 18px;
-
-    font-weight: 400;
-
-    line-height: 26.66px;
-
-    letter-spacing: 0.1em;
-
-    display: flex;
-
-    align-items: center;
-
-    text-align: right;
-
-    color: #000000;
+.cette-photo
+{
+	position:relative;
+	width:197px;
+	height:21px;
+	left:160px;
+	top:-40px;
+	font-family:"Poppins"!important;
+	font-size:14px;
+	line-height:21px;
+	display:flex;
+	align-items:center;
+	text-align:right;
+	color:#000
 }
 
-/* Style pour les cartes photo */
-
-.photo {
-    position: absolute;
-
-    width: 564px;
-
-    height: 495px;
+.aussi
+{
+	position:relative;
+	width:100%;
+	height:27px;
+	left:160px;
+	top:-140px;
+	font-family:Space Mono;
+	font-size:18px;
+	font-weight:400;
+	line-height:26.66px;
+	letter-spacing:.1em;
+	display:flex;
+	align-items:center;
+	text-align:right;
+	color:#000
 }
 
-/* Style pour la première carte photo */
-
-.photo:nth-child(1) {
-    left: 728px;
-
-    top: 1237px;
+.photo
+{
+	position:absolute;
+	width:564px;
+	height:495px
 }
 
-/* Style pour la deuxième carte photo */
-
-.photo:nth-child(2) {
-    left: 144px;
-
-    top: 1237px;
+.photo:nth-child(1)
+{
+	left:728px;
+	top:1237px
 }
 
-
-/*micro nav*/
-
-.navigation-container {
-    position: relative;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-end; /* Aligner à droite */
-
-    margin-top: 40px; /* Ajuster selon vos besoins */
-
-    left: -140px;
-
-    top:-220px;
+.photo:nth-child(2)
+{
+	left:144px;
+	top:1237px
 }
 
-.preview-image {
-    object-fit: cover; 
-    width: 81px;
-
-    height: 71px;
-
-    top: 1461px;
-
-    left: 6038px;
-
-    gap: 0px;
-
-    opacity: 1;
+.navigation-container
+{
+	position:relative;
+	display:flex;
+	flex-direction:column;
+	align-items:flex-end;
+	margin-top:40px;
+	left:-140px;
+	top:-220px
 }
 
-.page-preview img {
-    width: 81px;
-
-    height: 71px;
+.preview-image
+{
+	object-fit:cover;
+	width:81px;
+	height:71px;
+	top:1461px;
+	left:6038px;
+	gap:0;
+	opacity:1
 }
 
-.next-page-preview {
-    position: relative;
-
-    width: 81px;
-
-    height: 71px;
-
-    cursor: pointer; /* Ajouter un curseur pour indiquer que c'est cliquable */
-
-    margin-bottom: 10px; /* Espace entre le carré et les flèches */
+.page-preview img
+{
+	width:81px;
+	height:71px
 }
 
-.navigation-arrows {
-    display: flex;
-    justify-content: space-between;
-    width: 5%;
-    left: -5px;
-    position: relative;
+.next-page-preview
+{
+	position:relative;
+	width:81px;
+	height:71px;
+	cursor:pointer;
+	margin-bottom:10px
 }
 
-.navigation-arrow {
-    display: block;
-
-    width: 25px; /* Ajuster la taille selon vos besoins */
-
-    height: 25px; /* Ajuster la taille selon vos besoins */
-
-    z-index: 9999;
+.navigation-arrows
+{
+	display:flex;
+	justify-content:space-between;
+	width:5%;
+	left:-5px;
+	position:relative
 }
 
-.navigation-arrow img {
-    width: 100%;
-
-    height: auto;
-}
-.photo-grid-container{
-
-
-        margin-bottom: 0; /* Supprime la marge en bas */
-        bottom: 0;
-        position: relative;
-
-    
-
+.navigation-arrow
+{
+	display:block;
+	width:25px;
+	height:25px;
+	z-index:9999
 }
 
-
-
-/* Styles pour le bouton */
-.load-more {
-    display: block;
-    width: 272px;
-    height: 50px;
-    margin: 20px auto;
-    margin-top: 60px;
-    text-align: center;
-    line-height: 50px;
-    background: #d8d8d8;
-    border-radius: 2px;
-    cursor: pointer;
-    border: 1px solid #fff;
-    color:#000000;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Transition pour le hover */
+.navigation-arrow img
+{
+	width:100%;
+	height:auto
 }
 
-/* Règle hover pour le bouton loadmore */
-.load-more:hover {
-    background-color: #000000; /* Changement de couleur de fond au survol */
-    color: #ffffff; /* Changement de couleur du texte au survol */
+.photo-grid-container
+{
+	margin-bottom:0;
+	bottom:0;
+	position:relative
+}
+
+.load-more
+{
+	display:block;
+	width:272px;
+	height:50px;
+	margin:20px auto;
+	margin-top:60px;
+	text-align:center;
+	line-height:50px;
+	background:#d8d8d8;
+	border-radius:2px;
+	cursor:pointer;
+	border:1px solid #fff;
+	color:#000;
+	transition:background-color .3s ease,color .3s ease
+}
+
+.load-more:hover
+{
+	background-color:#000;
+	color:#fff
 }

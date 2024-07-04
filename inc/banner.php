@@ -1,6 +1,8 @@
 <?php
-
 function get_banner_images() {
+    // Ajoutez des en-têtes pour indiquer de ne pas mettre en cache cette requête
+    nocache_headers();
+
     $paysage_term = get_term_by('slug', 'paysage', 'format');
 
     if ($paysage_term) {
@@ -42,6 +44,4 @@ function get_banner_images() {
 
     return $image_urls;
 }
-
-
-
+?>

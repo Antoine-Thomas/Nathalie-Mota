@@ -15,10 +15,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="keywords" content="photographe événementiel, photographe event, nathalie mota, photo format hd" />
     <meta name="description" content="Nathalie Mota - Site personnel pour la vente de mes photos en impression HD.">
-    
-    
-   
 
+
+    
     <?php wp_head(); ?>
 </head>
 
@@ -78,5 +77,6 @@
 </body>
 
 </html>
+
 
 
