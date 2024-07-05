@@ -95,7 +95,6 @@
     wp_die();
 }
 
-
 add_action('wp_ajax_load_photos_by_selection', 'load_photos_by_selection');
 add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection');
 ?>
