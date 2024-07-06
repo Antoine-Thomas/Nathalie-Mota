@@ -31,10 +31,10 @@ get_header();
 
                         <div class="entry-content">
                             <?php
-                            // Afficher l'image mise en avant de l'article (full size)
+                            // Afficher la miniature de l'article si disponible
                             if (has_post_thumbnail()) {
                                 echo '<div class="post-thumbnail">';
-                                the_post_thumbnail('full'); // Affichage en taille complète
+                                the_post_thumbnail('medium'); // Taille de la vignette à adapter selon vos besoins
                                 echo '</div>';
                             }
                             ?>
@@ -54,25 +54,6 @@ get_header();
         </div><!-- .post-list -->
 
         <?php
-        // Affichage de la liste des termes de taxonomie
-        $terms = get_terms(array(
-            'taxonomy' => 'categorie-mariage', // Remplacez par votre taxonomie
-            'hide_empty' => false,
-        ));
-        
-        if ($terms) :
-        ?>
-            <div class="taxonomy-terms">
-                <h2>Termes de taxonomie</h2>
-                <ul>
-                    <?php foreach ($terms as $term) : ?>
-                        <li><a href="<?php echo get_term_link($term); ?>"><?php echo $term->name; ?></a></li>
-                    <?php endforeach; ?>
-                </ul>
-            </div>
-        <?php endif; ?>
-
-        <?php
         // Pagination
         the_posts_pagination(array(
             'prev_text' => 'Précédent',
@@ -86,6 +67,4 @@ get_header();
 <?php
 get_footer();
 ?>
-
-
 

@@ -382,6 +382,9 @@ height:100%;
 padding:0 20px;
 max-width:1440px
 }
+#primary {
+  margin-bottom: 1440px; /* Ajuster selon la hauteur de votre footer */
+}
 
 @media screen and (max-width: 768px) {
 #footer
@@ -1363,17 +1366,7 @@ width:564px;
 height:495px
 }
 
-.photo:nth-child(1)
-{
-left:728px;
-top:1237px
-}
 
-.photo:nth-child(2)
-{
-left:144px;
-top:1237px
-}
 
 .navigation-container
 {
@@ -1463,4 +1456,25 @@ transition:background-color .3s ease,color .3s ease
 {
 background-color:#000;
 color:#fff
+}
+
+
+
+.post-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  justify-items: center;
+}
+
+.post-item {
+  border: 1px solid #ddd;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f9f9;
 }
