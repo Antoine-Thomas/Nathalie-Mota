@@ -1,14 +1,18 @@
+</main><!-- #main -->
+    </div><!-- #primary -->
+</div><!-- #content -->
+
 <footer id="footer">
     <div class="footer-container">
         <div class="menu-footer-menu-container">
             <ul id="menu-footer-menu" class="menu">
-                <div class="privacy-policy">
-                    <a  rel="privacy-policy" href="<?php echo esc_url( home_url( 'mentions-legales/' ) ); ?>">Mentions Légales</a>
-                </div>
+                <li class="privacy-policy">
+                    <a rel="privacy-policy" href="<?php echo esc_url(home_url('mentions-legales/')); ?>">Mentions Légales</a>
+                </li>
             </ul>
         </div>
         <div class="footer-center">
-            <a href="<?php echo esc_url( home_url( 'privacy-policy/' ) ); ?>">Vie Privée</a>
+            <a href="<?php echo esc_url(home_url('privacy-policy/')); ?>">Vie Privée</a>
         </div>
         <aside id="widget-area">
             <div id="block-9" class="block">
@@ -17,4 +21,10 @@
         </aside>
     </div>
 </footer>
+
+<?php wp_footer(); ?>
+</body>
+</html>
+
+
 

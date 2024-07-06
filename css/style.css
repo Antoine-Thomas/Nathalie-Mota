@@ -383,7 +383,7 @@ padding:0 20px;
 max-width:1440px
 }
 #primary {
-  margin-bottom: 1440px; /* Ajuster selon la hauteur de votre footer */
+  height: 100%;
 }
 
 @media screen and (max-width: 768px) {
@@ -1478,3 +1478,7 @@ color:#fff
   flex-direction: column;
   background-color: #f9f9f9;
 }
+
+
+
+
