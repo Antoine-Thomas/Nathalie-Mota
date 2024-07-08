@@ -1,42 +1,45 @@
-jQuery(document).ready(function($) {
-    // Fonction pour charger les images de la bannière
-    function loadBannerImages() {
-        $.ajax({
-            url: nmAjax.ajaxUrl,
-            method: 'POST',
-            data: {
-                action: 'load_photos_for_banner'
-            },
-            success: function(response) {
-                var images = JSON.parse(response);
-                if (images.length > 0) {
-                    displayBannerImages(images);
-                } else {
-                    // Aucune image de bannière trouvée.
+(function($) {
+    $(document).ready(function() {
+        // Fonction pour charger et afficher les images de la bannière
+        function get_banner_images() {
+            $.ajax({
+                url: ajax_object.ajaxurl, // Utilisez ajaxurl fourni par WordPress pour les requêtes AJAX
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    action: 'get_banner_images' // Action PHP à appeler
+                },
+                success: function(response) {
+                    if (response && response.length > 0) {
+                        let currentIndex = 0;
+                        const totalImages = response.length;
+
+                        // Fonction pour changer l'image de la bannière
+                        function changeBannerImage() {
+                            $('.photo-banner').fadeOut('slow', function() {
+                                $(this).css('background-image', 'url(' + response[currentIndex] + ')').fadeIn('slow');
+                            });
+
+                            currentIndex = (currentIndex + 1) % totalImages;
+
+                            // Appeler cette fonction de manière récursive après un délai
+                            setTimeout(changeBannerImage, 10000); // Changer l'image toutes les 5 secondes
+                        }
+
+                        // Démarrer le diaporama de la bannière
+                        changeBannerImage();
+                    } else {
+                        console.log('Aucune image de bannière trouvée.');
+                    }
+                },
+                error: function(error) {
+                    console.error('Erreur lors du chargement des images de la bannière :', error);
                 }
-            },
-            error: function(_xhr, _status, error) {
-                console.error('Erreur lors du chargement des images de bannière:', error);
-            }
-        });
-    }
+            });
+        }
 
-    // Fonction pour afficher les images dans la bannière
-    function displayBannerImages(images) {
-        var $bannerContent = $('.banner-content');
-        $bannerContent.empty(); // Vide le contenu actuel de la bannière
-
-        images.forEach(function(imageUrl) {
-            var $photoElement = $('<div class="photo-banner" style="background-image: url(' + imageUrl + ');"></div>');
-            $bannerContent.append($photoElement);
-        });
-    }
-// Déclencher un événement personnalisé pour indiquer que la bannière est chargée
-$(document).trigger('bannerLoaded');
-    // Appel de la fonction pour charger les images de la bannière au chargement de la page
-    loadBannerImages();
-});
-
-
-
+        // Appeler la fonction pour charger les images de la bannière au chargement de la page
+        get_banner_images();
+    });
+})(jQuery);
 

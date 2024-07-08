@@ -42,7 +42,9 @@
 </div>
 
 
-<script>
+
+<script> 
+ // Affichage dynamique dans la popup 
 jQuery(document).ready(function($) {
     // Récupérer la référence PHP et échapper pour JavaScript
     var referenceValue = "<?php echo esc_js($reference); ?>";
@@ -54,17 +56,4 @@ jQuery(document).ready(function($) {
         inputRefPhoto.value = referenceValue;
     }
 });
-
-
 </script>
-
-
-
-
-
-
-
-
-
-
-

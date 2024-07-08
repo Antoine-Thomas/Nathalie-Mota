@@ -1,4 +1,10 @@
 <?php
+// functions.php ou un fichier inclut dans votre thème ou plugin
+
+// Ajoutez une action WordPress pour traiter la demande AJAX
+add_action('wp_ajax_get_banner_images', 'get_banner_images');
+add_action('wp_ajax_nopriv_get_banner_images', 'get_banner_images');
+
 function get_banner_images() {
     // Ajoutez des en-têtes pour indiquer de ne pas mettre en cache cette requête
     nocache_headers();
@@ -30,9 +36,7 @@ function get_banner_images() {
 
                 if ($photo) {
                     $image_url = wp_get_attachment_image_src($photo['ID'], 'full');
-                    $image_urls[] = array(
-                        'photo' => $image_url[0]
-                    );
+                    $image_urls[] = $image_url[0]; // Ajoutez seulement l'URL de l'image à la liste
                 }
             }
 
@@ -42,6 +46,7 @@ function get_banner_images() {
         // Le terme "paysage" n'a pas été trouvé dans la taxonomie "format"
     }
 
-    return $image_urls;
+    echo json_encode($image_urls); // Renvoyer les URLs sous forme de JSON pour AJAX
+    wp_die(); // Terminer le traitement AJAX
 }
 ?>

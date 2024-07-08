@@ -7,25 +7,17 @@
 
 get_header();
 ?>
+
 <div id="primary" class="content-area">
     <main id="main" class="site-main">
         <section class="hero">
             <div class="banner">
                 <div class="banner-content">
-                    <?php 
-                    $photos = get_banner_images();
-                    if (!empty($photos)) : 
-                        $random_index = array_rand($photos);
-                        $random_photo = $photos[$random_index]['photo'];
-                    ?>
-                    <div class="photo-banner" style="background-image: url('<?php echo esc_url($random_photo); ?>');">
+                    <div class="photo-banner">
                         <div class="title-hero">
                             PHOTOGRAPHE EVENT
                         </div>
                     </div>
-                    <?php else : ?>
-                        <p>Aucune image de bannière trouvée.</p>
-                    <?php endif; ?>
                 </div>
             </div>
         </section>
@@ -91,7 +83,8 @@ get_header();
             </form>
         </section>
 
-        <div class="photo-grid-container"></div> <!-- Conteneur pour les photos -->
+        <!-- Conteneur pour les photos -->
+        <div class="photo-grid-container"></div>
 
         <section class="photos">
             <div class="container">
@@ -109,5 +102,3 @@ get_header();
 <?php
 get_footer();
 ?>
-
-

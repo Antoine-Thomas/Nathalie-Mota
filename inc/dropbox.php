@@ -1,6 +1,12 @@
 <?php
-function load_photos_by_selection() {
-    // Récupération des paramètres envoyés par la requête AJAX
+/**
+ * Template Name: dropbox 
+ *
+ * @package Nathalie Mota
+ */
+
+ function load_photos_by_selection() {
+    
     $categorie_ids = isset($_POST['categorie_id']) ? array_map('intval', (array) $_POST['categorie_id']) : array();
     $format_ids = isset($_POST['format_id']) ? array_map('intval', (array) $_POST['format_id']) : array();
     $date_order = isset($_POST['date_order']) ? sanitize_text_field($_POST['date_order']) : 'DESC';
@@ -89,7 +95,7 @@ function load_photos_by_selection() {
     wp_die();
 }
 
+
 add_action('wp_ajax_load_photos_by_selection', 'load_photos_by_selection');
 add_action('wp_ajax_nopriv_load_photos_by_selection', 'load_photos_by_selection');
 ?>
-
